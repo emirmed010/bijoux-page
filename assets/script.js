@@ -7,9 +7,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     let currentLang = localStorage.getItem('preferredLanguage') || 'fr';
     let cmsData = {
         settings: {},
-        home: {},
-        products: [],
-        gallery: []
+        home: {}
+        // Dynamic collections like products/gallery can be added later
     };
 
     // Helper functions to safely update the DOM
@@ -46,8 +45,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     async function fetchData(url) {
         try {
             const response = await fetch(url);
-            if (response.status === 404) return null;
+            if (response.status === 404) {
+                console.warn(`File not found: ${url}. This might be normal if you haven't created it in the CMS yet.`);
+                return null;
+            }
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            
             const yamlText = await response.text();
             const data = {};
             yamlText.split('\n').forEach(line => {
@@ -63,15 +66,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             console.error(`Failed to fetch or parse ${url}:`, error);
             return null;
         }
-    }
-    
-    // NOTE: This is a placeholder for fetching folder collections.
-    // A real implementation requires a build step or using the GitHub API.
-    async function fetchFolderCollection(folderPath, slugs = []) {
-        if (slugs.length === 0) return []; // Return empty if no slugs are provided
-        const promises = slugs.map(slug => fetchData(`/content/${folderPath}/${slug}.md`));
-        const results = await Promise.all(promises);
-        return results.filter(r => r !== null);
     }
 
 
@@ -119,11 +113,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         updateText(`contact-title-${lang}`, home[`contact_title_${lang}`]);
         updateText(`contact-subtitle-${lang}`, home[`contact_text_${lang}`]);
         updateFormAction('contactForm', home.form_shortcode);
-        updateText(`contact-address-${lang}`, home[`contact_address_${lang}`]);
-        updateText(`contact-phone-fr`, home.contact_phone);
-        updateText(`contact-phone-ar`, home.contact_phone);
-        updateText(`contact-email-fr`, home.contact_email);
-        updateText(`contact-email-ar`, home.contact_email);
+        // For single-language fields, we update both the text content itself, not the container
+        const addressEl = document.getElementById(`contact-address-${lang}`);
+        if(addressEl) addressEl.innerHTML = `<i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${home[`contact_address_${lang}`] || ''}`;
+        const phoneEl = document.getElementById(`contact-phone-${lang}`);
+        if(phoneEl) phoneEl.innerHTML = `<i class="fas fa-phone text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${home.contact_phone || ''}`;
+        const emailEl = document.getElementById(`contact-email-${lang}`);
+        if(emailEl) emailEl.innerHTML = `<i class="fas fa-envelope text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${home.contact_email || ''}`;
+
         const mapContainer = document.getElementById('google-map-container');
         if (mapContainer && home.contact_map_embed) {
             updateInnerHTML('google-map-container', home.contact_map_embed);
@@ -167,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         setLanguage(currentLang);
 
-        // --- Original Event Listeners from your file ---
+        // --- Event Listeners ---
         const languageSwitchBtn = document.getElementById('languageSwitch');
         if (languageSwitchBtn) {
             languageSwitchBtn.addEventListener('click', () => setLanguage(currentLang === 'ar' ? 'fr' : 'ar'));
@@ -189,11 +186,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 if (body.classList.contains('menu-open')) {
                     menuBtn.click(); // Close menu if open
                 }
-                // Smooth scroll logic can be kept as is
             });
         });
-        
-        // Add other listeners...
     }
 
     initializePage();
