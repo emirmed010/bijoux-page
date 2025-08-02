@@ -1,0 +1,14 @@
+{
+  "name": "netlify-cms-vanillajs-site",
+  "version": "1.0.0",
+  "description": "A static site with a build script to aggregate content.",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "gray-matter": "^4.0.3"
+  }
+}
