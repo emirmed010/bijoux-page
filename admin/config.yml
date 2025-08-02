@@ -1,0 +1,52 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets"
+public_folder: "/assets"
+
+collections:
+  - name: "landing"
+    label: "صفحة الهبوط"
+    files:
+      - name: "home"
+        label: "صفحة الهبوط الكاملة"
+        file: "index.html"
+        fields:
+          # ---------------- HERO ----------------
+          - {label: "عنوان رئيسي", name: "hero_title", widget: "string"}
+          - {label: "النص التعريفي", name: "hero_text", widget: "text"}
+          - {label: "صورة الخلفية", name: "hero_image", widget: "image"}
+          - {label: "نص زر الدعوة", name: "cta_text", widget: "string"}
+
+          # ---------------- ABOUT ----------------
+          - {label: "عنوان قسم قصتنا", name: "about_title", widget: "string"}
+          - {label: "النص التعريفي قصتنا", name: "about_text", widget: "text"}
+          - {label: "صورة قسم قصتنا", name: "about_image", widget: "image"}
+
+          # ---------------- PRODUITS PHARES ----------------
+          - label: "المنتجات المميزة"
+            name: "featured_products"
+            widget: list
+            fields:
+              - {label: "صورة المنتج", name: "image", widget: "image"}
+              - {label: "عنوان المنتج", name: "title", widget: "string"}
+
+          # ---------------- COLLECTIONS ----------------
+          - {label: "عنوان قسم المجموعات", name: "collections_title", widget: "string"}
+          - {label: "النص التعريفي للمجموعات", name: "collections_text", widget: "text"}
+
+          # ---------------- CONTACT ----------------
+          - {label: "عنوان قسم الاتصال", name: "contact_title", widget: "string"}
+          - {label: "نص قسم الاتصال", name: "contact_text", widget: "text"}
+          - {label: "العنوان", name: "contact_address", widget: "string"}
+          - {label: "الهاتف", name: "contact_phone", widget: "string"}
+          - {label: "البريد الإلكتروني", name: "contact_email", widget: "string"}
+          - {label: "خريطة (Embed Code)", name: "contact_map", widget: "text"}
+
+          # ---------------- FOOTER ----------------
+          - {label: "نص الفوتر", name: "footer_text", widget: "string"}
+          - {label: "حقوق النشر", name: "footer_rights", widget: "string"}
+          - {label: "رابط فيسبوك", name: "facebook_link", widget: "string"}
+          - {label: "رابط إنستغرام", name: "instagram_link", widget: "string"}
+          - {label: "رابط بينتريست", name: "pinterest_link", widget: "string"}

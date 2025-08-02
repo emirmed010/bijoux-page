@@ -1,0 +1,110 @@
+/* =================================================================
+   STYLES EXPERTS POUR UNE EXPÉRIENCE MOBILE DE LUXE
+   ================================================================= */
+
+:root {
+    --gold-primary: #c5a47e; 
+    --gold-secondary: #e6d2b8;
+    --dark-bg: #1f1f1f;
+    --light-bg: #f9f6f2; 
+    --text-dark: #2b2b2b;
+}
+
+/* Styles de base du corps */
+body {
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    scroll-behavior: smooth; 
+    overflow-x: hidden;
+}
+body.menu-open {
+    overflow: hidden; 
+}
+
+/* Polices de caractères */
+.font-serif { font-family: 'Playfair Display', serif; }
+.font-sans { font-family: 'Poppins', sans-serif; }
+html[lang="ar"] body { font-family: 'Tajawal', sans-serif; }
+html[lang="ar"] .font-serif { font-family: 'Tajawal', sans-serif; font-weight: 700; }
+html[lang="ar"] .font-sans { font-family: 'Tajawal', sans-serif; }
+
+/* Styles des boutons */
+.btn {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 9999px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+    -webkit-tap-highlight-color: transparent; 
+}
+.btn:active {
+    transform: scale(0.97); 
+}
+.btn-gold {
+    background-color: var(--gold-primary); color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.btn-gold:hover {
+    background-color: var(--gold-secondary); color: var(--dark-bg); transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(197, 164, 126, 0.4);
+}
+.btn-outline-gold {
+    border: 2px solid var(--gold-primary); color: var(--gold-primary);
+}
+.btn-outline-gold:hover {
+    background-color: var(--gold-primary); color: white;
+}
+
+/* Titres de section */
+.section-title::after {
+    content: ''; display: block; width: 60px; height: 3px;
+    background-color: var(--gold-primary); margin: 1rem auto; border-radius: 2px;
+}
+
+/* Animations de défilement */
+.scroll-animate {
+    opacity: 0; transform: translateY(50px);
+    transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.scroll-animate.is-visible {
+    opacity: 1; transform: translateY(0);
+}
+
+/* Menu mobile professionnel (Overlay) */
+#mobileMenu {
+    position: fixed; top: 0; right: -100%;
+    width: 100%; height: 100%;
+    background-color: var(--light-bg); 
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 100;
+}
+html[dir="rtl"] #mobileMenu {
+    right: auto; left: -100%;
+    transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+#mobileMenu.open { right: 0; }
+html[dir="rtl"] #mobileMenu.open { left: 0; }
+
+.mobile-menu-link {
+    font-size: 1.75rem; font-weight: 700;
+    color: var(--text-dark); 
+    padding: 1rem; transition: color 0.3s, letter-spacing 0.3s;
+}
+.mobile-menu-link:hover {
+    color: var(--gold-primary); letter-spacing: .1em;
+}
+
+/* Icône de menu animée (Hamburger -> X) */
+#menuBtn { z-index: 110; position: relative; }
+.hamburger-line {
+    width: 25px; height: 2px; background-color: var(--text-dark);
+    display: block; transition: all 0.3s ease-in-out;
+}
+#menuBtn.open .line-1 { transform: translateY(7px) rotate(45deg); }
+#menuBtn.open .line-2 { opacity: 0; }
+#menuBtn.open .line-3 { transform: translateY(-7px) rotate(-45deg); }
+
+/* Styles RTL pour l'arabe */
+html[dir="rtl"] .md\:text-left { text-align: right !important; }
+html[dir="rtl"] .space-x-8 > :not([hidden]) ~ :not([hidden]) { margin-right: 2rem; margin-left: 0; }
+html[dir="rtl"] .ml-4 { margin-right: 1rem; margin-left: 0; }
+html[dir="rtl"] .mr-2 { margin-left: 0.5rem; margin-right: 0; }
+html[dir="rtl"] .border-l-4 { border-right-width: 4px; border-left-width: 0px; }
+html[dir="rtl"] .pl-4 { padding-right: 1rem; padding-left: 0; }
+html[dir="rtl"] .space-x-6 > :not([hidden]) ~ :not([hidden]) { margin-right: 1.5rem; margin-left: 0; }
