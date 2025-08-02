@@ -1,5 +1,15 @@
 [build]
-  # هذا السطر يخبر نيتليفاي أن المجلد الرئيسي لمشروعك هو الذي سيتم نشره
-  publish = "."
-  # بما أن موقعك ثابت (HTML, CSS, JS)، لا نحتاج إلى أمر بناء
-  command = ""
+  # This command runs our build script.
+  command = "npm install && npm run build"
+  
+  # This is the directory that Netlify will publish.
+  publish = "/"
+
+  # Directory for serverless functions (if you add any in the future).
+  functions = "functions"
+
+# Optional: Redirect rule for cleaner function URLs
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
