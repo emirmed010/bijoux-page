@@ -1,72 +1,68 @@
-// =================================================================
-// ==  الكود الخاص بتحميل المحتوى الديناميكي من لوحة التحكم (CMS)  ==
-// =================================================================
-
 async function loadDynamicContent() {
   try {
-    // هنا نقوم بطلب الملف الذي حددته تماماً
     const response = await fetch('/content/home.yml');
     if (!response.ok) return;
 
     const yamlText = await response.text();
+    const data = {};
+    yamlText.split('\n').forEach(line => {
+      const parts = line.split(':');
+      if (parts.length > 1) {
+        const key = parts[0].trim();
+        const value = parts.slice(1).join(':').trim().replace(/^['"]|['"]$/g, '');
+        data[key] = value;
+      }
+    });
 
-    const parseYaml = (text) => {
-      const data = {};
-      text.split('\n').forEach(line => {
-        const parts = line.split(':');
-        if (parts.length > 1) {
-          const key = parts[0].trim();
-          const value = parts.slice(1).join(':').trim().replace(/^['"]|['"]$/g, '');
-          data[key] = value;
-        }
-      });
-      return data;
-    };
-
-    const data = parseYaml(yamlText);
-
+    // Helper functions to update page
     const updateText = (id, value) => {
       const element = document.getElementById(id);
       if (element && value) element.textContent = value;
     };
-
     const updateImage = (id, src) => {
       const element = document.getElementById(id);
       if (element && src) element.src = src;
     };
+    const updateLink = (id, href) => {
+      const element = document.getElementById(id);
+      if (element && href) element.href = href;
+    };
 
-    // --- تحديث محتوى الصفحة ---
-    // تأكد أن هذه الأسماء (hero_title) تطابق حقل "name" في config.yml
-
-    // قسم HERO
+    // Update content using data from the CMS
+    // These names match the 'name' fields in your config.yml
     updateText('hero-title-ar', data.hero_title);
     updateText('hero-subtitle-ar', data.hero_text);
     updateImage('hero-image', data.hero_image);
     updateText('hero-button-ar', data.cta_text);
-
-    // قسم ABOUT
     updateText('about-title-ar', data.about_title);
     updateText('about-story-text-ar', data.about_text);
     updateImage('about-image', data.about_image);
-
-    // قسم CONTACT
+    updateText('collections-title-ar', data.collections_title);
+    updateText('collections-subtitle-ar', data.collections_text);
     updateText('contact-title-ar', data.contact_title);
     updateText('contact-subtitle-ar', data.contact_text);
-    // ... وهكذا لبقية الحقول
+    updateText('contact-address-ar', data.contact_address);
+    updateText('contact-phone-ar', data.contact_phone);
+    updateText('contact-email-ar', data.contact_email);
+    updateImage('google-map', data.contact_map); // Assumes map is an iframe with src
+    updateText('footer-slogan-ar', data.footer_text);
+    updateText('footer-copyright-ar', data.footer_rights);
+    updateLink('social-link-facebook', data.facebook_link);
+    updateLink('social-link-instagram', data.instagram_link);
+    updateLink('social-link-pinterest', data.pinterest_link);
 
   } catch (error) {
-    console.error('خطأ في تحميل المحتوى الديناميكي:', error);
+    console.error('Error loading dynamic content:', error);
   }
 }
 
-// --- بداية الكود الأصلي في ملف script.js ---
+// Find your original DOMContentLoaded listener and add the call
 document.addEventListener('DOMContentLoaded', function() {
+  // Add this line at the top
+  loadDynamicContent();
 
-    // استدعاء الدالة الجديدة لتحميل المحتوى أولاً
-    loadDynamicContent();
-
-    // بيانات المعرض...
-    // ... بقية الكود الأصلي الموجود في ملفك ...
+  // ... The rest of your original script.js code ...
+});
 
 
 
