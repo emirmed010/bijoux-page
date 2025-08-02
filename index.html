@@ -35,8 +35,8 @@
     <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm py-4 px-6 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#home" class="text-3xl font-serif font-bold text-[var(--gold-primary)] z-20">
-                <span data-lang="fr" id="brand-fr">Élégance</span>
-                <span data-lang="ar" class="hidden" id="brand-ar">إليجانس</span>
+                <span data-lang="fr" id="brand-fr"></span>
+                <span data-lang="ar" class="hidden" id="brand-ar"></span>
             </a>
 
             <nav class="hidden md:flex items-center space-x-8">
@@ -126,8 +126,8 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="featured-title-fr"></h2>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="featured-title-ar"></h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="featured-title-fr">Nos Produits Phares</h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="featured-title-ar">أبرز منتجاتنا</h2>
                     <div class="w-24 h-1 bg-[var(--gold-primary)] mx-auto"></div>
                 </div>
                 <!-- Container for dynamic products -->
@@ -180,10 +180,10 @@
         <section id="collections" class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title" data-lang="fr" id="collections-title-fr"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="collections-subtitle-fr"></p>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title hidden" data-lang="ar" id="collections-title-ar"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="collections-subtitle-ar"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title" data-lang="fr" id="collections-title-fr">Nos Collections</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="collections-subtitle-fr">Explorez nos créations uniques, classées pour votre plaisir.</p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title hidden" data-lang="ar" id="collections-title-ar">مجموعاتنا</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="collections-subtitle-ar">استكشف إبداعاتنا الفريدة، المصنفة خصيصًا لمتعتك.</p>
                 </div>
                 
                 <div class="flex justify-center flex-wrap gap-3 sm:gap-4 mb-12 scroll-animate">
@@ -211,8 +211,8 @@
                 </div>
                 <div class="flex flex-col lg:flex-row gap-12">
                     <div class="lg:w-1/2 bg-white p-6 md:p-8 rounded-lg shadow-xl scroll-animate">
-                        <h3 class="text-2xl font-serif font-bold mb-6" data-lang="fr" id="form-title-fr"></h3>
-                        <h3 class="text-2xl font-serif font-bold mb-6 hidden" data-lang="ar" id="form-title-ar"></h3>
+                        <h3 class="text-2xl font-serif font-bold mb-6" data-lang="fr" id="form-title-fr">Envoyez-nous un message</h3>
+                        <h3 class="text-2xl font-serif font-bold mb-6 hidden" data-lang="ar" id="form-title-ar">أرسل لنا رسالة</h3>
                         <form id="contactForm" action="" method="POST">
                             <div class="mb-4">
                                 <label for="name" class="block text-gray-700 mb-2" data-lang="fr" id="form-label-name-fr">Nom complet</label>
@@ -242,30 +242,35 @@
                     </div>
                     <div class="lg:w-1/2 space-y-8 scroll-animate" style="transition-delay: 200ms;">
                         <div data-lang="fr">
-                            <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-fr"></h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-fr">Nos Coordonnées</h3>
                             <div class="space-y-4 text-lg">
                                 <p id="contact-address-fr"><i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 mr-2"></i></p>
                                 <p id="contact-phone-fr"><i class="fas fa-phone text-[var(--gold-primary)] w-6 mr-2"></i></p>
                                 <p id="contact-email-fr"><i class="fas fa-envelope text-[var(--gold-primary)] w-6 mr-2"></i></p>
                             </div>
-                            <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-fr"></h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-fr">Horaires d'ouverture</h3>
                             <div class="space-y-2 text-lg" id="contact-hours-fr">
-                                <!-- Hours will be handled by JS if needed, or kept static -->
+                                <!-- Static hours for now -->
+                                <p><strong>Lundi - Vendredi:</strong> 10:00 - 19:00</p>
+                                <p><strong>Samedi:</strong> 10:00 - 18:00</p>
+                                <p><strong>Dimanche:</strong> Fermé</p>
                             </div>
                         </div>
                          <div data-lang="ar" class="hidden">
-                            <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-ar"></h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-ar">معلومات الاتصال</h3>
                             <div class="space-y-4 text-lg">
                                 <p id="contact-address-ar"><i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ml-2"></i></p>
                                 <p id="contact-phone-ar"><i class="fas fa-phone text-[var(--gold-primary)] w-6 ml-2"></i></p>
                                 <p id="contact-email-ar"><i class="fas fa-envelope text-[var(--gold-primary)] w-6 ml-2"></i></p>
                             </div>
-                            <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-ar"></h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-ar">أوقات العمل</h3>
                             <div class="space-y-2 text-lg" id="contact-hours-ar">
-                                <!-- Hours will be handled by JS if needed, or kept static -->
+                                <!-- Static hours for now -->
+                                <p><strong>الاثنين - الجمعة:</strong> 10:00 - 19:00</p>
+                                <p><strong>السبت:</strong> 10:00 - 18:00</p>
+                                <p><strong>الأحد:</strong> مغلق</p>
                             </div>
                         </div>
-                        <!-- Container for Google Map Embed -->
                         <div id="google-map-container" class="h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
                            <!-- Map will be inserted here by JavaScript -->
                         </div>
