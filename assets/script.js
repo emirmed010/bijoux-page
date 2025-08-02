@@ -7,53 +7,35 @@ document.addEventListener('DOMContentLoaded', async function() {
     let currentLang = localStorage.getItem('preferredLanguage') || 'fr';
     let cmsData = {
         settings: {},
-        home: {}
-        // Dynamic collections like products/gallery can be added here
+        home: {},
+        products: [],
+        gallery: []
     };
 
-    // Helper functions with built-in debugging
+    // Helper functions to safely update the DOM
     const updateText = (id, value) => {
         const element = document.getElementById(id);
-        if (element && value) {
-            element.textContent = value;
-        } else if (!element && value) {
-            // Only warn if there was data but no element to put it in
-            console.warn(`[Debug] Element with id #${id} was NOT FOUND in HTML.`);
-        }
+        if (element && value) element.textContent = value;
     };
     const updateImage = (id, src) => {
         const element = document.getElementById(id);
-        if (element && src) {
-            element.src = src;
-        } else if (!element && src) {
-            console.warn(`[Debug] Element with id #${id} was NOT FOUND in HTML.`);
-        }
+        if (element && src) element.src = src;
     };
     const updateHref = (id, href) => {
         const element = document.getElementById(id);
-        if (element && href) {
-            element.href = href;
-        } else if (!element && href) {
-            console.warn(`[Debug] Element with id #${id} was NOT FOUND in HTML.`);
-        }
+        if (element && href) element.href = href;
     };
     const updateMeta = (name, content) => {
         let element = document.querySelector(`meta[name="${name}"]`);
-        if (element && content) {
-            element.content = content;
-        }
+        if (element && content) element.content = content;
     };
     const updateFormAction = (id, action) => {
         const element = document.getElementById(id);
-        if (element && action) {
-            element.action = action;
-        }
+        if (element && action) element.action = action;
     };
     const updateInnerHTML = (id, html) => {
         const element = document.getElementById(id);
-        if (element && html) {
-            element.innerHTML = html;
-        }
+        if (element && html) element.innerHTML = html;
     };
 
 
@@ -82,6 +64,15 @@ document.addEventListener('DOMContentLoaded', async function() {
             return null;
         }
     }
+    
+    // NOTE: This is a placeholder for fetching folder collections.
+    // A real implementation requires a build step or using the GitHub API.
+    async function fetchFolderCollection(folderPath, slugs = []) {
+        if (slugs.length === 0) return []; // Return empty if no slugs are provided
+        const promises = slugs.map(slug => fetchData(`/content/${folderPath}/${slug}.md`));
+        const results = await Promise.all(promises);
+        return results.filter(r => r !== null);
+    }
 
 
     // =================================================================
@@ -92,9 +83,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         const settings = cmsData.settings || {};
         const home = cmsData.home || {};
         const lang = currentLang;
-
-        console.log("[Debug] Rendering content for language:", lang);
-        console.log("[Debug] Home data:", home);
 
         // --- 1. General Settings ---
         document.title = settings.site_title || 'Bijouterie Élégance';
@@ -112,20 +100,20 @@ document.addEventListener('DOMContentLoaded', async function() {
         updateText(`hero-title-${lang}`, home[`hero_title_${lang}`]);
         updateText(`hero-subtitle-${lang}`, home[`hero_subtitle_${lang}`]);
         updateText(`hero-button-${lang}`, home[`hero_button_text_${lang}`]);
-        updateHref('hero-button-link', home.hero_button_link); // Assuming the <a> tag has this ID
+        updateHref('hero-button-link', home.hero_button_link);
 
         // --- 4. "Bienvenue" Section (Uses 'about' data from CMS) ---
         updateImage('welcome-image', home.about_image);
         updateText(`welcome-title-${lang}`, home[`about_title_${lang}`]);
         updateText(`welcome-text-${lang}`, home[`about_text_${lang}`]);
         updateText(`welcome-button-${lang}`, home[`about_button_text_${lang}`]);
-        updateHref('welcome-button-link', home.about_button_link); // Assuming the <a> tag has this ID
-
+        updateHref('welcome-button-link', home.about_button_link);
+        
         // --- 5. "Notre Histoire" Section (Uses 'story' data from CMS) ---
         updateText(`about-title-${lang}`, home[`story_title_${lang}`]);
         updateText(`about-subtitle-${lang}`, home[`story_intro_${lang}`]);
         updateText(`about-quote-${lang}`, home[`story_quote_${lang}`]);
-        updateImage('about-image', home.story_image); // Note: This will overwrite the previous about-image. Ensure your IDs are unique if needed.
+        updateImage('about-image', home.story_image);
         
         // --- 6. Contact Section ---
         updateText(`contact-title-${lang}`, home[`contact_title_${lang}`]);
@@ -136,8 +124,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         updateText(`contact-phone-ar`, home.contact_phone);
         updateText(`contact-email-fr`, home.contact_email);
         updateText(`contact-email-ar`, home.contact_email);
-        const mapFrame = document.getElementById('google-map');
-        if (mapFrame && home.contact_map_embed) mapFrame.src = home.contact_map_embed;
+        const mapContainer = document.getElementById('google-map-container');
+        if (mapContainer && home.contact_map_embed) {
+            updateInnerHTML('google-map-container', home.contact_map_embed);
+        }
 
         // --- 7. Footer ---
         updateText(`footer-brand-${lang}`, home[`footer_logo_text_${lang}`]);
@@ -177,12 +167,33 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         setLanguage(currentLang);
 
-        // --- Original Event Listeners ---
+        // --- Original Event Listeners from your file ---
         const languageSwitchBtn = document.getElementById('languageSwitch');
         if (languageSwitchBtn) {
             languageSwitchBtn.addEventListener('click', () => setLanguage(currentLang === 'ar' ? 'fr' : 'ar'));
         }
-        // Add other listeners from your original file...
+        
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const body = document.body;
+        if(menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+                body.classList.toggle('menu-open');
+            });
+        }
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (body.classList.contains('menu-open')) {
+                    menuBtn.click(); // Close menu if open
+                }
+                // Smooth scroll logic can be kept as is
+            });
+        });
+        
+        // Add other listeners...
     }
 
     initializePage();
