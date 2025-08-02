@@ -14,7 +14,7 @@ collections:
     files:
       - name: "general_settings"
         label: "إعدادات الموقع العامة"
-        file: "content/_data/settings.yml"
+        file: "content/data/settings.yml"
         fields:
           - {label: "شعار الموقع (Header Logo)", name: "site_logo", widget: "image"}
           - {label: "أيقونة الموقع (Favicon)", name: "site_favicon", widget: "image"}
@@ -34,7 +34,7 @@ collections:
     files:
       - name: "home"
         label: "محتوى الصفحة الرئيسية"
-        file: "content/_data/home.yml"
+        file: "content/data/home.yml"
         fields:
           # --- HEADER ---
           - {label: "Header: نص الشعار (FR)", name: "header_logo_text_fr", widget: "string"}
