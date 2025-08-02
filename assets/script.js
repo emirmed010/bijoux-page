@@ -3,7 +3,7 @@
  * @description Main script for the website.
  * Handles dynamic content loading from all CMS sources (settings, home, products, gallery),
  * after the build script aggregates folder collections.
- * @version 5.0.0
+ * @version 5.1.0
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const galleryContainer = document.querySelector('.gallery-container');
-    const productsContainer = document.getElementById('featured-products-container');
+    const productsContainer = document.getElementById('featured-products-grid'); // CORRECTED ID
 
     // State
     let siteSettings = {};
@@ -86,14 +86,12 @@ document.addEventListener('DOMContentLoaded', function() {
         updateText(`hero-title-${lang}`, content[langKey('hero_title')]);
         updateText(`hero-subtitle-${lang}`, content[langKey('hero_subtitle')]);
         updateText(`hero-button-${lang}`, content[langKey('hero_button_text')]);
-        const heroButtonLink = document.querySelector('#home .btn');
-        if (heroButtonLink) heroButtonLink.href = content.hero_button_link || '#collections';
+        updateHref('hero-button-link', content.hero_button_link); // CORRECTED
         updateSrc('hero-image', content.hero_background);
         updateText(`welcome-title-${lang}`, content[langKey('about_title')]);
         updateText(`welcome-text-${lang}`, content[langKey('about_text')]);
         updateText(`welcome-button-${lang}`, content[langKey('about_button_text')]);
-        const welcomeButtonLink = document.querySelector('.md\\:w-1\\/2 .btn');
-        if(welcomeButtonLink) welcomeButtonLink.href = content.about_button_link || '#about';
+        updateHref('welcome-button-link', content.about_button_link); // CORRECTED
         updateSrc('welcome-image', content.about_image);
         updateText(`about-title-${lang}`, content[langKey('story_title')]);
         updateText(`about-subtitle-${lang}`, content[langKey('story_intro')]);
@@ -101,14 +99,26 @@ document.addEventListener('DOMContentLoaded', function() {
         updateText(`about-story-text-${lang}`, content[langKey('story_intro')]);
         updateText(`about-quote-${lang}`, content[langKey('story_quote')]);
         updateSrc('about-image', content.story_image);
-        updateText(`featured-title-${lang}`, content[langKey('featured_title')]); // Assuming you add this to home.yml
+        // REMOVED dynamic update for featured-title as it's static in HTML
         updateText(`contact-title-${lang}`, content[langKey('contact_title')]);
         updateText(`contact-subtitle-${lang}`, content[langKey('contact_text')]);
         updateAction('contactForm', content.form_shortcode);
         updateHTML(`contact-address-${lang}`, `<i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${content[langKey('contact_address')] || ''}`);
         updateHTML(`contact-phone-${lang}`, `<i class="fas fa-phone text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${content.contact_phone || ''}`);
         updateHTML(`contact-email-${lang}`, `<i class="fas fa-envelope text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${content.contact_email || ''}`);
-        updateSrc('google-map', content.contact_map_embed);
+        
+        // CORRECTED: Google Map embedding
+        const mapContainer = document.getElementById('google-map-container');
+        if (mapContainer && content.contact_map_embed) {
+            mapContainer.innerHTML = content.contact_map_embed;
+            const iframe = mapContainer.querySelector('iframe');
+            if (iframe) {
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = '0';
+            }
+        }
+
         updateText(`footer-brand-${lang}`, content[langKey('footer_logo_text')]);
         updateText(`footer-slogan-${lang}`, content[langKey('footer_text')]);
         updateHTML(`footer-copyright-${lang}`, `&copy; <span class="currentYear">${new Date().getFullYear()}</span> ${content[langKey('footer_copyright')] || ''}`);
