@@ -11,7 +11,7 @@ collections:
     files:
       - name: "home"
         label: "صفحة الهبوط الكاملة"
-        file: "index.html"
+        file: "bijoux page/index.html"
         fields:
           # ---------------- HERO ----------------
           - {label: "عنوان رئيسي", name: "hero_title", widget: "string"}
