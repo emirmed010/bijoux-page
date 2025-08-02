@@ -1,214 +1,172 @@
 /**
  * @file script.js
- * @description Main script for the Bijouterie Élégance website.
- * Handles dynamic content loading from YAML files, language switching,
- * mobile menu, gallery filtering, and animations.
- * @version 2.0.0
- * @date 2023-10-27
+ * @description Main script for the website.
+ * Handles dynamic content loading from all CMS sources (settings, home, products, gallery),
+ * after the build script aggregates folder collections.
+ * @version 5.0.0
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- GLOBAL VARIABLES --- //
-    
-    // DOM Elements
     const htmlEl = document.documentElement;
     const body = document.body;
     const languageSwitchBtn = document.getElementById('languageSwitch');
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const galleryContainer = document.querySelector('.gallery-container');
+    const productsContainer = document.getElementById('featured-products-container');
 
     // State
     let siteSettings = {};
     let homeContent = {};
-    let galleryData = []; // ستبقى بيانات المعرض ثابتة مؤقتاً كما هي
+    let productsData = [];
+    let galleryData = [];
     let currentLang = localStorage.getItem('preferredLanguage') || 'fr';
 
     // --- INITIALIZATION --- //
-
-    /**
-     * Initializes the application by fetching data and setting up event listeners.
-     */
     async function initializeApp() {
         try {
-            // Fetch dynamic content from YAML files
-            const [settingsData, homeData] = await Promise.all([
-                fetchYAML('/content/data/settings.yml'),
-                fetchYAML('/content/data/home.yml')
+            [siteSettings, homeContent, productsData, galleryData] = await Promise.all([
+                fetchData('/content/data/settings.yml', 'yaml'),
+                fetchData('/content/data/home.yml', 'yaml'),
+                fetchData('/assets/data/products.json', 'json'),
+                fetchData('/assets/data/gallery.json', 'json')
             ]);
-            
-            siteSettings = settingsData;
-            homeContent = homeData;
-            galleryData = homeContent.collections_section.gallery_items || []; // استخدام بيانات المعرض من CMS
-
         } catch (error) {
             console.error("Fatal Error: Could not load site content.", error);
-            // عرض رسالة خطأ للمستخدم إذا لزم الأمر
         } finally {
-            // Setup UI regardless of data fetching success to keep site functional
             setupEventListeners();
             setLanguage(currentLang);
         }
     }
 
     // --- DATA FETCHING --- //
-
-    /**
-     * Fetches and parses a YAML file.
-     * @param {string} url - The URL of the YAML file.
-     * @returns {Promise<object>} A promise that resolves with the parsed YAML data.
-     */
-    async function fetchYAML(url) {
+    async function fetchData(url, type = 'json') {
         try {
-            const response = await fetch(url);
+            // Add a cache-busting query parameter to avoid stale data
+            const response = await fetch(`${url}?v=${new Date().getTime()}`);
             if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
+                throw new Error(`Network response was not ok: ${response.statusText} for URL: ${url}`);
             }
-            const yamlText = await response.text();
-            return jsyaml.load(yamlText);
+            if (type === 'yaml') {
+                const yamlText = await response.text();
+                return jsyaml.load(yamlText);
+            }
+            return await response.json();
         } catch (error) {
-            console.error(`Failed to fetch or parse YAML from ${url}:`, error);
-            return {}; // Return empty object on failure to prevent total crash
+            console.error(`Failed to fetch or parse ${type.toUpperCase()} from ${url}:`, error);
+            return type === 'yaml' ? {} : []; // Return default empty value
         }
     }
 
-    // --- DYNAMIC CONTENT POPULATION --- //
-
-    /**
-     * Populates the page with content based on the current language.
-     * @param {string} lang - The current language ('fr' or 'ar').
-     */
+    // --- DYNAMIC CONTENT & RENDERING --- //
     function populateContent(lang) {
-        if (!siteSettings || !homeContent) {
-            console.error("Content not loaded, cannot populate page.");
-            return;
-        }
+        if (!siteSettings || !homeContent) return;
 
-        // Helper function to update element content safely
-        const updateText = (id, value) => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = value || '';
-            else console.warn(`Element with id "${id}" not found.`);
-        };
-
-        const updateHTML = (id, value) => {
-            const el = document.getElementById(id);
-            if (el) el.innerHTML = value || '';
-             else console.warn(`Element with id "${id}" not found.`);
-        };
-
-        const updateSrc = (id, value) => {
-            const el = document.getElementById(id);
-            if (el) el.src = value || '';
-             else console.warn(`Element with id "${id}" not found.`);
-        };
-
-        const updateHref = (id, value) => {
-            const el = document.getElementById(id);
-            if (el) el.href = value || '#';
-             else console.warn(`Element with id "${id}" not found.`);
-        };
+        const updateText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value || ''; };
+        const updateHTML = (id, value) => { const el = document.getElementById(id); if (el) el.innerHTML = value || ''; };
+        const updateSrc = (id, value) => { const el = document.getElementById(id); if (el) el.src = value || ''; };
+        const updateHref = (id, value) => { const el = document.getElementById(id); if (el) el.href = value || '#'; };
+        const updateAction = (id, value) => { const el = document.getElementById(id); if(el) el.action = value || ''; };
+        const langKey = (baseKey) => `${baseKey}_${lang}`;
         
-        const langKey = (key) => `${key}_${lang}`;
+        // Settings.yml
+        document.title = siteSettings.site_title || 'Website';
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.content = siteSettings.site_description || '';
+        updateSrc('favicon', siteSettings.site_favicon);
+        updateHref('social-link-facebook', siteSettings.social_facebook);
+        updateHref('social-link-instagram', siteSettings.social_instagram);
+        updateHref('social-link-pinterest', siteSettings.social_pinterest);
 
-        // 1. Site Settings (from settings.yml)
-        document.title = siteSettings[langKey('site_title')];
-        updateSrc('favicon', siteSettings.favicon);
-        updateText(`brand-${lang}`, siteSettings[langKey('brand_name')]);
-        updateText(`footer-brand-${lang}`, siteSettings[langKey('brand_name')]);
-        updateText(`footer-slogan-${lang}`, siteSettings[langKey('footer_slogan')]);
-        updateHTML(`footer-copyright-${lang}`, `&copy; <span class="currentYear">${new Date().getFullYear()}</span> ${siteSettings[langKey('copyright')]}`);
-        updateText(`footer-design-credit-${lang}`, siteSettings[langKey('design_credit')]);
-        updateHref('social-link-facebook', siteSettings.social_links?.facebook);
-        updateHref('social-link-instagram', siteSettings.social_links?.instagram);
-        updateHref('social-link-pinterest', siteSettings.social_links?.pinterest);
-        
-        // Navigation Links
-        const nav = siteSettings.navigation || [];
-        nav.forEach(item => {
-            updateText(`nav-${item.id}-${lang}`, item[langKey('text')]);
-            updateText(`mobile-nav-${item.id}-${lang}`, item[langKey('text')]);
+        // Home.yml
+        const content = homeContent;
+        updateText(`brand-${lang}`, content[langKey('header_logo_text')]);
+        updateText(`hero-title-${lang}`, content[langKey('hero_title')]);
+        updateText(`hero-subtitle-${lang}`, content[langKey('hero_subtitle')]);
+        updateText(`hero-button-${lang}`, content[langKey('hero_button_text')]);
+        const heroButtonLink = document.querySelector('#home .btn');
+        if (heroButtonLink) heroButtonLink.href = content.hero_button_link || '#collections';
+        updateSrc('hero-image', content.hero_background);
+        updateText(`welcome-title-${lang}`, content[langKey('about_title')]);
+        updateText(`welcome-text-${lang}`, content[langKey('about_text')]);
+        updateText(`welcome-button-${lang}`, content[langKey('about_button_text')]);
+        const welcomeButtonLink = document.querySelector('.md\\:w-1\\/2 .btn');
+        if(welcomeButtonLink) welcomeButtonLink.href = content.about_button_link || '#about';
+        updateSrc('welcome-image', content.about_image);
+        updateText(`about-title-${lang}`, content[langKey('story_title')]);
+        updateText(`about-subtitle-${lang}`, content[langKey('story_intro')]);
+        updateText(`about-story-title-${lang}`, content[langKey('story_title')]);
+        updateText(`about-story-text-${lang}`, content[langKey('story_intro')]);
+        updateText(`about-quote-${lang}`, content[langKey('story_quote')]);
+        updateSrc('about-image', content.story_image);
+        updateText(`featured-title-${lang}`, content[langKey('featured_title')]); // Assuming you add this to home.yml
+        updateText(`contact-title-${lang}`, content[langKey('contact_title')]);
+        updateText(`contact-subtitle-${lang}`, content[langKey('contact_text')]);
+        updateAction('contactForm', content.form_shortcode);
+        updateHTML(`contact-address-${lang}`, `<i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${content[langKey('contact_address')] || ''}`);
+        updateHTML(`contact-phone-${lang}`, `<i class="fas fa-phone text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${content.contact_phone || ''}`);
+        updateHTML(`contact-email-${lang}`, `<i class="fas fa-envelope text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${content.contact_email || ''}`);
+        updateSrc('google-map', content.contact_map_embed);
+        updateText(`footer-brand-${lang}`, content[langKey('footer_logo_text')]);
+        updateText(`footer-slogan-${lang}`, content[langKey('footer_text')]);
+        updateHTML(`footer-copyright-${lang}`, `&copy; <span class="currentYear">${new Date().getFullYear()}</span> ${content[langKey('footer_copyright')] || ''}`);
+        updateText(`footer-design-credit-${lang}`, content[langKey('footer_credit')]);
+    }
+
+    function renderProducts(lang) {
+        if (!productsContainer || !productsData) return;
+        productsContainer.innerHTML = '';
+        productsData.forEach((product, index) => {
+            const title = product[lang === 'ar' ? 'produit_title_ar' : 'produit_title_fr'];
+            const image = product.produit_image;
+            const delay = index * 150;
+            const productHTML = `
+                <div class="collection-card bg-white rounded-lg scroll-animate" style="transition-delay: ${delay}ms;">
+                    <div class="rounded-lg overflow-hidden shadow-lg aspect-[4/5]">
+                        <img src="${image}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-base md:text-xl font-serif font-bold text-gray-800">${title}</h3>
+                    </div>
+                </div>`;
+            productsContainer.insertAdjacentHTML('beforeend', productHTML);
         });
-        
-        // 2. Home Page Content (from home.yml)
-        const hc = homeContent; // shorthand
+    }
 
-        // Hero Section
-        updateText(`hero-title-${lang}`, hc.hero_section?.[langKey('title')]);
-        updateText(`hero-subtitle-${lang}`, hc.hero_section?.[langKey('subtitle')]);
-        updateText(`hero-button-${lang}`, hc.hero_section?.[langKey('button_text')]);
-        updateSrc('hero-image', hc.hero_section?.background_image);
-        
-        // Welcome Section
-        updateText(`welcome-title-${lang}`, hc.welcome_section?.[langKey('title')]);
-        updateText(`welcome-text-${lang}`, hc.welcome_section?.[langKey('text')]);
-        updateText(`welcome-button-${lang}`, hc.welcome_section?.[langKey('button_text')]);
-        updateSrc('welcome-image', hc.welcome_section?.image);
-
-        // Featured Products Section
-        updateText(`featured-title-${lang}`, hc.featured_products_section?.[langKey('title')]);
-        for (let i = 1; i <= 4; i++) {
-            updateText(`product-${i}-title-${lang}`, hc.featured_products_section?.[`product_${i}`]?.[langKey('title')]);
-            updateSrc(`product-${i}-image`, hc.featured_products_section?.[`product_${i}`]?.image);
-        }
-        
-        // About Section
-        updateText(`about-title-${lang}`, hc.about_section?.[langKey('title')]);
-        updateText(`about-subtitle-${lang}`, hc.about_section?.[langKey('subtitle')]);
-        updateText(`about-story-title-${lang}`, hc.about_section?.[langKey('story_title')]);
-        updateText(`about-story-text-${lang}`, hc.about_section?.[langKey('story_text')]);
-        updateText(`about-craft-title-${lang}`, hc.about_section?.[langKey('craft_title')]);
-        updateText(`about-craft-text-${lang}`, hc.about_section?.[langKey('craft_text')]);
-        updateText(`about-quote-${lang}`, hc.about_section?.[langKey('quote')]);
-        updateSrc('about-image', hc.about_section?.image);
-
-        // Collections Section
-        updateText(`collections-title-${lang}`, hc.collections_section?.[langKey('title')]);
-        updateText(`collections-subtitle-${lang}`, hc.collections_section?.[langKey('subtitle')]);
-        const filters = hc.collections_section?.filters || [];
-        filters.forEach(filter => {
-            updateText(`filter-${filter.id}-${lang}`, filter[langKey('text')]);
+    function renderGallery(filter = 'all') {
+        if (!galleryContainer || !galleryData) return;
+        galleryContainer.innerHTML = '';
+        const filteredData = filter === 'all' ? galleryData : galleryData.filter(item => item.collection_category === filter);
+        filteredData.forEach(item => {
+            const title = currentLang === 'ar' ? item.collection_title_ar : item.collection_title_fr;
+            const image = item.collection_image;
+            const category = item.collection_category;
+            const galleryItemHTML = `
+                <div class="gallery-item scroll-animate" data-category="${category}">
+                    <a href="${image}" data-lightbox="collection" data-title="${title}">
+                        <div class="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 aspect-[4/5]">
+                            <img src="${image}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                    </a>
+                </div>`;
+            galleryContainer.insertAdjacentHTML('beforeend', galleryItemHTML);
         });
-        
-        // Contact Section
-        updateText(`contact-title-${lang}`, hc.contact_section?.[langKey('title')]);
-        updateText(`contact-subtitle-${lang}`, hc.contact_section?.[langKey('subtitle')]);
-        updateText(`form-title-${lang}`, hc.contact_section?.[langKey('form_title')]);
-        updateText(`form-label-name-${lang}`, hc.contact_section?.[langKey('form_label_name')]);
-        updateText(`form-label-email-${lang}`, hc.contact_section?.[langKey('form_label_email')]);
-        updateText(`form-label-phone-${lang}`, hc.contact_section?.[langKey('form_label_phone')]);
-        updateText(`form-label-message-${lang}`, hc.contact_section?.[langKey('form_label_message')]);
-        updateText(`form-button-${lang}`, hc.contact_section?.[langKey('form_button_text')]);
-        updateText(`contact-info-title-${lang}`, hc.contact_section?.[langKey('info_title')]);
-        updateHTML(`contact-address-${lang}`, `<i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${hc.contact_section?.address}`);
-        updateHTML(`contact-phone-${lang}`, `<i class="fas fa-phone text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${hc.contact_section?.phone}`);
-        updateHTML(`contact-email-${lang}`, `<i class="fas fa-envelope text-[var(--gold-primary)] w-6 ${lang === 'ar' ? 'ml-2' : 'mr-2'}"></i> ${hc.contact_section?.email}`);
-        updateText(`contact-hours-title-${lang}`, hc.contact_section?.[langKey('hours_title')]);
-        updateHTML(`contact-hours-1-${lang}`, `<strong>${hc.contact_section?.[langKey('weekdays_label')]}</strong> ${hc.contact_section?.weekdays_hours}`);
-        updateHTML(`contact-hours-2-${lang}`, `<strong>${hc.contact_section?.[langKey('saturday_label')]}</strong> ${hc.contact_section?.saturday_hours}`);
-        updateHTML(`contact-hours-3-${lang}`, `<strong>${hc.contact_section?.[langKey('sunday_label')]}</strong> ${hc.contact_section?.sunday_hours}`);
-        updateSrc('google-map', hc.contact_section?.google_maps_embed_url);
+        reobserveAnimations();
     }
     
+    function reobserveAnimations() {
+        document.querySelectorAll('.scroll-animate:not(.is-visible)').forEach(el => scrollObserver.observe(el));
+    }
+
     // --- UI & EVENT HANDLERS --- //
-
-    /**
-     * Sets up all the event listeners for the page.
-     */
     function setupEventListeners() {
-        // Language switcher
         languageSwitchBtn.addEventListener('click', () => setLanguage(currentLang === 'ar' ? 'fr' : 'ar'));
-
-        // Mobile menu
         menuBtn.addEventListener('click', toggleMenu);
-
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                if (body.classList.contains('menu-open')) {
-                    toggleMenu();
-                }
+                if (body.classList.contains('menu-open')) toggleMenu();
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
@@ -220,8 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
-        // Gallery filter buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelector('.filter-btn.active')?.classList.replace('btn-gold', 'btn-outline-gold');
@@ -233,64 +189,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    /**
-     * Sets the language for the entire page.
-     * @param {string} lang - The language to set ('fr' or 'ar').
-     */
     function setLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('preferredLanguage', lang);
         htmlEl.lang = lang;
         htmlEl.dir = lang === 'ar' ? 'rtl' : 'ltr';
-        
         document.querySelectorAll('[data-lang]').forEach(el => {
             el.classList.toggle('hidden', el.dataset.lang !== lang);
         });
-        
         languageSwitchBtn.textContent = lang === 'ar' ? 'FR' : 'AR';
         
-        // Populate content and render gallery after setting visibility
         populateContent(lang);
+        renderProducts(lang);
         renderGallery(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+        reobserveAnimations();
     }
 
-    /**
-     * Toggles the mobile navigation menu.
-     */
     function toggleMenu() {
         menuBtn.classList.toggle('open');
         mobileMenu.classList.toggle('open');
         body.classList.toggle('menu-open');
     }
-
-    /**
-     * Renders the gallery based on the selected filter.
-     * @param {string} [filter='all'] - The category to filter by.
-     */
-    function renderGallery(filter = 'all') {
-        if (!galleryContainer) return;
-        galleryContainer.innerHTML = '';
-        const filteredData = filter === 'all' ? galleryData : galleryData.filter(item => item.category === filter);
-        
-        filteredData.forEach(item => {
-            const title = currentLang === 'ar' ? item.title_ar : item.title_fr;
-            const galleryItemHTML = `
-                <div class="gallery-item scroll-animate" data-category="${item.category}">
-                    <a href="${item.image}" data-lightbox="collection" data-title="${title}">
-                        <div class="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 aspect-[4/5]">
-                            <img src="${item.image}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                        </div>
-                    </a>
-                </div>
-            `;
-            galleryContainer.insertAdjacentHTML('beforeend', galleryItemHTML);
-        });
-        
-        // Re-initialize scroll animations for new elements
-        document.querySelectorAll('.scroll-animate:not(.is-visible)').forEach(el => scrollObserver.observe(el));
-    }
-
-    // --- SCROLL ANIMATION --- //
 
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -300,19 +219,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.1 });
-
-    document.querySelectorAll('.scroll-animate').forEach(el => scrollObserver.observe(el));
-
-    // --- LIBRARY CONFIGURATIONS --- //
     
     if (typeof lightbox !== 'undefined') {
-        lightbox.option({
-          'resizeDuration': 200,
-          'wrapAround': true,
-          'albumLabel': "Image %1 / %2"
-        });
+        lightbox.option({ 'resizeDuration': 200, 'wrapAround': true, 'albumLabel': "Image %1 / %2" });
     }
-
-    // --- START THE APP --- //
+    
     initializeApp();
 });
