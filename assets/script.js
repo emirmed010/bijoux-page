@@ -1,3 +1,75 @@
+// =================================================================
+// ==  الكود الخاص بتحميل المحتوى الديناميكي من لوحة التحكم (CMS)  ==
+// =================================================================
+
+async function loadDynamicContent() {
+  try {
+    // هنا نقوم بطلب الملف الذي حددته تماماً
+    const response = await fetch('/content/home.yml');
+    if (!response.ok) return;
+
+    const yamlText = await response.text();
+
+    const parseYaml = (text) => {
+      const data = {};
+      text.split('\n').forEach(line => {
+        const parts = line.split(':');
+        if (parts.length > 1) {
+          const key = parts[0].trim();
+          const value = parts.slice(1).join(':').trim().replace(/^['"]|['"]$/g, '');
+          data[key] = value;
+        }
+      });
+      return data;
+    };
+
+    const data = parseYaml(yamlText);
+
+    const updateText = (id, value) => {
+      const element = document.getElementById(id);
+      if (element && value) element.textContent = value;
+    };
+
+    const updateImage = (id, src) => {
+      const element = document.getElementById(id);
+      if (element && src) element.src = src;
+    };
+
+    // --- تحديث محتوى الصفحة ---
+    // تأكد أن هذه الأسماء (hero_title) تطابق حقل "name" في config.yml
+
+    // قسم HERO
+    updateText('hero-title-ar', data.hero_title);
+    updateText('hero-subtitle-ar', data.hero_text);
+    updateImage('hero-image', data.hero_image);
+    updateText('hero-button-ar', data.cta_text);
+
+    // قسم ABOUT
+    updateText('about-title-ar', data.about_title);
+    updateText('about-story-text-ar', data.about_text);
+    updateImage('about-image', data.about_image);
+
+    // قسم CONTACT
+    updateText('contact-title-ar', data.contact_title);
+    updateText('contact-subtitle-ar', data.contact_text);
+    // ... وهكذا لبقية الحقول
+
+  } catch (error) {
+    console.error('خطأ في تحميل المحتوى الديناميكي:', error);
+  }
+}
+
+// --- بداية الكود الأصلي في ملف script.js ---
+document.addEventListener('DOMContentLoaded', function() {
+
+    // استدعاء الدالة الجديدة لتحميل المحتوى أولاً
+    loadDynamicContent();
+
+    // بيانات المعرض...
+    // ... بقية الكود الأصلي الموجود في ملفك ...
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // بيانات المعرض
