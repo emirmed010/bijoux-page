@@ -8,7 +8,7 @@
     <!-- العنوان والوصف والأيقونة ستتم إدارتها بواسطة JS -->
     <title>Bijouterie</title>
     <meta name="description" content="">
-    <link rel="icon" type="image/png" href="" id="favicon">
+    <link rel="icon" type="image/png" href="assets/placeholder.png" id="favicon">
 
     <!-- Tailwind CSS & Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,18 +31,18 @@
     <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm py-4 px-6 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#home" class="text-3xl font-serif font-bold text-[var(--gold-primary)] z-20">
-                <img src="" alt="Logo" class="h-10" id="header-logo">
+                <img src="assets/placeholder.png" alt="Logo" class="h-10" id="header-logo">
             </a>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="nav-link" data-lang="fr" id="nav-home-fr"></a>
-                <a href="#about" class="nav-link" data-lang="fr" id="nav-about-fr"></a>
-                <a href="#collections" class="nav-link" data-lang="fr" id="nav-collections-fr"></a>
-                <a href="#contact" class="nav-link" data-lang="fr" id="nav-contact-fr"></a>
+                <a href="#home" class="nav-link" data-lang="fr" id="nav-home-fr">Accueil</a>
+                <a href="#about" class="nav-link" data-lang="fr" id="nav-about-fr">Notre Histoire</a>
+                <a href="#collections" class="nav-link" data-lang="fr" id="nav-collections-fr">Collections</a>
+                <a href="#contact" class="nav-link" data-lang="fr" id="nav-contact-fr">Contact</a>
                 
-                <a href="#home" class="nav-link hidden" data-lang="ar" id="nav-home-ar"></a>
-                <a href="#about" class="nav-link hidden" data-lang="ar" id="nav-about-ar"></a>
-                <a href="#collections" class="nav-link hidden" data-lang="ar" id="nav-collections-ar"></a>
-                <a href="#contact" class="nav-link hidden" data-lang="ar" id="nav-contact-ar"></a>
+                <a href="#home" class="nav-link hidden" data-lang="ar" id="nav-home-ar">الرئيسية</a>
+                <a href="#about" class="nav-link hidden" data-lang="ar" id="nav-about-ar">قصتنا</a>
+                <a href="#collections" class="nav-link hidden" data-lang="ar" id="nav-collections-ar">المجموعات</a>
+                <a href="#contact" class="nav-link hidden" data-lang="ar" id="nav-contact-ar">اتصل بنا</a>
             </nav>
             <div class="flex items-center">
                 <button id="languageSwitch" class="font-bold text-gray-600 hover:text-[var(--gold-primary)] px-4 py-2 rounded-full z-20">AR</button>
@@ -58,15 +58,15 @@
     <!-- Menu Mobile Overlay -->
     <div id="mobileMenu" class="md:hidden">
         <nav class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="#home" class="mobile-menu-link" data-lang="fr" id="mobile-nav-home-fr"></a>
-            <a href="#about" class="mobile-menu-link" data-lang="fr" id="mobile-nav-about-fr"></a>
-            <a href="#collections" class="mobile-menu-link" data-lang="fr" id="mobile-nav-collections-fr"></a>
-            <a href="#contact" class="mobile-menu-link" data-lang="fr" id="mobile-nav-contact-fr"></a>
+            <a href="#home" class="mobile-menu-link" data-lang="fr" id="mobile-nav-home-fr">Accueil</a>
+            <a href="#about" class="mobile-menu-link" data-lang="fr" id="mobile-nav-about-fr">Notre Histoire</a>
+            <a href="#collections" class="mobile-menu-link" data-lang="fr" id="mobile-nav-collections-fr">Collections</a>
+            <a href="#contact" class="mobile-menu-link" data-lang="fr" id="mobile-nav-contact-fr">Contact</a>
             
-            <a href="#home" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-home-ar"></a>
-            <a href="#about" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-about-ar"></a>
-            <a href="#collections" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-collections-ar"></a>
-            <a href="#contact" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-contact-ar"></a>
+            <a href="#home" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-home-ar">الرئيسية</a>
+            <a href="#about" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-about-ar">قصتنا</a>
+            <a href="#collections" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-collections-ar">المجموعات</a>
+            <a href="#contact" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-contact-ar">اتصل بنا</a>
         </nav>
     </div>
 
@@ -74,17 +74,17 @@
         <!-- HERO SECTION -->
         <section id="home" class="bg-gray-800 text-white relative overflow-hidden flex items-center min-h-[70vh] md:min-h-screen py-20">
              <div class="absolute inset-0">
-                <img src="" class="w-full h-full object-cover opacity-30" alt="Background Image" id="hero-background">
+                <img src="assets/placeholder.png" class="w-full h-full object-cover opacity-30" alt="Background Image" id="hero-background">
             </div>
             <div class="container mx-auto px-6 text-center relative z-10 flex flex-col items-center">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold mb-4 leading-tight scroll-animate" data-lang="fr" id="hero-title-fr"></h1>
-                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200 scroll-animate" style="transition-delay: 200ms;" data-lang="fr" id="hero-subtitle-fr"></p>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold mb-4 leading-tight scroll-animate hidden" data-lang="ar" id="hero-title-ar"></h1>
-                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200 scroll-animate hidden" style="transition-delay: 200ms;" data-lang="ar" id="hero-subtitle-ar"></p>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold mb-4 leading-tight scroll-animate" data-lang="fr" id="hero-title-fr">Titre Élégant</h1>
+                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200 scroll-animate" style="transition-delay: 200ms;" data-lang="fr" id="hero-subtitle-fr">Découvrez des créations qui racontent une histoire.</p>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold mb-4 leading-tight scroll-animate hidden" data-lang="ar" id="hero-title-ar">عنوان أنيق</h1>
+                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200 scroll-animate hidden" style="transition-delay: 200ms;" data-lang="ar" id="hero-subtitle-ar">اكتشف إبداعات تروي قصة.</p>
                 <div class="scroll-animate" style="transition-delay: 400ms;">
-                    <a href="#" id="hero-button-link" class="btn btn-gold py-3 px-8 sm:py-4 sm:px-12 text-base sm:text-lg">
-                        <span data-lang="fr" id="hero-button-text-fr"></span>
-                        <span data-lang="ar" class="hidden" id="hero-button-text-ar"></span>
+                    <a href="#collections" id="hero-button-link" class="btn btn-gold py-3 px-8 sm:py-4 sm:px-12 text-base sm:text-lg">
+                        <span data-lang="fr" id="hero-button-text-fr">Explorer</span>
+                        <span data-lang="ar" class="hidden" id="hero-button-text-ar">استكشف</span>
                     </a>
                 </div>
             </div>
@@ -96,17 +96,17 @@
                 <div class="flex flex-col md:flex-row items-center gap-10 md:gap-12">
                     <div class="md:w-1/2 scroll-animate">
                         <div class="rounded-lg shadow-2xl overflow-hidden">
-                            <img src="" alt="Welcome Image" class="w-full transition-transform duration-500 hover:scale-105" id="welcome-image">
+                            <img src="assets/placeholder.png" alt="Welcome Image" class="w-full transition-transform duration-500 hover:scale-105" id="welcome-image">
                         </div>
                     </div>
                     <div class="md:w-1/2 text-center md:text-left scroll-animate" style="transition-delay: 200ms;">
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-6" data-lang="fr" id="welcome-title-fr"></h2>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-6 hidden" data-lang="ar" id="welcome-title-ar"></h2>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-lang="fr" id="welcome-text-fr"></p>
-                        <p class="text-gray-600 leading-relaxed mb-6 hidden" data-lang="ar" id="welcome-text-ar"></p>
-                        <a href="#" id="welcome-button-link" class="btn btn-outline-gold py-3 px-8">
-                            <span data-lang="fr" id="welcome-button-text-fr"></span>
-                            <span data-lang="ar" class="hidden" id="welcome-button-text-ar"></span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-6" data-lang="fr" id="welcome-title-fr">Bienvenue dans notre univers</h2>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-6 hidden" data-lang="ar" id="welcome-title-ar">مرحباً بكم في عالمنا</h2>
+                        <p class="text-gray-600 leading-relaxed mb-6" data-lang="fr" id="welcome-text-fr">Un lieu où chaque bijou est une œuvre d'art, façonné avec passion et précision.</p>
+                        <p class="text-gray-600 leading-relaxed mb-6 hidden" data-lang="ar" id="welcome-text-ar">مكان يكون فيه كل قطعة مجوهرات عملاً فنياً، مصممة بشغف ودقة.</p>
+                        <a href="#about" id="welcome-button-link" class="btn btn-outline-gold py-3 px-8">
+                            <span data-lang="fr" id="welcome-button-text-fr">En savoir plus</span>
+                            <span data-lang="ar" class="hidden" id="welcome-button-text-ar">اعرف المزيد</span>
                         </a>
                     </div>
                 </div>
@@ -117,8 +117,8 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="featured-title-fr"></h2>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="featured-title-ar"></h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="featured-title-fr">Nos Produits Phares</h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="featured-title-ar">أبرز منتجاتنا</h2>
                     <div class="w-24 h-1 bg-[var(--gold-primary)] mx-auto"></div>
                 </div>
                 <div id="featured-products-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
@@ -131,35 +131,35 @@
         <section id="about" class="py-16 md:py-20 bg-[var(--light-bg)]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="story-section-title-fr"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="story-intro-fr"></p>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="story-section-title-ar"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="story-intro-ar"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="story-section-title-fr">L'Art de la Bijouterie</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="story-intro-fr">Notre histoire est tissée de tradition et d'innovation.</p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="story-section-title-ar">فن صناعة المجوهرات</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="story-intro-ar">قصتنا منسوجة من التقاليد والابتكار.</p>
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-16">
                     <div class="md:w-1/2 space-y-6 scroll-animate">
                         <div data-lang="fr">
-                            <h3 class="text-2xl font-serif font-bold text-gray-800" id="story-title-fr"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="story-text-fr"></p>
-                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="craft-title-fr"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="craft-text-fr"></p>
+                            <h3 class="text-2xl font-serif font-bold text-gray-800" id="story-title-fr">Notre Récit</h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="story-text-fr">Depuis des générations, nous créons...</p>
+                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="craft-title-fr">Savoir-faire</h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="craft-text-fr">Chaque pièce est finie à la main...</p>
                             <div class="mt-6 border-l-4 border-[var(--gold-primary)] pl-4">
-                                <p class="italic text-gray-700 font-semibold" id="story-quote-fr"></p>
+                                <p class="italic text-gray-700 font-semibold" id="story-quote-fr">"L'élégance est la seule beauté qui ne se fane jamais."</p>
                             </div>
                         </div>
                         <div data-lang="ar" class="hidden">
-                             <h3 class="text-2xl font-serif font-bold text-gray-800" id="story-title-ar"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="story-text-ar"></p>
-                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="craft-title-ar"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="craft-text-ar"></p>
+                             <h3 class="text-2xl font-serif font-bold text-gray-800" id="story-title-ar">حكايتنا</h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="story-text-ar">منذ أجيال، ونحن نصنع...</p>
+                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="craft-title-ar">الحرفية</h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="craft-text-ar">كل قطعة مصقولة يدوياً...</p>
                             <div class="mt-6 border-r-4 border-[var(--gold-primary)] pr-4 border-l-0">
-                                <p class="italic text-gray-700 font-semibold" id="story-quote-ar"></p>
+                                <p class="italic text-gray-700 font-semibold" id="story-quote-ar">"الأناقة هي الجمال الوحيد الذي لا يذبل أبداً."</p>
                             </div>
                         </div>
                     </div>
                     <div class="md:w-1/2 scroll-animate" style="transition-delay: 200ms;">
                          <div class="rounded-lg shadow-2xl overflow-hidden">
-                            <img src="" alt="Story Image" class="w-full transition-transform duration-500 hover:scale-105" id="story-image">
+                            <img src="assets/placeholder.png" alt="Story Image" class="w-full transition-transform duration-500 hover:scale-105" id="story-image">
                         </div>
                     </div>
                 </div>
@@ -170,31 +170,31 @@
         <section id="services" class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="services-title-fr"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="services-subtitle-fr"></p>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="services-title-ar"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="services-subtitle-ar"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="services-title-fr">Nos Services</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="services-subtitle-fr">Des services exclusifs pour une expérience inoubliable.</p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="services-title-ar">خدماتنا</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="services-subtitle-ar">خدمات حصرية لتجربة لا تنسى.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <!-- Service 1 -->
                     <div class="bg-[var(--light-bg)] p-6 md:p-8 rounded-lg shadow-xl scroll-animate">
-                        <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="service1-title-fr"></h3>
-                        <p class="text-gray-600 mb-6" data-lang="fr" id="service1-text-fr"></p>
-                        <a href="#contact" class="btn btn-gold py-3 px-6" data-lang="fr" id="service1-button-fr"></a>
+                        <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="service1-title-fr">Conception sur mesure</h3>
+                        <p class="text-gray-600 mb-6" data-lang="fr" id="service1-text-fr">Donnez vie à vos rêves avec un bijou unique, créé juste pour vous.</p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6" data-lang="fr" id="service1-button-fr">Commencer</a>
                         
-                        <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="service1-title-ar"></h3>
-                        <p class="text-gray-600 mb-6 hidden" data-lang="ar" id="service1-text-ar"></p>
-                        <a href="#contact" class="btn btn-gold py-3 px-6 hidden" data-lang="ar" id="service1-button-ar"></a>
+                        <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="service1-title-ar">تصميم حسب الطلب</h3>
+                        <p class="text-gray-600 mb-6 hidden" data-lang="ar" id="service1-text-ar">حوّل أحلامك إلى حقيقة مع قطعة مجوهرات فريدة، مصممة خصيصاً لك.</p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6 hidden" data-lang="ar" id="service1-button-ar">ابدأ الآن</a>
                     </div>
                     <!-- Service 2 -->
                     <div class="bg-[var(--light-bg)] p-6 md:p-8 rounded-lg shadow-xl scroll-animate">
-                        <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="service2-title-fr"></h3>
-                        <p class="text-gray-600 mb-6" data-lang="fr" id="service2-text-fr"></p>
-                        <a href="#contact" class="btn btn-gold py-3 px-6" data-lang="fr" id="service2-button-fr"></a>
+                        <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="service2-title-fr">Réparation et Entretien</h3>
+                        <p class="text-gray-600 mb-6" data-lang="fr" id="service2-text-fr">Confiez-nous vos trésors pour leur redonner leur éclat d'origine.</p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6" data-lang="fr" id="service2-button-fr">Nous contacter</a>
                         
-                        <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="service2-title-ar"></h3>
-                        <p class="text-gray-600 mb-6 hidden" data-lang="ar" id="service2-text-ar"></p>
-                        <a href="#contact" class="btn btn-gold py-3 px-6 hidden" data-lang="ar" id="service2-button-ar"></a>
+                        <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="service2-title-ar">تصليح وصيانة</h3>
+                        <p class="text-gray-600 mb-6 hidden" data-lang="ar" id="service2-text-ar">ائتمنّا على كنوزك لنعيد لها بريقها الأصلي.</p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6 hidden" data-lang="ar" id="service2-button-ar">تواصل معنا</a>
                     </div>
                 </div>
             </div>
@@ -204,18 +204,18 @@
         <section id="collections" class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="collections-title-fr"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="collections-subtitle-fr"></p>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="collections-title-ar"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="collections-subtitle-ar"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="collections-title-fr">Nos Collections</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="collections-subtitle-fr">Explorez nos créations uniques, classées pour votre plaisir.</p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="collections-title-ar">مجموعاتنا</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="collections-subtitle-ar">استكشف إبداعاتنا الفريدة، المصنفة خصيصًا لمتعتك.</p>
                 </div>
                 
                 <div class="flex justify-center flex-wrap gap-3 sm:gap-4 mb-12 scroll-animate">
-                    <button class="filter-btn btn btn-gold py-2 px-5 active" data-filter="all"><span data-lang="fr" id="filter-all-fr"></span><span data-lang="ar" class="hidden" id="filter-all-ar"></span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bagues"><span data-lang="fr" id="filter-rings-fr"></span><span data-lang="ar" class="hidden" id="filter-rings-ar"></span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="colliers"><span data-lang="fr" id="filter-necklaces-fr"></span><span data-lang="ar" class="hidden" id="filter-necklaces-ar"></span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bracelets"><span data-lang="fr" id="filter-bracelets-fr"></span><span data-lang="ar" class="hidden" id="filter-bracelets-ar"></span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="montres"><span data-lang="fr" id="filter-watches-fr"></span><span data-lang="ar" class="hidden" id="filter-watches-ar"></span></button>
+                    <button class="filter-btn btn btn-gold py-2 px-5 active" data-filter="all"><span data-lang="fr" id="filter-all-fr">Toutes</span><span data-lang="ar" class="hidden" id="filter-all-ar">الكل</span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bagues"><span data-lang="fr" id="filter-rings-fr">Bagues</span><span data-lang="ar" class="hidden" id="filter-rings-ar">خواتم</span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="colliers"><span data-lang="fr" id="filter-necklaces-fr">Colliers</span><span data-lang="ar" class="hidden" id="filter-necklaces-ar">قلائد</span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bracelets"><span data-lang="fr" id="filter-bracelets-fr">Bracelets</span><span data-lang="ar" class="hidden" id="filter-bracelets-ar">أساور</span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="montres"><span data-lang="fr" id="filter-watches-fr">Montres</span><span data-lang="ar" class="hidden" id="filter-watches-ar">ساعات</span></button>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 gallery-container">
@@ -228,47 +228,47 @@
         <section id="contact" class="py-16 md:py-20 bg-[var(--light-bg)]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="contact-title-fr"></h2>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="contact-title-ar"></h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="contact-title-fr">Contactez-nous</h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="contact-title-ar">تواصل معنا</h2>
                 </div>
                 <div class="flex flex-col lg:flex-row gap-12">
                     <!-- Contact Form -->
                     <div class="lg:w-1/2 bg-white p-6 md:p-8 rounded-lg shadow-xl scroll-animate">
-                        <h3 class="text-2xl font-serif font-bold mb-6" data-lang="fr" id="form-title-fr"></h3>
-                        <h3 class="text-2xl font-serif font-bold mb-6 hidden" data-lang="ar" id="form-title-ar"></h3>
+                        <h3 class="text-2xl font-serif font-bold mb-6" data-lang="fr" id="form-title-fr">Envoyez-nous un message</h3>
+                        <h3 class="text-2xl font-serif font-bold mb-6 hidden" data-lang="ar" id="form-title-ar">أرسل لنا رسالة</h3>
                         <form id="contactForm" action="" method="POST">
                             <div class="mb-6">
-                                <label for="name" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-name-label-fr"></label>
-                                <label for="name" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-name-label-ar"></label>
+                                <label for="name" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-name-label-fr">Nom</label>
+                                <label for="name" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-name-label-ar">الاسم</label>
                                 <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg p-3" required>
                             </div>
                             <div class="mb-6">
-                                <label for="email" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-email-label-fr"></label>
-                                <label for="email" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-email-label-ar"></label>
+                                <label for="email" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-email-label-fr">Email</label>
+                                <label for="email" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-email-label-ar">البريد الإلكتروني</label>
                                 <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-lg p-3" required>
                             </div>
                             <div class="mb-6">
-                                <label for="message" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-message-label-fr"></label>
-                                <label for="message" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-message-label-ar"></label>
+                                <label for="message" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-message-label-fr">Message</label>
+                                <label for="message" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-message-label-ar">الرسالة</label>
                                 <textarea id="message" name="message" rows="5" class="w-full border border-gray-300 rounded-lg p-3" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-gold w-full py-3 px-10 text-lg" data-lang="fr" id="form-submit-button-fr"></button>
-                            <button type="submit" class="btn btn-gold w-full py-3 px-10 text-lg hidden" data-lang="ar" id="form-submit-button-ar"></button>
+                            <button type="submit" class="btn btn-gold w-full py-3 px-10 text-lg" data-lang="fr" id="form-submit-button-fr">Envoyer</button>
+                            <button type="submit" class="btn btn-gold w-full py-3 px-10 text-lg hidden" data-lang="ar" id="form-submit-button-ar">إرسال</button>
                         </form>
                     </div>
 
                     <!-- WhatsApp QR Code and Social Media -->
                     <div class="lg:w-1/2 space-y-8 scroll-animate" style="transition-delay: 200ms;">
                         <div class="text-center bg-white p-6 md:p-8 rounded-lg shadow-xl">
-                            <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="whatsapp-title-fr"></h3>
-                            <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="whatsapp-title-ar"></h3>
-                            <img src="" alt="WhatsApp QR Code" class="mx-auto w-40 h-40" id="whatsapp-qr-code">
-                            <p class="text-gray-600 mt-4" data-lang="fr" id="whatsapp-text-fr"></p>
-                            <p class="text-gray-600 mt-4 hidden" data-lang="ar" id="whatsapp-text-ar"></p>
+                            <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="whatsapp-title-fr">Scannez pour WhatsApp</h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="whatsapp-title-ar">امسح رمز واتساب</h3>
+                            <img src="assets/placeholder.png" alt="WhatsApp QR Code" class="mx-auto w-40 h-40" id="whatsapp-qr-code">
+                            <p class="text-gray-600 mt-4" data-lang="fr" id="whatsapp-text-fr">Ou contactez-nous directement.</p>
+                            <p class="text-gray-600 mt-4 hidden" data-lang="ar" id="whatsapp-text-ar">أو تواصل معنا مباشرة.</p>
                         </div>
                         <div class="text-center bg-white p-6 md:p-8 rounded-lg shadow-xl">
-                            <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="follow-us-title-fr"></h3>
-                            <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="follow-us-title-ar"></h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="follow-us-title-fr">Suivez-nous</h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="follow-us-title-ar">تابعنا</h3>
                             <div class="flex justify-center space-x-6" id="social-links-contact">
                                 <!-- Social links will be inserted here -->
                             </div>
@@ -283,17 +283,17 @@
     <footer class="bg-[var(--dark-bg)] text-white pt-16 pb-8">
         <div class="container mx-auto px-6 text-center">
             <h3 class="text-3xl font-serif font-bold text-[var(--gold-primary)] mb-4">
-                <span data-lang="fr" id="footer-logo-text-fr"></span>
-                <span data-lang="ar" class="hidden" id="footer-logo-text-ar"></span>
+                <span data-lang="fr" id="footer-logo-text-fr">Votre Marque</span>
+                <span data-lang="ar" class="hidden" id="footer-logo-text-ar">علامتك التجارية</span>
             </h3>
-            <p class="max-w-md mx-auto text-gray-400 mb-8" data-lang="fr" id="footer-text-fr"></p>
-            <p class="max-w-md mx-auto text-gray-400 mb-8 hidden" data-lang="ar" id="footer-text-ar"></p>
+            <p class="max-w-md mx-auto text-gray-400 mb-8" data-lang="fr" id="footer-text-fr">La perfection dans chaque détail.</p>
+            <p class="max-w-md mx-auto text-gray-400 mb-8 hidden" data-lang="ar" id="footer-text-ar">الكمال في كل تفصيل.</p>
             <div class="flex justify-center space-x-6 mb-8" id="social-links-footer">
                 <!-- Social links will be inserted here -->
             </div>
             <div class="border-t border-gray-700 pt-6 mt-8">
-                 <p class="text-gray-500" data-lang="fr" id="footer-copyright-fr"></p>
-                 <p class="text-gray-500 hidden" data-lang="ar" id="footer-copyright-ar"></p>
+                 <p class="text-gray-500" data-lang="fr" id="footer-copyright-fr">&copy; 2024 Votre Marque. Tous droits réservés.</p>
+                 <p class="text-gray-500 hidden" data-lang="ar" id="footer-copyright-ar">&copy; 2024 علامتك التجارية. كل الحقوق محفوظة.</p>
                  <p class="text-xs text-gray-600 mt-2">
                     <span data-lang="fr">Conçu et développé par <a href="https://www.instagram.com/e_m_i_r_2_4" class="font-bold hover:text-[var(--gold-primary)]" target="_blank">E M I R</a></span>
                     <span data-lang="ar" class="hidden">تصميم وتطوير <a href="https://www.instagram.com/e_m_i_r_2_4" class="font-bold hover:text-[var(--gold-primary)]" target="_blank">E M I R</a></span>
