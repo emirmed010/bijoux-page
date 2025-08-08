@@ -5,17 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- عنوان وصفي ديناميكي تتم إدارته بواسطة JS -->
-    <title>Bijouterie Élégance - Créations Uniques</title>
-    <meta name="description" content="Découvrez nos collections de bijoux uniques.">
+    <!-- العنوان والوصف والأيقونة ستتم إدارتها بواسطة JS -->
+    <title>Bijouterie</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" href="" id="favicon">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/Screenshot 2025-08-08 090817.png" id="favicon">
-
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS & Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Google Fonts -->
@@ -35,22 +31,19 @@
     <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm py-4 px-6 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#home" class="text-3xl font-serif font-bold text-[var(--gold-primary)] z-20">
-                <span data-lang="fr" id="brand-fr"></span>
-                <span data-lang="ar" class="hidden" id="brand-ar"></span>
+                <img src="" alt="Logo" class="h-10" id="header-logo">
             </a>
-
             <nav class="hidden md:flex items-center space-x-8">
-                 <a href="#home" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link" data-lang="fr" id="nav-home-fr">Accueil</a>
-                <a href="#about" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link" data-lang="fr" id="nav-about-fr">Notre Histoire</a>
-                <a href="#collections" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link" data-lang="fr" id="nav-collections-fr">Collections</a>
-                <a href="#contact" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link" data-lang="fr" id="nav-contact-fr">Contact</a>
+                <a href="#home" class="nav-link" data-lang="fr" id="nav-home-fr"></a>
+                <a href="#about" class="nav-link" data-lang="fr" id="nav-about-fr"></a>
+                <a href="#collections" class="nav-link" data-lang="fr" id="nav-collections-fr"></a>
+                <a href="#contact" class="nav-link" data-lang="fr" id="nav-contact-fr"></a>
                 
-                <a href="#home" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link hidden" data-lang="ar" id="nav-home-ar">الرئيسية</a>
-                <a href="#about" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link hidden" data-lang="ar" id="nav-about-ar">قصتنا</a>
-                <a href="#collections" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link hidden" data-lang="ar" id="nav-collections-ar">المجموعات</a>
-                <a href="#contact" class="text-gray-600 hover:text-[var(--gold-primary)] font-medium nav-link hidden" data-lang="ar" id="nav-contact-ar">اتصل بنا</a>
+                <a href="#home" class="nav-link hidden" data-lang="ar" id="nav-home-ar"></a>
+                <a href="#about" class="nav-link hidden" data-lang="ar" id="nav-about-ar"></a>
+                <a href="#collections" class="nav-link hidden" data-lang="ar" id="nav-collections-ar"></a>
+                <a href="#contact" class="nav-link hidden" data-lang="ar" id="nav-contact-ar"></a>
             </nav>
-            
             <div class="flex items-center">
                 <button id="languageSwitch" class="font-bold text-gray-600 hover:text-[var(--gold-primary)] px-4 py-2 rounded-full z-20">AR</button>
                 <button class="md:hidden" id="menuBtn" aria-label="Ouvrir le menu">
@@ -65,47 +58,45 @@
     <!-- Menu Mobile Overlay -->
     <div id="mobileMenu" class="md:hidden">
         <nav class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="#home" class="mobile-menu-link" data-lang="fr" id="mobile-nav-home-fr">Accueil</a>
-            <a href="#about" class="mobile-menu-link" data-lang="fr" id="mobile-nav-about-fr">Notre Histoire</a>
-            <a href="#collections" class="mobile-menu-link" data-lang="fr" id="mobile-nav-collections-fr">Collections</a>
-            <a href="#contact" class="mobile-menu-link" data-lang="fr" id="mobile-nav-contact-fr">Contact</a>
+            <a href="#home" class="mobile-menu-link" data-lang="fr" id="mobile-nav-home-fr"></a>
+            <a href="#about" class="mobile-menu-link" data-lang="fr" id="mobile-nav-about-fr"></a>
+            <a href="#collections" class="mobile-menu-link" data-lang="fr" id="mobile-nav-collections-fr"></a>
+            <a href="#contact" class="mobile-menu-link" data-lang="fr" id="mobile-nav-contact-fr"></a>
             
-            <a href="#home" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-home-ar">الرئيسية</a>
-            <a href="#about" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-about-ar">قصتنا</a>
-            <a href="#collections" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-collections-ar">المجموعات</a>
-            <a href="#contact" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-contact-ar">اتصل بنا</a>
+            <a href="#home" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-home-ar"></a>
+            <a href="#about" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-about-ar"></a>
+            <a href="#collections" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-collections-ar"></a>
+            <a href="#contact" class="mobile-menu-link hidden" data-lang="ar" id="mobile-nav-contact-ar"></a>
         </nav>
     </div>
 
     <main>
-        <!-- PAGE 1: ACCUEIL (HERO SECTION) -->
+        <!-- HERO SECTION -->
         <section id="home" class="bg-gray-800 text-white relative overflow-hidden flex items-center min-h-[70vh] md:min-h-screen py-20">
              <div class="absolute inset-0">
-                <img src="" class="w-full h-full object-cover opacity-30" alt="Bijoux de luxe" id="hero-image">
+                <img src="" class="w-full h-full object-cover opacity-30" alt="Background Image" id="hero-background">
             </div>
             <div class="container mx-auto px-6 text-center relative z-10 flex flex-col items-center">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold mb-4 leading-tight scroll-animate" data-lang="fr" id="hero-title-fr"></h1>
                 <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200 scroll-animate" style="transition-delay: 200ms;" data-lang="fr" id="hero-subtitle-fr"></p>
-                
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold mb-4 leading-tight scroll-animate hidden" data-lang="ar" id="hero-title-ar"></h1>
                 <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200 scroll-animate hidden" style="transition-delay: 200ms;" data-lang="ar" id="hero-subtitle-ar"></p>
-
                 <div class="scroll-animate" style="transition-delay: 400ms;">
-                    <a href="#collections" id="hero-button-link" class="btn btn-gold py-3 px-8 sm:py-4 sm:px-12 text-base sm:text-lg">
-                        <span data-lang="fr" id="hero-button-fr"></span>
-                        <span data-lang="ar" class="hidden" id="hero-button-ar"></span>
+                    <a href="#" id="hero-button-link" class="btn btn-gold py-3 px-8 sm:py-4 sm:px-12 text-base sm:text-lg">
+                        <span data-lang="fr" id="hero-button-text-fr"></span>
+                        <span data-lang="ar" class="hidden" id="hero-button-text-ar"></span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Section Présentation Boutique -->
+        <!-- WELCOME SECTION -->
         <section class="py-16 md:py-20 bg-[var(--light-bg)]">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-center gap-10 md:gap-12">
                     <div class="md:w-1/2 scroll-animate">
                         <div class="rounded-lg shadow-2xl overflow-hidden">
-                            <img src="" alt="Intérieur de la boutique de bijoux" class="w-full transition-transform duration-500 hover:scale-105" id="welcome-image">
+                            <img src="" alt="Welcome Image" class="w-full transition-transform duration-500 hover:scale-105" id="welcome-image">
                         </div>
                     </div>
                     <div class="md:w-1/2 text-center md:text-left scroll-animate" style="transition-delay: 200ms;">
@@ -113,85 +104,118 @@
                         <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-6 hidden" data-lang="ar" id="welcome-title-ar"></h2>
                         <p class="text-gray-600 leading-relaxed mb-6" data-lang="fr" id="welcome-text-fr"></p>
                         <p class="text-gray-600 leading-relaxed mb-6 hidden" data-lang="ar" id="welcome-text-ar"></p>
-                        <a href="#about" id="welcome-button-link" class="btn btn-outline-gold py-3 px-8">
-                            <span data-lang="fr" id="welcome-button-fr"></span>
-                            <span data-lang="ar" class="hidden" id="welcome-button-ar"></span>
+                        <a href="#" id="welcome-button-link" class="btn btn-outline-gold py-3 px-8">
+                            <span data-lang="fr" id="welcome-button-text-fr"></span>
+                            <span data-lang="ar" class="hidden" id="welcome-button-text-ar"></span>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section Produits Phares -->
+        <!-- FEATURED PRODUCTS SECTION -->
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="featured-title-fr">Nos Produits Phares</h2>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="featured-title-ar">أبرز منتجاتنا</h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="featured-title-fr"></h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="featured-title-ar"></h2>
                     <div class="w-24 h-1 bg-[var(--gold-primary)] mx-auto"></div>
                 </div>
-                <!-- Container for dynamic products -->
                 <div id="featured-products-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                     <!-- Products will be inserted here by JavaScript -->
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 2: À PROPOS (NOTRE HISTOIRE) -->
+        <!-- STORY SECTION -->
         <section id="about" class="py-16 md:py-20 bg-[var(--light-bg)]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title" data-lang="fr" id="about-title-fr"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="about-subtitle-fr"></p>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title hidden" data-lang="ar" id="about-title-ar"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="about-subtitle-ar"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="story-section-title-fr"></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="story-intro-fr"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="story-section-title-ar"></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="story-intro-ar"></p>
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-16">
                     <div class="md:w-1/2 space-y-6 scroll-animate">
                         <div data-lang="fr">
-                            <h3 class="text-2xl font-serif font-bold text-gray-800" id="about-story-title-fr"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="about-story-text-fr"></p>
-                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="about-craft-title-fr"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="about-craft-text-fr"></p>
+                            <h3 class="text-2xl font-serif font-bold text-gray-800" id="story-title-fr"></h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="story-text-fr"></p>
+                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="craft-title-fr"></h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="craft-text-fr"></p>
                             <div class="mt-6 border-l-4 border-[var(--gold-primary)] pl-4">
-                                <p class="italic text-gray-700 font-semibold" id="about-quote-fr"></p>
+                                <p class="italic text-gray-700 font-semibold" id="story-quote-fr"></p>
                             </div>
                         </div>
                         <div data-lang="ar" class="hidden">
-                             <h3 class="text-2xl font-serif font-bold text-gray-800" id="about-story-title-ar"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="about-story-text-ar"></p>
-                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="about-craft-title-ar"></h3>
-                            <p class="text-gray-600 leading-relaxed mt-2" id="about-craft-text-ar"></p>
-                            <div class="mt-6 border-l-4 border-[var(--gold-primary)] pl-4">
-                                <p class="italic text-gray-700 font-semibold" id="about-quote-ar"></p>
+                             <h3 class="text-2xl font-serif font-bold text-gray-800" id="story-title-ar"></h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="story-text-ar"></p>
+                            <h3 class="text-2xl font-serif font-bold text-gray-800 mt-6" id="craft-title-ar"></h3>
+                            <p class="text-gray-600 leading-relaxed mt-2" id="craft-text-ar"></p>
+                            <div class="mt-6 border-r-4 border-[var(--gold-primary)] pr-4 border-l-0">
+                                <p class="italic text-gray-700 font-semibold" id="story-quote-ar"></p>
                             </div>
                         </div>
                     </div>
                     <div class="md:w-1/2 scroll-animate" style="transition-delay: 200ms;">
                          <div class="rounded-lg shadow-2xl overflow-hidden">
-                            <img src="" alt="Artisan bijoutier au travail" class="w-full transition-transform duration-500 hover:scale-105" id="about-image">
+                            <img src="" alt="Story Image" class="w-full transition-transform duration-500 hover:scale-105" id="story-image">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 3: COLLECTIONS (GALERIE) -->
+         <!-- SERVICES SECTION -->
+        <section id="services" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="services-title-fr"></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="services-subtitle-fr"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="services-title-ar"></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="services-subtitle-ar"></p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Service 1 -->
+                    <div class="bg-[var(--light-bg)] p-6 md:p-8 rounded-lg shadow-xl scroll-animate">
+                        <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="service1-title-fr"></h3>
+                        <p class="text-gray-600 mb-6" data-lang="fr" id="service1-text-fr"></p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6" data-lang="fr" id="service1-button-fr"></a>
+                        
+                        <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="service1-title-ar"></h3>
+                        <p class="text-gray-600 mb-6 hidden" data-lang="ar" id="service1-text-ar"></p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6 hidden" data-lang="ar" id="service1-button-ar"></a>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="bg-[var(--light-bg)] p-6 md:p-8 rounded-lg shadow-xl scroll-animate">
+                        <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="service2-title-fr"></h3>
+                        <p class="text-gray-600 mb-6" data-lang="fr" id="service2-text-fr"></p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6" data-lang="fr" id="service2-button-fr"></a>
+                        
+                        <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="service2-title-ar"></h3>
+                        <p class="text-gray-600 mb-6 hidden" data-lang="ar" id="service2-text-ar"></p>
+                        <a href="#contact" class="btn btn-gold py-3 px-6 hidden" data-lang="ar" id="service2-button-ar"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLLECTIONS SECTION -->
         <section id="collections" class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title" data-lang="fr" id="collections-title-fr">Nos Collections</h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="collections-subtitle-fr">Explorez nos créations uniques, classées pour votre plaisir.</p>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title hidden" data-lang="ar" id="collections-title-ar">مجموعاتنا</h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="collections-subtitle-ar">استكشف إبداعاتنا الفريدة، المصنفة خصيصًا لمتعتك.</p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="collections-title-fr"></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="collections-subtitle-fr"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="collections-title-ar"></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="collections-subtitle-ar"></p>
                 </div>
                 
                 <div class="flex justify-center flex-wrap gap-3 sm:gap-4 mb-12 scroll-animate">
-                    <button class="filter-btn btn btn-gold py-2 px-5 active" data-filter="all"><span data-lang="fr" id="filter-all-fr">Toutes</span><span data-lang="ar" class="hidden" id="filter-all-ar">الكل</span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bagues"><span data-lang="fr" id="filter-rings-fr">Bagues</span><span data-lang="ar" class="hidden" id="filter-rings-ar">خواتم</span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="colliers"><span data-lang="fr" id="filter-necklaces-fr">Colliers</span><span data-lang="ar" class="hidden" id="filter-necklaces-ar">قلائد</span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bracelets"><span data-lang="fr" id="filter-bracelets-fr">Bracelets</span><span data-lang="ar" class="hidden" id="filter-bracelets-ar">أساور</span></button>
-                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="montres"><span data-lang="fr" id="filter-watches-fr">Montres</span><span data-lang="ar" class="hidden" id="filter-watches-ar">ساعات</span></button>
+                    <button class="filter-btn btn btn-gold py-2 px-5 active" data-filter="all"><span data-lang="fr" id="filter-all-fr"></span><span data-lang="ar" class="hidden" id="filter-all-ar"></span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bagues"><span data-lang="fr" id="filter-rings-fr"></span><span data-lang="ar" class="hidden" id="filter-rings-ar"></span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="colliers"><span data-lang="fr" id="filter-necklaces-fr"></span><span data-lang="ar" class="hidden" id="filter-necklaces-ar"></span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="bracelets"><span data-lang="fr" id="filter-bracelets-fr"></span><span data-lang="ar" class="hidden" id="filter-bracelets-ar"></span></button>
+                    <button class="filter-btn btn btn-outline-gold py-2 px-5" data-filter="montres"><span data-lang="fr" id="filter-watches-fr"></span><span data-lang="ar" class="hidden" id="filter-watches-ar"></span></button>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 gallery-container">
@@ -200,120 +224,88 @@
             </div>
         </section>
 
-        <!-- PAGE 4: CONTACT -->
+        <!-- CONTACT SECTION -->
         <section id="contact" class="py-16 md:py-20 bg-[var(--light-bg)]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title" data-lang="fr" id="contact-title-fr"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto" data-lang="fr" id="contact-subtitle-fr"></p>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 section-title hidden" data-lang="ar" id="contact-title-ar"></h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto hidden" data-lang="ar" id="contact-subtitle-ar"></p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4" data-lang="fr" id="contact-title-fr"></h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4 hidden" data-lang="ar" id="contact-title-ar"></h2>
                 </div>
                 <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Contact Form -->
                     <div class="lg:w-1/2 bg-white p-6 md:p-8 rounded-lg shadow-xl scroll-animate">
-                        <h3 class="text-2xl font-serif font-bold mb-6" data-lang="fr" id="form-title-fr">Envoyez-nous un message</h3>
-                        <h3 class="text-2xl font-serif font-bold mb-6 hidden" data-lang="ar" id="form-title-ar">أرسل لنا رسالة</h3>
+                        <h3 class="text-2xl font-serif font-bold mb-6" data-lang="fr" id="form-title-fr"></h3>
+                        <h3 class="text-2xl font-serif font-bold mb-6 hidden" data-lang="ar" id="form-title-ar"></h3>
                         <form id="contactForm" action="" method="POST">
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 mb-2" data-lang="fr" id="form-label-name-fr">Nom complet</label>
-                                <label for="name" class="block text-gray-700 mb-2 hidden" data-lang="ar" id="form-label-name-ar">الاسم الكامل</label>
-                                <input type="text" id="name" name="name" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--gold-primary)]" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 mb-2" data-lang="fr" id="form-label-email-fr">Email</label>
-                                <label for="email" class="block text-gray-700 mb-2 hidden" data-lang="ar" id="form-label-email-ar">البريد الإلكتروني</label>
-                                <input type="email" id="email" name="email" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--gold-primary)]" required>
-                            </div>
-                             <div class="mb-4">
-                                <label for="phone" class="block text-gray-700 mb-2" data-lang="fr" id="form-label-phone-fr">Téléphone</label>
-                                <label for="phone" class="block text-gray-700 mb-2 hidden" data-lang="ar" id="form-label-phone-ar">الهاتف</label>
-                                <input type="tel" id="phone" name="phone" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--gold-primary)]">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-name-label-fr"></label>
+                                <label for="name" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-name-label-ar"></label>
+                                <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg p-3" required>
                             </div>
                             <div class="mb-6">
-                                <label for="message" class="block text-gray-700 mb-2" data-lang="fr" id="form-label-message-fr">Message</label>
-                                <label for="message" class="block text-gray-700 mb-2 hidden" data-lang="ar" id="form-label-message-ar">الرسالة</label>
-                                <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--gold-primary)]" required></textarea>
+                                <label for="email" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-email-label-fr"></label>
+                                <label for="email" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-email-label-ar"></label>
+                                <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-lg p-3" required>
                             </div>
-                            <button type="submit" class="btn btn-gold w-full py-3 px-10 text-lg">
-                                <span data-lang="fr" id="form-button-fr">Envoyer</span>
-                                <span data-lang="ar" class="hidden" id="form-button-ar">إرسال</span>
-                            </button>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-bold mb-2" data-lang="fr" id="form-message-label-fr"></label>
+                                <label for="message" class="block text-gray-700 font-bold mb-2 hidden" data-lang="ar" id="form-message-label-ar"></label>
+                                <textarea id="message" name="message" rows="5" class="w-full border border-gray-300 rounded-lg p-3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold w-full py-3 px-10 text-lg" data-lang="fr" id="form-submit-button-fr"></button>
+                            <button type="submit" class="btn btn-gold w-full py-3 px-10 text-lg hidden" data-lang="ar" id="form-submit-button-ar"></button>
                         </form>
                     </div>
+
+                    <!-- WhatsApp QR Code and Social Media -->
                     <div class="lg:w-1/2 space-y-8 scroll-animate" style="transition-delay: 200ms;">
-                        <div data-lang="fr">
-                            <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-fr">Nos Coordonnées</h3>
-                            <div class="space-y-4 text-lg">
-                                <p id="contact-address-fr"><i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 mr-2"></i></p>
-                                <p id="contact-phone-fr"><i class="fas fa-phone text-[var(--gold-primary)] w-6 mr-2"></i></p>
-                                <p id="contact-email-fr"><i class="fas fa-envelope text-[var(--gold-primary)] w-6 mr-2"></i></p>
-                            </div>
-                            <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-fr">Horaires d'ouverture</h3>
-                            <div class="space-y-2 text-lg" id="contact-hours-fr">
-                                <!-- Static hours for now -->
-                                <p><strong>Lundi - Vendredi:</strong> 10:00 - 19:00</p>
-                                <p><strong>Samedi:</strong> 10:00 - 18:00</p>
-                                <p><strong>Dimanche:</strong> Fermé</p>
-                            </div>
+                        <div class="text-center bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                            <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="whatsapp-title-fr"></h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="whatsapp-title-ar"></h3>
+                            <img src="" alt="WhatsApp QR Code" class="mx-auto w-40 h-40" id="whatsapp-qr-code">
+                            <p class="text-gray-600 mt-4" data-lang="fr" id="whatsapp-text-fr"></p>
+                            <p class="text-gray-600 mt-4 hidden" data-lang="ar" id="whatsapp-text-ar"></p>
                         </div>
-                         <div data-lang="ar" class="hidden">
-                            <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-ar">معلومات الاتصال</h3>
-                            <div class="space-y-4 text-lg">
-                                <p id="contact-address-ar"><i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ml-2"></i></p>
-                                <p id="contact-phone-ar"><i class="fas fa-phone text-[var(--gold-primary)] w-6 ml-2"></i></p>
-                                <p id="contact-email-ar"><i class="fas fa-envelope text-[var(--gold-primary)] w-6 ml-2"></i></p>
+                        <div class="text-center bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                            <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="follow-us-title-fr"></h3>
+                            <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="follow-us-title-ar"></h3>
+                            <div class="flex justify-center space-x-6" id="social-links-contact">
+                                <!-- Social links will be inserted here -->
                             </div>
-                            <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-ar">أوقات العمل</h3>
-                            <div class="space-y-2 text-lg" id="contact-hours-ar">
-                                <!-- Static hours for now -->
-                                <p><strong>الاثنين - الجمعة:</strong> 10:00 - 19:00</p>
-                                <p><strong>السبت:</strong> 10:00 - 18:00</p>
-                                <p><strong>الأحد:</strong> مغلق</p>
-                            </div>
-                        </div>
-                        <div id="google-map-container" class="h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
-                           <!-- Map will be inserted here by JavaScript -->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
     
     <!-- FOOTER -->
     <footer class="bg-[var(--dark-bg)] text-white pt-16 pb-8">
         <div class="container mx-auto px-6 text-center">
             <h3 class="text-3xl font-serif font-bold text-[var(--gold-primary)] mb-4">
-                <span data-lang="fr" id="footer-brand-fr"></span>
-                <span data-lang="ar" class="hidden" id="footer-brand-ar"></span>
+                <span data-lang="fr" id="footer-logo-text-fr"></span>
+                <span data-lang="ar" class="hidden" id="footer-logo-text-ar"></span>
             </h3>
-            <p class="max-w-md mx-auto text-gray-400 mb-8" data-lang="fr" id="footer-slogan-fr"></p>
-            <p class="max-w-md mx-auto text-gray-400 mb-8 hidden" data-lang="ar" id="footer-slogan-ar"></p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="#" class="text-gray-400 hover:text-[var(--gold-primary)] transition-colors duration-300" aria-label="Facebook" id="social-link-facebook"><i class="fab fa-facebook-f text-2xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-[var(--gold-primary)] transition-colors duration-300" aria-label="Instagram" id="social-link-instagram"><i class="fab fa-instagram text-2xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-[var(--gold-primary)] transition-colors duration-300" aria-label="Pinterest" id="social-link-pinterest"><i class="fab fa-pinterest-p text-2xl"></i></a>
+            <p class="max-w-md mx-auto text-gray-400 mb-8" data-lang="fr" id="footer-text-fr"></p>
+            <p class="max-w-md mx-auto text-gray-400 mb-8 hidden" data-lang="ar" id="footer-text-ar"></p>
+            <div class="flex justify-center space-x-6 mb-8" id="social-links-footer">
+                <!-- Social links will be inserted here -->
             </div>
             <div class="border-t border-gray-700 pt-6 mt-8">
                  <p class="text-gray-500" data-lang="fr" id="footer-copyright-fr"></p>
                  <p class="text-gray-500 hidden" data-lang="ar" id="footer-copyright-ar"></p>
-                 <p class="text-xs text-gray-600 mt-2" data-lang="fr" id="footer-design-credit-fr"></p>
-                 <p class="text-xs text-gray-600 mt-2 hidden" data-lang="ar" id="footer-design-credit-ar"></p>
+                 <p class="text-xs text-gray-600 mt-2">
+                    <span data-lang="fr">Conçu et développé par <a href="https://www.instagram.com/e_m_i_r_2_4" class="font-bold hover:text-[var(--gold-primary)]" target="_blank">E M I R</a></span>
+                    <span data-lang="ar" class="hidden">تصميم وتطوير <a href="https://www.instagram.com/e_m_i_r_2_4" class="font-bold hover:text-[var(--gold-primary)]" target="_blank">E M I R</a></span>
+                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Lightbox JS -->
+    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
-
-    <!-- JS-YAML Library (to parse .yml files) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-
-    <!-- Custom Script (for site logic) -->
     <script src="assets/script.js"></script>
-
-    <!-- Netlify Identity Invite Fix -->
     <script>
       if (window.location.hash.includes('invite_token')) {
         window.location.href = '/admin/' + window.location.hash;
