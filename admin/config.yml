@@ -2,95 +2,184 @@ backend:
   name: git-gateway
   branch: main
 
+# Spécifie le dossier où les médias (images) seront uploadés
 media_folder: "assets"
+# Spécifie le chemin public pour accéder aux médias
 public_folder: "/assets"
 
 collections:
   # ===============================================================
-  # === 1. الإعدادات العامة للموقع (Options Page)
+  # === 1. الإعدادات العامة للموقع (Settings)
   # ===============================================================
   - name: "settings"
-    label: "الإعدادات العامة (Settings)"
+    label: "⚙️ الإعدادات العامة (Settings)"
     files:
       - name: "general_settings"
         label: "إعدادات الموقع العامة"
         file: "content/data/settings.yml"
         fields:
-          - {label: "شعار الموقع (Header Logo)", name: "site_logo", widget: "image"}
+          - {label: "عنوان الموقع (Titre du site)", name: "site_title", widget: "string", hint: "Apparaît dans l'onglet du navigateur."}
+          - {label: "وصف الموقع (Description du site)", name: "site_description", widget: "text", hint: "Pour les moteurs de recherche (SEO)."}
           - {label: "أيقونة الموقع (Favicon)", name: "site_favicon", widget: "image"}
-          - {label: "عنوان الموقع (لـ <title>)", name: "site_title", widget: "string"}
-          - {label: "وصف الموقع (Meta Description)", name: "site_description", widget: "text"}
-          - {label: "اللون الأساسي", name: "primary_color", widget: "color"}
-          - {label: "اللون الثانوي", name: "secondary_color", widget: "color"}
-          - {label: "رابط فيسبوك", name: "social_facebook", widget: "string"}
-          - {label: "رابط إنستغرام", name: "social_instagram", widget: "string"}
-          - {label: "رابط بنترست", name: "social_pinterest", widget: "string"}
+          - {label: "شعار الموقع في الهيدر (Logo Header)", name: "site_logo", widget: "image"}
+          - {label: "صورة رمز QR لواتساب (QR Code WhatsApp)", name: "whatsapp_qr_code", widget: "image"}
+          - label: "روابط التواصل الاجتماعي (Réseaux Sociaux)"
+            name: "social_links"
+            widget: "object"
+            fields:
+              - {label: "فيسبوك (Facebook)", name: "social_facebook", widget: "string", required: false}
+              - {label: "إنستغرام (Instagram)", name: "social_instagram", widget: "string", required: false}
+              - {label: "تيك توك (TikTok)", name: "social_tiktok", widget: "string", required: false}
+              - {label: "واتساب (WhatsApp)", name: "social_whatsapp", widget: "string", required: false, hint: "Utilisez le format : https://wa.me/numerosansplus"}
+              - {label: "سناب شات (Snapchat)", name: "social_snapchat", widget: "string", required: false}
+              - {label: "بنترست (Pinterest)", name: "social_pinterest", widget: "string", required: false}
 
   # ===============================================================
-  # === 2. محتوى صفحة الهبوط
+  # === 2. محتوى الصفحات (Pages Content)
   # ===============================================================
-  - name: "landing"
-    label: "صفحة الهبوط (Landing Page)"
+  - name: "pages"
+    label: "📄 محتوى الصفحات (Pages)"
     files:
       - name: "home"
-        label: "محتوى الصفحة الرئيسية"
+        label: "الصفحة الرئيسية (Homepage)"
         file: "content/data/home.yml"
         fields:
-          # --- HEADER ---
           - {label: "Header: نص الشعار (FR)", name: "header_logo_text_fr", widget: "string"}
           - {label: "Header: نص الشعار (AR)", name: "header_logo_text_ar", widget: "string"}
-          # --- HERO ---
-          - {label: "Hero: صورة الخلفية", name: "hero_background", widget: "image"}
-          - {label: "Hero: عنوان رئيسي (FR)", name: "hero_title_fr", widget: "string"}
-          - {label: "Hero: عنوان رئيسي (AR)", name: "hero_title_ar", widget: "string"}
-          - {label: "Hero: نص فرعي (FR)", name: "hero_subtitle_fr", widget: "text"}
-          - {label: "Hero: نص فرعي (AR)", name: "hero_subtitle_ar", widget: "text"}
-          - {label: "Hero: نص الزر (FR)", name: "hero_button_text_fr", widget: "string"}
-          - {label: "Hero: نص الزر (AR)", name: "hero_button_text_ar", widget: "string"}
-          - {label: "Hero: رابط الزر", name: "hero_button_link", widget: "string"}
-          # --- ABOUT INTRO ---
-          - {label: "About: صورة القسم", name: "about_image", widget: "image"}
-          - {label: "About: عنوان (FR)", name: "about_title_fr", widget: "string"}
-          - {label: "About: عنوان (AR)", name: "about_title_ar", widget: "string"}
-          - {label: "About: وصف (FR)", name: "about_text_fr", widget: "text"}
-          - {label: "About: وصف (AR)", name: "about_text_ar", widget: "text"}
-          - {label: "About: نص الزر (FR)", name: "about_button_text_fr", widget: "string"}
-          - {label: "About: نص الزر (AR)", name: "about_button_text_ar", widget: "string"}
-          - {label: "About: رابط الزر", name: "about_button_link", widget: "string"}
-          # --- STORY ---
-          - {label: "Story: عنوان (FR)", name: "story_title_fr", widget: "string"}
-          - {label: "Story: عنوان (AR)", name: "story_title_ar", widget: "string"}
-          - {label: "Story: مقدمة (FR)", name: "story_intro_fr", widget: "text"}
-          - {label: "Story: مقدمة (AR)", name: "story_intro_ar", widget: "text"}
-          - {label: "Story: اقتباس (FR)", name: "story_quote_fr", widget: "text"}
-          - {label: "Story: اقتباس (AR)", name: "story_quote_ar", widget: "text"}
-          - {label: "Story: صورة القسم", name: "story_image", widget: "image"}
-          # --- CONTACT ---
-          - {label: "Contact: عنوان (FR)", name: "contact_title_fr", widget: "string"}
-          - {label: "Contact: عنوان (AR)", name: "contact_title_ar", widget: "string"}
-          - {label: "Contact: نص (FR)", name: "contact_text_fr", widget: "text"}
-          - {label: "Contact: نص (AR)", name: "contact_text_ar", widget: "text"}
-          - {label: "Contact: شورتكود الفورم", name: "form_shortcode", widget: "string", hint: "مثلاً: https://formspree.io/f/your_form_id"}
-          - {label: "Contact: العنوان (FR)", name: "contact_address_fr", widget: "string"}
-          - {label: "Contact: العنوان (AR)", name: "contact_address_ar", widget: "string"}
-          - {label: "Contact: الهاتف", name: "contact_phone", widget: "string"}
-          - {label: "Contact: البريد الإلكتروني", name: "contact_email", widget: "string"}
-          - {label: "Contact: كود الخريطة", name: "contact_map_embed", widget: "text", hint: "ضع كود embed الخاص بخرائط جوجل هنا"}
-          # --- FOOTER ---
-          - {label: "Footer: نص الشعار (FR)", name: "footer_logo_text_fr", widget: "string"}
-          - {label: "Footer: نص الشعار (AR)", name: "footer_logo_text_ar", widget: "string"}
-          - {label: "Footer: نص (FR)", name: "footer_text_fr", widget: "text"}
-          - {label: "Footer: نص (AR)", name: "footer_text_ar", widget: "text"}
-          - {label: "Footer: حقوق النشر (FR)", name: "footer_copyright_fr", widget: "string"}
-          - {label: "Footer: حقوق النشر (AR)", name: "footer_copyright_ar", widget: "string"}
-          - {label: "Footer: تصميم (FR)", name: "footer_credit_fr", widget: "string"}
-          - {label: "Footer: تصميم (AR)", name: "footer_credit_ar", widget: "string"}
 
+          - label: "Hero Section (الواجهة)"
+            name: "hero_section"
+            widget: "object"
+            fields:
+              - {label: "صورة الخلفية (Image de fond)", name: "hero_background", widget: "image"}
+              - {label: "عنوان رئيسي (FR)", name: "hero_title_fr", widget: "string"}
+              - {label: "عنوان رئيسي (AR)", name: "hero_title_ar", widget: "string"}
+              - {label: "نص فرعي (FR)", name: "hero_subtitle_fr", widget: "text"}
+              - {label: "نص فرعي (AR)", name: "hero_subtitle_ar", widget: "text"}
+              - {label: "نص الزر (FR)", name: "hero_button_text_fr", widget: "string"}
+              - {label: "نص الزر (AR)", name: "hero_button_text_ar", widget: "string"}
+              - {label: "رابط الزر (Lien du bouton)", name: "hero_button_link", widget: "string"}
+
+          - label: "Welcome Section (قسم الترحيب)"
+            name: "welcome_section"
+            widget: "object"
+            fields:
+              - {label: "صورة القسم (Image)", name: "about_image", widget: "image"}
+              - {label: "عنوان (FR)", name: "about_title_fr", widget: "string"}
+              - {label: "عنوان (AR)", name: "about_title_ar", widget: "string"}
+              - {label: "وصف (FR)", name: "about_text_fr", widget: "text"}
+              - {label: "وصف (AR)", name: "about_text_ar", widget: "text"}
+              - {label: "نص الزر (FR)", name: "about_button_text_fr", widget: "string"}
+              - {label: "نص الزر (AR)", name: "about_button_text_ar", widget: "string"}
+              - {label: "رابط الزر (Lien du bouton)", name: "about_button_link", widget: "string"}
+
+          - label: "Featured Products Section (قسم المنتجات البارزة)"
+            name: "featured_products_section"
+            widget: "object"
+            fields:
+              - {label: "عنوان القسم (FR)", name: "featured_title_fr", widget: "string"}
+              - {label: "عنوان القسم (AR)", name: "featured_title_ar", widget: "string"}
+
+          - label: "Story Section (قسم قصتنا)"
+            name: "story_section"
+            widget: "object"
+            fields:
+              - {label: "عنوان القسم (FR)", name: "story_section_title_fr", widget: "string"}
+              - {label: "عنوان القسم (AR)", name: "story_section_title_ar", widget: "string"}
+              - {label: "مقدمة (FR)", name: "story_intro_fr", widget: "text"}
+              - {label: "مقدمة (AR)", name: "story_intro_ar", widget: "text"}
+              - {label: "عنوان القصة (FR)", name: "story_title_fr", widget: "string"}
+              - {label: "عنوان القصة (AR)", name: "story_title_ar", widget: "string"}
+              - {label: "نص القصة (FR)", name: "story_text_fr", widget: "text"}
+              - {label: "نص القصة (AR)", name: "story_text_ar", widget: "text"}
+              - {label: "عنوان الحرفية (FR)", name: "craft_title_fr", widget: "string"}
+              - {label: "عنوان الحرفية (AR)", name: "craft_title_ar", widget: "string"}
+              - {label: "نص الحرفية (FR)", name: "craft_text_fr", widget: "text"}
+              - {label: "نص الحرفية (AR)", name: "craft_text_ar", widget: "text"}
+              - {label: "اقتباس (FR)", name: "story_quote_fr", widget: "text"}
+              - {label: "اقتباس (AR)", name: "story_quote_ar", widget: "text"}
+              - {label: "صورة القسم (Image)", name: "story_image", widget: "image"}
+
+          - label: "Services Section (قسم الخدمات)"
+            name: "services_section"
+            widget: "object"
+            fields:
+              - {label: "عنوان القسم (FR)", name: "services_title_fr", widget: "string"}
+              - {label: "عنوان القسم (AR)", name: "services_title_ar", widget: "string"}
+              - {label: "نص وصفي للقسم (FR)", name: "services_subtitle_fr", widget: "text"}
+              - {label: "نص وصفي للقسم (AR)", name: "services_subtitle_ar", widget: "text"}
+              - {label: "خدمة 1: عنوان (FR)", name: "service1_title_fr", widget: "string"}
+              - {label: "خدمة 1: عنوان (AR)", name: "service1_title_ar", widget: "string"}
+              - {label: "خدمة 1: نص (FR)", name: "service1_text_fr", widget: "text"}
+              - {label: "خدمة 1: نص (AR)", name: "service1_text_ar", widget: "text"}
+              - {label: "خدمة 1: نص الزر (FR)", name: "service1_button_fr", widget: "string"}
+              - {label: "خدمة 1: نص الزر (AR)", name: "service1_button_ar", widget: "string"}
+              - {label: "خدمة 2: عنوان (FR)", name: "service2_title_fr", widget: "string"}
+              - {label: "خدمة 2: عنوان (AR)", name: "service2_title_ar", widget: "string"}
+              - {label: "خدمة 2: نص (FR)", name: "service2_text_fr", widget: "text"}
+              - {label: "خدمة 2: نص (AR)", name: "service2_text_ar", widget: "text"}
+              - {label: "خدمة 2: نص الزر (FR)", name: "service2_button_fr", widget: "string"}
+              - {label: "خدمة 2: نص الزر (AR)", name: "service2_button_ar", widget: "string"}
+
+          - label: "Collections Section (قسم المجموعات)"
+            name: "collections_section"
+            widget: "object"
+            fields:
+              - {label: "عنوان القسم (FR)", name: "collections_title_fr", widget: "string"}
+              - {label: "عنوان القسم (AR)", name: "collections_title_ar", widget: "string"}
+              - {label: "نص وصفي (FR)", name: "collections_subtitle_fr", widget: "text"}
+              - {label: "نص وصفي (AR)", name: "collections_subtitle_ar", widget: "text"}
+              - {label: "زر فلتر 'الكل' (FR)", name: "filter_all_fr", widget: "string"}
+              - {label: "زر فلتر 'الكل' (AR)", name: "filter_all_ar", widget: "string"}
+              - {label: "زر فلتر 'خواتم' (FR)", name: "filter_rings_fr", widget: "string"}
+              - {label: "زر فلتر 'خواتم' (AR)", name: "filter_rings_ar", widget: "string"}
+              - {label: "زر فلتر 'قلائد' (FR)", name: "filter_necklaces_fr", widget: "string"}
+              - {label: "زر فلتر 'قلائد' (AR)", name: "filter_necklaces_ar", widget: "string"}
+              - {label: "زر فلتر 'أساور' (FR)", name: "filter_bracelets_fr", widget: "string"}
+              - {label: "زر فلتر 'أساور' (AR)", name: "filter_bracelets_ar", widget: "string"}
+              - {label: "زر فلتر 'ساعات' (FR)", name: "filter_watches_fr", widget: "string"}
+              - {label: "زر فلتر 'ساعات' (AR)", name: "filter_watches_ar", widget: "string"}
+
+          - label: "Contact Section (قسم التواصل)"
+            name: "contact_section"
+            widget: "object"
+            fields:
+              - {label: "عنوان القسم (FR)", name: "contact_title_fr", widget: "string"}
+              - {label: "عنوان القسم (AR)", name: "contact_title_ar", widget: "string"}
+              - {label: "عنوان الفورم (FR)", name: "form_title_fr", widget: "string"}
+              - {label: "عنوان الفورم (AR)", name: "form_title_ar", widget: "string"}
+              - {label: "شورتكود الفورم (Formspree)", name: "form_shortcode", widget: "string", hint: "Ex: https://formspree.io/f/your_form_id"}
+              - {label: "اسم الحقل 'الاسم' (FR)", name: "form_name_label_fr", widget: "string"}
+              - {label: "اسم الحقل 'الاسم' (AR)", name: "form_name_label_ar", widget: "string"}
+              - {label: "اسم الحقل 'الايميل' (FR)", name: "form_email_label_fr", widget: "string"}
+              - {label: "اسم الحقل 'الايميل' (AR)", name: "form_email_label_ar", widget: "string"}
+              - {label: "اسم الحقل 'الرسالة' (FR)", name: "form_message_label_fr", widget: "string"}
+              - {label: "اسم الحقل 'الرسالة' (AR)", name: "form_message_label_ar", widget: "string"}
+              - {label: "نص زر الإرسال (FR)", name: "form_submit_button_fr", widget: "string"}
+              - {label: "نص زر الإرسال (AR)", name: "form_submit_button_ar", widget: "string"}
+              - {label: "عنوان قسم واتساب (FR)", name: "whatsapp_title_fr", widget: "string"}
+              - {label: "عنوان قسم واتساب (AR)", name: "whatsapp_title_ar", widget: "string"}
+              - {label: "نص قسم واتساب (FR)", name: "whatsapp_text_fr", widget: "string"}
+              - {label: "نص قسم واتساب (AR)", name: "whatsapp_text_ar", widget: "string"}
+              - {label: "عنوان 'تابعنا' (FR)", name: "follow_us_title_fr", widget: "string"}
+              - {label: "عنوان 'تابعنا' (AR)", name: "follow_us_title_ar", widget: "string"}
+
+          - label: "Footer (ذيل الصفحة)"
+            name: "footer_section"
+            widget: "object"
+            fields:
+              - {label: "نص الشعار (FR)", name: "footer_logo_text_fr", widget: "string"}
+              - {label: "نص الشعار (AR)", name: "footer_logo_text_ar", widget: "string"}
+              - {label: "شعار نصي (FR)", name: "footer_text_fr", widget: "text"}
+              - {label: "شعار نصي (AR)", name: "footer_text_ar", widget: "text"}
+              - {label: "نص حقوق النشر (FR)", name: "footer_copyright_fr", widget: "string"}
+              - {label: "نص حقوق النشر (AR)", name: "footer_copyright_ar", widget: "string"}
+  
   # ===============================================================
-  # === 3. المنتجات البارزة (Custom Post Type)
+  # === 3. المنتجات البارزة (Featured Products)
   # ===============================================================
   - name: "products"
-    label: "المنتجات البارزة (Products)"
+    label: "✨ المنتجات البارزة (Products)"
     label_singular: "منتج بارز"
     folder: "content/products"
     create: true
@@ -104,7 +193,7 @@ collections:
   # === 4. عناصر المعرض (Gallery Items)
   # ===============================================================
   - name: "gallery_items"
-    label: "عناصر المعرض (Gallery)"
+    label: "🖼️ عناصر المعرض (Gallery)"
     label_singular: "عنصر معرض"
     folder: "content/gallery"
     create: true
