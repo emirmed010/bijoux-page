@@ -157,6 +157,24 @@ collections:
               - {label: "اسم الحقل 'الرسالة' (AR)", name: "form_message_label_ar", widget: "string"}
               - {label: "نص زر الإرسال (FR)", name: "form_submit_button_fr", widget: "string"}
               - {label: "نص زر الإرسال (AR)", name: "form_submit_button_ar", widget: "string"}
+              - {label: "عنوان معلومات الاتصال (FR)", name: "contact_info_title_fr", widget: "string"}
+              - {label: "عنوان معلومات الاتصال (AR)", name: "contact_info_title_ar", widget: "string"}
+              - {label: "العنوان (FR)", name: "contact_address_fr", widget: "string"}
+              - {label: "العنوان (AR)", name: "contact_address_ar", widget: "string"}
+              - {label: "الهاتف (FR)", name: "contact_phone_fr", widget: "string"}
+              - {label: "الهاتف (AR)", name: "contact_phone_ar", widget: "string"}
+              - {label: "البريد الإلكتروني (FR)", name: "contact_email_fr", widget: "string"}
+              - {label: "البريد الإلكتروني (AR)", name: "contact_email_ar", widget: "string"}
+              - {label: "عنوان أوقات العمل (FR)", name: "contact_hours_title_fr", widget: "string"}
+              - {label: "عنوان أوقات العمل (AR)", name: "contact_hours_title_ar", widget: "string"}
+              - label: "أوقات العمل (Heures d'ouverture)"
+                name: "contact_hours"
+                widget: "list"
+                fields:
+                  - {label: "اليوم (FR)", name: "day_fr", widget: "string"}
+                  - {label: "اليوم (AR)", name: "day_ar", widget: "string"}
+                  - {label: "الأوقات", name: "hours", widget: "string"}
+              - {label: "كود تضمين خريطة جوجل (Google Map Iframe)", name: "google_map_iframe", widget: "text", hint: "Collez le code iframe de Google Maps ici."}
               - {label: "عنوان قسم واتساب (FR)", name: "whatsapp_title_fr", widget: "string"}
               - {label: "عنوان قسم واتساب (AR)", name: "whatsapp_title_ar", widget: "string"}
               - {label: "نص قسم واتساب (FR)", name: "whatsapp_text_fr", widget: "string"}
