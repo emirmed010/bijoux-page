@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- ستتم إدارة اللغة والاتجاه عبر JavaScript -->
+<!-- The language and direction will be managed via JavaScript -->
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- العنوان والوصف والأيقونة ستتم إدارتها بواسطة JS -->
+    <!-- Title, Description, and Favicon will be managed by JS -->
     <title>Bijouterie</title>
     <meta name="description" content="">
     <link rel="icon" type="image/png" href="assets/placeholder.png" id="favicon">
@@ -22,7 +22,7 @@
     <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
 
-    <!-- ملف الأنماط المخصص -->
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body class="font-sans">
@@ -55,7 +55,7 @@
         </div>
     </header>
 
-    <!-- Menu Mobile Overlay -->
+    <!-- Mobile Menu Overlay -->
     <div id="mobileMenu" class="md:hidden">
         <nav class="flex flex-col items-center justify-center h-full space-y-8">
             <a href="#home" class="mobile-menu-link" data-lang="fr" id="mobile-nav-home-fr">Accueil</a>
@@ -257,8 +257,48 @@
                         </form>
                     </div>
 
-                    <!-- WhatsApp QR Code and Social Media -->
+                    <!-- Contact Info Column -->
                     <div class="lg:w-1/2 space-y-8 scroll-animate" style="transition-delay: 200ms;">
+                        <!-- Contact Details & Hours -->
+                        <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                            <!-- French Contact Info -->
+                            <div data-lang="fr">
+                                <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-fr">Informations de Contact</h3>
+                                <div class="space-y-4 text-lg text-gray-700">
+                                    <p id="contact-address-fr"><i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 mr-2"></i></p>
+                                    <p id="contact-phone-fr"><i class="fas fa-phone text-[var(--gold-primary)] w-6 mr-2"></i></p>
+                                    <p id="contact-email-fr"><i class="fas fa-envelope text-[var(--gold-primary)] w-6 mr-2"></i></p>
+                                </div>
+                                <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-fr">Heures d'Ouverture</h3>
+                                <div class="space-y-2 text-lg text-gray-700" id="contact-hours-fr">
+                                    <!-- Hours will be populated by JS, static fallback -->
+                                    <p><strong>Lundi - Vendredi:</strong> 10:00 - 19:00</p>
+                                    <p><strong>Samedi:</strong> 10:00 - 18:00</p>
+                                    <p><strong>Dimanche:</strong> Fermé</p>
+                                </div>
+                            </div>
+                             <!-- Arabic Contact Info -->
+                            <div data-lang="ar" class="hidden">
+                                <h3 class="text-2xl font-serif font-bold mb-4" id="contact-info-title-ar">معلومات الاتصال</h3>
+                                <div class="space-y-4 text-lg text-gray-700">
+                                    <p id="contact-address-ar"><i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ml-2"></i></p>
+                                    <p id="contact-phone-ar"><i class="fas fa-phone text-[var(--gold-primary)] w-6 ml-2"></i></p>
+                                    <p id="contact-email-ar"><i class="fas fa-envelope text-[var(--gold-primary)] w-6 ml-2"></i></p>
+                                </div>
+                                <h3 class="text-2xl font-serif font-bold mb-4 mt-8" id="contact-hours-title-ar">أوقات العمل</h3>
+                                <div class="space-y-2 text-lg text-gray-700" id="contact-hours-ar">
+                                     <!-- Hours will be populated by JS, static fallback -->
+                                    <p><strong>الاثنين - الجمعة:</strong> 10:00 - 19:00</p>
+                                    <p><strong>السبت:</strong> 10:00 - 18:00</p>
+                                    <p><strong>الأحد:</strong> مغلق</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Google Map -->
+                        <div id="google-map-container" class="h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
+                           <!-- Map will be inserted here by JavaScript -->
+                        </div>
+                        <!-- WhatsApp QR Code -->
                         <div class="text-center bg-white p-6 md:p-8 rounded-lg shadow-xl">
                             <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="whatsapp-title-fr">Scannez pour WhatsApp</h3>
                             <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="whatsapp-title-ar">امسح رمز واتساب</h3>
@@ -266,6 +306,7 @@
                             <p class="text-gray-600 mt-4" data-lang="fr" id="whatsapp-text-fr">Ou contactez-nous directement.</p>
                             <p class="text-gray-600 mt-4 hidden" data-lang="ar" id="whatsapp-text-ar">أو تواصل معنا مباشرة.</p>
                         </div>
+                        <!-- Social Media -->
                         <div class="text-center bg-white p-6 md:p-8 rounded-lg shadow-xl">
                             <h3 class="text-2xl font-serif font-bold mb-4" data-lang="fr" id="follow-us-title-fr">Suivez-nous</h3>
                             <h3 class="text-2xl font-serif font-bold mb-4 hidden" data-lang="ar" id="follow-us-title-ar">تابعنا</h3>
