@@ -2,7 +2,7 @@
  * @file script.js
  * @description Final, integrated script for the website.
  * Handles fully dynamic content loading with cache busting and flexible logo options.
- * @version 9.0.1 - Patched Version
+ * @version 9.0.2 - Patched Version with Contact Info
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -103,21 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 2. Flexible Logo Handling
         const headerLogoImg = document.getElementById('header-logo');
-        const brandFr = document.getElementById('brand-fr');
-        const brandAr = document.getElementById('brand-ar');
-        
         if (headerLogoImg) {
             if (siteSettings.site_logo) {
                 headerLogoImg.src = siteSettings.site_logo;
                 headerLogoImg.classList.remove('hidden');
-                if (brandFr) brandFr.classList.add('hidden');
-                if (brandAr) brandAr.classList.add('hidden');
             } else {
                 headerLogoImg.classList.add('hidden');
-                if (brandFr) brandFr.classList.remove('hidden');
-                if (brandAr) brandAr.classList.remove('hidden');
-                updateElement('brand-fr', content['header_logo_text_fr']);
-                updateElement('brand-ar', content['header_logo_text_ar']);
             }
         }
         
@@ -157,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateElement('hero-button-link', hero.hero_button_link, 'href');
 
         // ... (rest of the sections: welcome, featured, story, services, collections, contact, footer)
-        // Ensure each section checks for its own data object like the hero section
         const welcome = content.welcome_section || {};
         updateElement('welcome-image', welcome.about_image, 'src');
         updateElement(`welcome-title-fr`, welcome.about_title_fr);
@@ -237,6 +227,32 @@ document.addEventListener('DOMContentLoaded', function() {
         updateElement(`form-message-label-ar`, contact.form_message_label_ar);
         updateElement(`form-submit-button-fr`, contact.form_submit_button_fr);
         updateElement(`form-submit-button-ar`, contact.form_submit_button_ar);
+        
+        // NEW: Contact Info, Hours, and Map
+        updateElement(`contact-info-title-fr`, contact.contact_info_title_fr);
+        updateElement(`contact-info-title-ar`, contact.contact_info_title_ar);
+        updateElement(`contact-address-fr`, `<i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 mr-2"></i>${contact.contact_address_fr || ''}`, 'html');
+        updateElement(`contact-address-ar`, `<i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ml-2"></i>${contact.contact_address_ar || ''}`, 'html');
+        updateElement(`contact-phone-fr`, `<i class="fas fa-phone text-[var(--gold-primary)] w-6 mr-2"></i>${contact.contact_phone_fr || ''}`, 'html');
+        updateElement(`contact-phone-ar`, `<i class="fas fa-phone text-[var(--gold-primary)] w-6 ml-2"></i>${contact.contact_phone_ar || ''}`, 'html');
+        updateElement(`contact-email-fr`, `<i class="fas fa-envelope text-[var(--gold-primary)] w-6 mr-2"></i>${contact.contact_email_fr || ''}`, 'html');
+        updateElement(`contact-email-ar`, `<i class="fas fa-envelope text-[var(--gold-primary)] w-6 ml-2"></i>${contact.contact_email_ar || ''}`, 'html');
+        updateElement(`contact-hours-title-fr`, contact.contact_hours_title_fr);
+        updateElement(`contact-hours-title-ar`, contact.contact_hours_title_ar);
+        
+        const hoursContainerFr = document.getElementById('contact-hours-fr');
+        const hoursContainerAr = document.getElementById('contact-hours-ar');
+        if (hoursContainerFr && hoursContainerAr && contact.contact_hours) {
+            hoursContainerFr.innerHTML = '';
+            hoursContainerAr.innerHTML = '';
+            contact.contact_hours.forEach(item => {
+                hoursContainerFr.innerHTML += `<p><strong>${item.day_fr || ''}:</strong> ${item.hours || ''}</p>`;
+                hoursContainerAr.innerHTML += `<p><strong>${item.day_ar || ''}:</strong> ${item.hours || ''}</p>`;
+            });
+        }
+        
+        updateElement('google-map-container', contact.google_map_iframe, 'html');
+
         updateElement(`whatsapp-title-fr`, contact.whatsapp_title_fr);
         updateElement(`whatsapp-title-ar`, contact.whatsapp_title_ar);
         updateElement('whatsapp-qr-code', siteSettings.whatsapp_qr_code, 'src');
