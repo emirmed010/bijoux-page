@@ -1,134 +1,152 @@
-header_logo_text_fr: "Data Jewellery"
-header_logo_text_ar: "مجوهرات البيانات"
-
-navigation:
-  nav_home_fr: "Accueil"
-  nav_home_ar: "الرئيسية"
-  nav_about_fr: "Notre Histoire"
-  nav_about_ar: "قصتنا"
-  nav_collections_fr: "Collections"
-  nav_collections_ar: "المجموعات"
-  nav_contact_fr: "Contact"
-  nav_contact_ar: "اتصل بنا"
-
+header_logo_text_fr: Data Jewellery
+header_logo_text_ar: مجوهرات البيانات
 hero_section:
-  hero_background: "/assets/image_fx-5-.jpg"
-  hero_title_fr: "L'Élégance Redéfinie"
-  hero_title_ar: "الأناقة تُعاد تعريفها"
-  hero_subtitle_fr: "Découvrez des créations d'exception, façonnées avec passion et savoir-faire, qui transcendent les époques et captivent les cœurs."
-  hero_subtitle_ar: "اكتشف إبداعات فريدة من نوعها، صُممت بشغف وحرفية عالية، لتتجاوز حدود الزمن وتخطف القلوب."
-  hero_button_text_fr: "Explorer la Collection"
-  hero_button_text_ar: "اكتشف المجموعة"
+  hero_background: /assets/image_fx-5-.jpg
+  hero_title_fr: L'Élégance Redéfinie
+  hero_title_ar: الأناقة تُعاد تعريفها
+  hero_subtitle_fr: Découvrez des créations d'exception, façonnées avec passion et
+    savoir-faire, qui transcendent les époques et captivent les cœurs.
+  hero_subtitle_ar: اكتشف إبداعات فريدة من نوعها، صُممت بشغف وحرفية عالية، لتتجاوز
+    حدود الزمن وتخطف القلوب.
+  hero_button_text_fr: Explorer la Collection
+  hero_button_text_ar: اكتشف المجموعة
   hero_button_link: "#collections"
-
 welcome_section:
-  about_image: "/assets/image_fx-2-.jpg"
-  about_title_fr: "Bienvenue dans Notre Univers"
-  about_title_ar: "مرحباً بكم في عالمنا"
-  about_text_fr: "Chaque pièce que nous créons raconte une histoire profonde, imprégnée de passion, de précision et d'une beauté intemporelle qui traverse les générations."
-  about_text_ar: "كل قطعة من مجوهراتنا تحكي قصة عميقة، مليئة بالشغف والدقة، وتحمل جمالاً خالداً يعبر الأجيال."
-  about_button_text_fr: "Notre Histoire"
-  about_button_text_ar: "قصتنا"
+  about_image: /assets/image_fx-2-.jpg
+  about_title_fr: Bienvenue dans Notre Univers
+  about_title_ar: مرحباً بكم في عالمنا
+  about_text_fr: Chaque pièce que nous créons raconte une histoire profonde,
+    imprégnée de passion, de précision et d'une beauté intemporelle qui traverse
+    les générations.
+  about_text_ar: كل قطعة من مجوهراتنا تحكي قصة عميقة، مليئة بالشغف والدقة، وتحمل
+    جمالاً خالداً يعبر الأجيال.
+  about_button_text_fr: Notre Histoire
+  about_button_text_ar: قصتنا
   about_button_link: "#about"
-
 featured_products_section:
-  featured_title_fr: "Nos Produits Phares"
-  featured_title_ar: "منتجاتنا المميزة"
-
+  featured_title_fr: Nos Produits Phares
+  featured_title_ar: منتجاتنا المميزة
 story_section:
-  story_section_title_fr: "L'Art de la Bijouterie"
-  story_section_title_ar: "فن صناعة المجوهرات"
-  story_intro_fr: "Notre histoire est tissée de tradition, d'innovation et d'un amour indéfectible pour l'artisanat d'exception."
-  story_intro_ar: "قصتنا منسوجة بخيوط التقاليد والابتكار، ومغمورة بحب عميق للحرفية الاستثنائية."
-  story_title_fr: "Notre Récit"
-  story_title_ar: "حكايتنا"
-  story_text_fr: "Depuis plusieurs générations, notre maison consacre son savoir-faire à la création de bijoux qui ne sont pas de simples ornements, mais de véritables héritages chargés d'émotion et de mémoire. Chaque création est le fruit de centaines d'heures de travail minutieux, où se mêlent l'art, la passion et la quête de la perfection. Nous croyons que chaque bijou doit raconter une histoire unique, celle de la personne qui le porte, et traverser le temps en préservant son éclat."
-  story_text_ar: "على مدى أجيال متعاقبة، كرّسنا خبرتنا لصناعة مجوهرات ليست مجرد زينة، بل إرثاً ينبض بالمشاعر ويحمل ذكريات لا تُنسى. كل قطعة هي ثمرة مئات الساعات من العمل الدقيق، حيث يلتقي الفن بالشغف في رحلة بحث عن الكمال. نؤمن أن كل قطعة يجب أن تحكي قصة خاصة، تعكس شخصية من يرتديها، وتبقى شاهدة على الزمن محتفظة ببريقها."
-  craft_title_fr: "Savoir-faire Exceptionnel"
-  craft_title_ar: "حرفية استثنائية"
-  craft_text_fr: "Chaque gemme est choisie avec une attention méticuleuse et chaque bijou est façonné à la main par nos artisans les plus expérimentés, garantissant une qualité inégalée."
-  craft_text_ar: "يتم اختيار كل حجر كريم بعناية فائقة، وتصاغ كل قطعة يدوياً على أيدي أمهر الحرفيين، لضمان جودة لا مثيل لها."
-  story_quote_fr: '"L''élégance est la seule beauté qui ne se fane jamais."'
+  story_title_ar: حكايتنا
+  craft_text_ar: يتم اختيار كل حجر كريم بعناية فائقة، وتصاغ كل قطعة يدوياً على
+    أيدي أمهر الحرفيين، لضمان جودة لا مثيل لها.
+  story_intro_fr: Notre histoire est tissée de tradition, d'innovation et d'un
+    amour indéfectible pour l'artisanat d'exception.
+  story_intro_ar: قصتنا منسوجة بخيوط التقاليد والابتكار، ومغمورة بحب عميق للحرفية الاستثنائية.
+  story_image: /assets/image_fx-2-.jpg
+  craft_title_fr: Savoir-faire Exceptionnel
+  story_text_fr: Depuis plusieurs générations, notre maison consacre son
+    savoir-faire à la création de bijoux qui ne sont pas de simples ornements,
+    mais de véritables héritages chargés d'émotion et de mémoire. Chaque
+    création est le fruit de centaines d'heures de travail minutieux, où se
+    mêlent l'art, la passion et la quête de la perfection. Nous croyons que
+    chaque bijou doit raconter une histoire unique, celle de la personne qui le
+    porte, et traverser le temps en préservant son éclat.
+  story_section_title_fr: L'Art de la Bijouterie
+  craft_title_ar: حرفية استثنائية
+  story_quote_fr: "\"L'élégance est la seule beauté qui ne se fane jamais.\""
+  story_text_ar: على مدى أجيال متعاقبة، كرّسنا خبرتنا لصناعة مجوهرات ليست مجرد
+    زينة، بل إرثاً ينبض بالمشاعر ويحمل ذكريات لا تُنسى. كل قطعة هي ثمرة مئات
+    الساعات من العمل الدقيق، حيث يلتقي الفن بالشغف في رحلة بحث عن الكمال. نؤمن
+    أن كل قطعة يجب أن تحكي قصة خاصة، تعكس شخصية من يرتديها، وتبقى شاهدة على
+    الزمن محتفظة ببريقها.
+  story_section_title_ar: فن صناعة المجوهرات
+  story_title_fr: Notre Récit
   story_quote_ar: '"الأناقة هي الجمال الوحيد الذي لا يذبل أبداً."'
-  story_image: "/assets/image_fx-2-.jpg"
-
+  craft_text_fr: Chaque gemme est choisie avec une attention méticuleuse et chaque
+    bijou est façonné à la main par nos artisans les plus expérimentés,
+    garantissant une qualité inégalée.
 services_section:
-  services_title_fr: "Nos Services Exclusifs"
-  services_title_ar: "خدماتنا الحصرية"
-  services_subtitle_fr: "Une expérience personnalisée pour des bijoux qui vous ressemblent, de la conception à la réalisation."
-  services_subtitle_ar: "تجربة مخصصة لمجوهرات تعبر عنك، بدءاً من التصميم وحتى الإخراج النهائي."
-  service1_title_fr: "Conception sur Mesure"
-  service1_title_ar: "تصميم حسب الطلب"
-  service1_text_fr: "Donnez vie à vos rêves avec un bijou unique, pensé et créé exclusivement pour vous par nos designers talentueux."
-  service1_text_ar: "حوّل أحلامك إلى واقع مع قطعة مجوهرات فريدة، صُممت خصيصاً لك على أيدي مصممينا المبدعين."
-  service1_button_fr: "Commencer"
-  service1_button_ar: "ابدأ الآن"
-  service2_title_fr: "Réparation et Entretien"
-  service2_title_ar: "تصليح وصيانة"
-  service2_text_fr: "Confiez-nous vos trésors les plus précieux pour leur redonner leur éclat d'origine et assurer leur longévité."
-  service2_text_ar: "ائتمنّا على كنوزك الثمينة لإعادة بريقها الأصلي وضمان دوامها."
-  service2_button_fr: "Nous Contacter"
-  service2_button_ar: "تواصل معنا"
-
+  service1_text_ar: حوّل أحلامك إلى واقع مع قطعة مجوهرات فريدة، صُممت خصيصاً لك
+    على أيدي مصممينا المبدعين.
+  service2_text_ar: ائتمنّا على كنوزك الثمينة لإعادة بريقها الأصلي وضمان دوامها.
+  services_subtitle_fr: Une expérience personnalisée pour des bijoux qui vous
+    ressemblent, de la conception à la réalisation.
+  services_title_fr: Nos Services Exclusifs
+  service2_title_fr: Réparation et Entretien
+  service1_button_fr: Commencer
+  service1_title_fr: Conception sur Mesure
+  services_subtitle_ar: تجربة مخصصة لمجوهرات تعبر عنك، بدءاً من التصميم وحتى الإخراج النهائي.
+  service2_button_fr: Nous Contacter
+  services_title_ar: خدماتنا الحصرية
+  service2_title_ar: تصليح وصيانة
+  service1_title_ar: تصميم حسب الطلب
+  service1_button_ar: ابدأ الآن
+  service1_text_fr: Donnez vie à vos rêves avec un bijou unique, pensé et créé
+    exclusivement pour vous par nos designers talentueux.
+  service2_button_ar: تواصل معنا
+  service2_text_fr: Confiez-nous vos trésors les plus précieux pour leur redonner
+    leur éclat d'origine et assurer leur longévité.
 collections_section:
-  collections_title_fr: "Nos Collections"
-  collections_title_ar: "مجموعاتنا"
-  collections_subtitle_fr: "Découvrez nos créations uniques, soigneusement classées pour votre plaisir."
-  collections_subtitle_ar: "استكشف إبداعاتنا الفريدة، المصنفة بعناية لتلائم ذوقك."
-  filter_all_fr: "Toutes"
-  filter_all_ar: "الكل"
-  filter_rings_fr: "Bagues"
-  filter_rings_ar: "خواتم"
-  filter_necklaces_fr: "Colliers"
-  filter_necklaces_ar: "قلائد"
-  filter_bracelets_fr: "Bracelets"
-  filter_bracelets_ar: "أساور"
-  filter_watches_fr: "Montres"
-  filter_watches_ar: "ساعات"
-
+  collections_title_ar: مجموعاتنا
+  filter_bracelets_fr: Bracelets
+  collections_subtitle_fr: Découvrez nos créations uniques, soigneusement classées pour votre plaisir.
+  filter_bracelets_ar: أساور
+  collections_subtitle_ar: استكشف إبداعاتنا الفريدة، المصنفة بعناية لتلائم ذوقك.
+  filter_rings_fr: Bagues
+  filter_all_fr: Toutes
+  filter_rings_ar: خواتم
+  filter_watches_fr: Montres
+  filter_necklaces_fr: Colliers
+  filter_all_ar: الكل
+  filter_watches_ar: ساعات
+  filter_necklaces_ar: قلائد
+  collections_title_fr: Nos Collections
 contact_section:
-  contact_title_fr: "Contactez-Nous"
-  contact_title_ar: "تواصل معنا"
-  form_title_fr: "Envoyez-nous un Message"
-  form_title_ar: "أرسل لنا رسالة"
-  form_shortcode: "https://formspree.io/f/your_form_id"
-  form_name_label_fr: "Votre Nom"
-  form_name_label_ar: "اسمك"
-  form_email_label_fr: "Votre Email"
-  form_email_label_ar: "بريدك الإلكتروني"
-  form_message_label_fr: "Votre Message"
-  form_message_label_ar: "رسالتك"
-  form_submit_button_fr: "Envoyer"
-  form_submit_button_ar: "إرسال"
-  contact_info_title_fr: "Informations de Contact"
-  contact_info_title_ar: "معلومات الاتصال"
-  contact_address_fr: "123 Rue de l'Élégance, Paris, France"
-  contact_address_ar: "١٢٣ شارع الأناقة، باريس، فرنسا"
-  contact_phone_fr: "+33 1 23 45 67 89"
-  contact_phone_ar: "+33 1 23 45 67 89"
-  contact_email_fr: "contact@datajewellery.com"
-  contact_email_ar: "contact@datajewellery.com"
-  contact_hours_title_fr: "Heures d'ouverture"
-  contact_hours_title_ar: "أوقات العمل"
+  whatsapp_title_fr: Scannez pour WhatsApp
+  contact_phone_ar: +33 1 23 45 67 89
+  contact_hours_title_fr: Heures d'ouverture
+  contact_info_title_fr: Informations de Contact
+  whatsapp_title_ar: امسح رمز واتساب
+  follow_us_title_fr: Suivez-Nous
+  contact_hours_title_ar: أوقات العمل
+  form_message_label_fr: Votre Message
+  contact_info_title_ar: معلومات الاتصال
+  follow_us_title_ar: تابعنا
+  google_map_iframe: >-
+    <iframe
+    src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15394.70732387796!2d-16.01541662897949!3d18.09995513426189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x_!2zMTjCsDA1JzU5LjgiTiAxNsKwMDAnNTUuNSJX!5e0!3m2!1sen!2s!4v1620000000001!5m2!1sen!2s"
+      width="600" height="450" style="border:0;" allowfullscreen=""'></iframe>
+  form_submit_button_fr: Envoyer
+  form_title_fr: Envoyez-nous un Message
+  contact_email_fr: contact@datajewellery.com
+  form_shortcode: https://formspree.io/f/your_form_id
+  form_message_label_ar: رسالتك
+  form_name_label_fr: Votre Nom
   contact_hours:
-    - day_fr: "Lundi - Vendredi"
-      day_ar: "الإثنين - الجمعة"
-      hours: "09:00 - 18:00"
-    - day_fr: "Samedi"
-      day_ar: "السبت"
-      hours: "10:00 - 16:00"
-  google_map_iframe: "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
-  whatsapp_title_fr: "Scannez pour WhatsApp"
-  whatsapp_title_ar: "امسح رمز واتساب"
-  whatsapp_text_fr: "Ou contactez-nous directement pour une assistance immédiate."
-  whatsapp_text_ar: "أو تواصل معنا مباشرة للحصول على مساعدة فورية."
-  follow_us_title_fr: "Suivez-Nous"
-  follow_us_title_ar: "تابعنا"
-
+    - day_fr: Lundi - Vendredi
+      day_ar: الإثنين - الجمعة
+      hours: 09:00 - 18:00
+    - day_fr: Samedi
+      day_ar: السبت
+      hours: 10:00 - 16:00
+  whatsapp_text_fr: Ou contactez-nous directement pour une assistance immédiate.
+  contact_title_fr: Contactez-Nous
+  form_submit_button_ar: إرسال
+  form_title_ar: أرسل لنا رسالة
+  contact_email_ar: contact@datajewellery.com
+  form_email_label_fr: Votre Email
+  form_name_label_ar: اسمك
+  contact_address_fr: 123 Rue de l'Élégance, Paris, France
+  whatsapp_text_ar: أو تواصل معنا مباشرة للحصول على مساعدة فورية.
+  contact_title_ar: تواصل معنا
+  form_email_label_ar: بريدك الإلكتروني
+  contact_address_ar: ١٢٣ شارع الأناقة، باريس، فرنسا
+  contact_phone_fr: +33 1 23 45 67 89
 footer_section:
-  footer_logo_text_fr: "Data Jewellery"
-  footer_logo_text_ar: "مجوهرات البيانات"
-  footer_text_fr: "La perfection dans chaque détail, conçue pour traverser le temps et briller éternellement."
-  footer_text_ar: "الكمال في كل تفصيل، صُنع ليعبر الزمن ويبقى متألقاً للأبد."
-  footer_copyright_fr: "Data Jewellery. Tous droits réservés."
-  footer_copyright_ar: "مجوهرات البيانات. كل الحقوق محفوظة."
+  footer_logo_text_fr: Data Jewellery
+  footer_logo_text_ar: مجوهرات البيانات
+  footer_text_fr: La perfection dans chaque détail, conçue pour traverser le temps
+    et briller éternellement.
+  footer_text_ar: الكمال في كل تفصيل، صُنع ليعبر الزمن ويبقى متألقاً للأبد.
+  footer_copyright_fr: Data Jewellery. Tous droits réservés.
+  footer_copyright_ar: مجوهرات البيانات. كل الحقوق محفوظة.
+navigation:
+  nav_home_fr: Accueil
+  nav_home_ar: الرئيسية
+  nav_about_fr: Notre Histoire
+  nav_about_ar: قصتنا
+  nav_collections_fr: Collections
+  nav_collections_ar: المجموعات
+  nav_contact_fr: Contact
+  nav_contact_ar: اتصل بنا
