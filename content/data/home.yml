@@ -5,6 +5,16 @@
 header_logo_text_fr: "Data Jewellery"
 header_logo_text_ar: "مجوهرات البيانات"
 
+navigation:
+  nav_home_fr: "Accueil"
+  nav_home_ar: "الرئيسية"
+  nav_about_fr: "Notre Histoire"
+  nav_about_ar: "قصتنا"
+  nav_collections_fr: "Collections"
+  nav_collections_ar: "المجموعات"
+  nav_contact_fr: "Contact"
+  nav_contact_ar: "اتصل بنا"
+
 hero_section:
   hero_background: "/assets/image_fx-5-.jpg"
   hero_title_fr: "L'Élégance Redéfinie"
@@ -108,4 +118,3 @@ footer_section:
   footer_text_ar: "الكمال في كل تفصيل، إلى الأبد."
   footer_copyright_fr: "Data Jewellery. Tous droits réservés."
   footer_copyright_ar: "مجوهرات البيانات. كل الحقوق محفوظة."
-
