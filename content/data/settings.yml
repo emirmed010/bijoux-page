@@ -3,3 +3,10 @@ site_description: Data Jewellery
 site_favicon: /assets/logo-emir.svg
 site_logo: /assets/green-white-minimalist-mountain-landscape-logo.svg
 whatsapp_qr_code: /assets/green-white-minimalist-mountain-landscape-logo.svg
+social_links:
+  social_facebook: "#"
+  social_instagram: "#"
+  social_tiktok: "#"
+  social_whatsapp: "#"
+  social_snapchat: "#"
+  social_pinterest: "#"
