@@ -1,7 +1,8 @@
 /**
  * @file script.js
- * @description Main script for the website. Handles fully dynamic content loading.
- * @version 6.0.0
+ * @description Final, integrated script for the website.
+ * Handles fully dynamic content loading with cache busting and flexible logo options.
+ * @version 9.0.0 - Final Version
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -22,50 +23,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- INITIALIZATION --- //
     async function initializeApp() {
         try {
-            // Fetch all data sources concurrently
+            // Fetch all data sources concurrently with a cache-busting parameter
+            const cacheBuster = `?v=${new Date().getTime()}`;
             [siteSettings, homeContent, productsData, galleryData] = await Promise.all([
-                fetchData('/content/data/settings.yml', 'yaml'),
-                fetchData('/content/data/home.yml', 'yaml'),
-                fetchData('/assets/data/products.json', 'json'),
-                fetchData('/assets/data/gallery.json', 'json')
+                fetchData(`/content/data/settings.yml${cacheBuster}`, 'yaml'),
+                fetchData(`/content/data/home.yml${cacheBuster}`, 'yaml'),
+                fetchData(`/assets/data/products.json${cacheBuster}`, 'json'),
+                fetchData(`/assets/data/gallery.json${cacheBuster}`, 'json')
             ]);
         } catch (error) {
             console.error("Fatal Error: Could not load site content.", error);
-            // Optionally, display a user-friendly error message on the page
         } finally {
-            // Always run setup and initial render, even if some data failed
+            // Setup the page regardless of data fetching success
             setupEventListeners();
-            setLanguage(currentLang, true); // Initial load
+            setLanguage(currentLang, true); // Initial page load
         }
     }
 
     // --- DATA FETCHING UTILITY --- //
     async function fetchData(url, type = 'json') {
         try {
-            // Add a cache-busting query parameter
-            const response = await fetch(`${url}?v=${new Date().getTime()}`);
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText} for URL: ${url}`);
-            }
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Network response was not ok for ${url}`);
             if (type === 'yaml') {
                 const yamlText = await response.text();
                 return jsyaml.load(yamlText);
             }
             return await response.json();
         } catch (error) {
-            console.error(`Failed to fetch/parse ${type.toUpperCase()} from ${url}:`, error);
-            return type === 'yaml' ? {} : []; // Return a default empty value on failure
+            console.error(`Failed to fetch/parse from ${url}:`, error);
+            return type === 'yaml' ? {} : []; // Return a safe default value
         }
     }
 
     // --- DYNAMIC CONTENT RENDERING --- //
-    
-    /**
-     * A helper function to safely update DOM elements.
-     * @param {string} id - The ID of the element to update.
-     * @param {string} value - The content or attribute value.
-     * @param {'text'|'html'|'src'|'href'|'action'} type - The type of update.
-     */
     function updateElement(id, value, type = 'text') {
         const el = document.getElementById(id);
         if (el) {
@@ -76,144 +67,126 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'href': if (value) el.href = value; break;
                 case 'action': if (value) el.action = value; break;
             }
-        } else {
-            // This warning helps during development to find mismatched IDs
-            // console.warn(`Element with ID "${id}" not found.`);
         }
     }
 
-    /**
-     * Populates the entire page with content based on the current language.
-     * @param {string} lang - The current language ('fr' or 'ar').
-     */
-    function populateAllContent(lang) {
-        if (!siteSettings || !homeContent) {
-            console.error("Content not loaded, cannot populate page.");
-            return;
-        }
+    function populateContent(lang) {
+        if (!siteSettings || !homeContent) return;
 
         const langKey = (baseKey) => `${baseKey}_${lang}`;
         const content = homeContent;
 
-        // 1. General Site Settings (from settings.yml)
-        document.title = siteSettings.site_title || 'Website';
+        // 1. General Site Settings
+        document.title = siteSettings.site_title || 'Bijouterie';
         document.querySelector('meta[name="description"]').content = siteSettings.site_description || '';
         updateElement('favicon', siteSettings.site_favicon, 'src');
-        updateElement('header-logo', siteSettings.site_logo, 'src');
-        updateElement('whatsapp-qr-code', siteSettings.whatsapp_qr_code, 'src');
+
+        // 2. Flexible Logo Handling
+        const headerLogoImg = document.getElementById('header-logo-img');
+        const brandFr = document.getElementById('brand-fr');
+        const brandAr = document.getElementById('brand-ar');
         
-        // 2. Navigation (from home.yml)
-        const nav = content.navigation || {};
-        updateElement(`nav-home-${lang}`, nav[langKey('home')]);
-        updateElement(`nav-about-${lang}`, nav[langKey('about')]);
-        updateElement(`nav-collections-${lang}`, nav[langKey('collections')]);
-        updateElement(`nav-contact-${lang}`, nav[langKey('contact')]);
-        updateElement(`mobile-nav-home-${lang}`, nav[langKey('home')]);
-        updateElement(`mobile-nav-about-${lang}`, nav[langKey('about')]);
-        updateElement(`mobile-nav-collections-${lang}`, nav[langKey('collections')]);
-        updateElement(`mobile-nav-contact-${lang}`, nav[langKey('contact')]);
-
-        // 3. Hero Section (from home.yml)
-        const hero = content.hero_section || {};
-        updateElement('hero-background', hero.hero_background, 'src');
-        updateElement(`hero-title-${lang}`, hero[langKey('hero_title')]);
-        updateElement(`hero-subtitle-${lang}`, hero[langKey('hero_subtitle')]);
-        updateElement(`hero-button-text-${lang}`, hero[langKey('hero_button_text')]);
-        updateElement('hero-button-link', hero.hero_button_link, 'href');
-
-        // 4. Welcome Section (from home.yml)
-        const welcome = content.welcome_section || {};
-        updateElement('welcome-image', welcome.about_image, 'src');
-        updateElement(`welcome-title-${lang}`, welcome[langKey('about_title')]);
-        updateElement(`welcome-text-${lang}`, welcome[langKey('about_text')]);
-        updateElement(`welcome-button-text-${lang}`, welcome[langKey('about_button_text')]);
-        updateElement('welcome-button-link', welcome.about_button_link, 'href');
+        if (siteSettings.site_logo) {
+            headerLogoImg.src = siteSettings.site_logo;
+            headerLogoImg.classList.remove('hidden');
+            brandFr.classList.add('hidden');
+            brandAr.classList.add('hidden');
+        } else {
+            headerLogoImg.classList.add('hidden');
+            brandFr.classList.remove('hidden');
+            brandAr.classList.remove('hidden');
+            updateElement('brand-fr', content['header_logo_text_fr']);
+            updateElement('brand-ar', content['header_logo_text_ar']);
+        }
         
-        // 5. Featured Products Section (from home.yml)
-        const featured = content.featured_products_section || {};
-        updateElement(`featured-title-${lang}`, featured[langKey('featured_title')]);
+        // 3. Social Links
+        updateElement('social-link-facebook', siteSettings.social_facebook, 'href');
+        updateElement('social-link-instagram', siteSettings.social_instagram, 'href');
+        updateElement('social-link-pinterest', siteSettings.social_pinterest, 'href');
 
-        // 6. Story Section (from home.yml)
-        const story = content.story_section || {};
-        updateElement(`story-section-title-${lang}`, story[langKey('story_section_title')]);
-        updateElement(`story-intro-${lang}`, story[langKey('story_intro')]);
-        updateElement(`story-title-${lang}`, story[langKey('story_title')]);
-        updateElement(`story-text-${lang}`, story[langKey('story_text')]);
-        updateElement(`craft-title-${lang}`, story[langKey('craft_title')]);
-        updateElement(`craft-text-${lang}`, story[langKey('craft_text')]);
-        updateElement(`story-quote-${lang}`, story[langKey('story_quote')]);
-        updateElement('story-image', story.story_image, 'src');
+        // 4. Navigation (using a more robust check)
+        const navHome = content[langKey('nav_home_text')] || (lang === 'fr' ? 'Accueil' : 'الرئيسية');
+        const navAbout = content[langKey('nav_about_text')] || (lang === 'fr' ? 'Notre Histoire' : 'قصتنا');
+        const navCollections = content[langKey('nav_collections_text')] || (lang === 'fr' ? 'Collections' : 'المجموعات');
+        const navContact = content[langKey('nav_contact_text')] || (lang === 'fr' ? 'Contact' : 'اتصل بنا');
 
-        // 7. Services Section (from home.yml)
-        const services = content.services_section || {};
-        updateElement(`services-title-${lang}`, services[langKey('services_title')]);
-        updateElement(`services-subtitle-${lang}`, services[langKey('services_subtitle')]);
-        updateElement(`service1-title-${lang}`, services[langKey('service1_title')]);
-        updateElement(`service1-text-${lang}`, services[langKey('service1_text')]);
-        updateElement(`service1-button-${lang}`, services[langKey('service1_button')]);
-        updateElement(`service2-title-${lang}`, services[langKey('service2_title')]);
-        updateElement(`service2-text-${lang}`, services[langKey('service2_text')]);
-        updateElement(`service2-button-${lang}`, services[langKey('service2_button')]);
-
-        // 8. Collections Section (from home.yml)
-        const collections = content.collections_section || {};
-        updateElement(`collections-title-${lang}`, collections[langKey('collections_title')]);
-        updateElement(`collections-subtitle-${lang}`, collections[langKey('collections_subtitle')]);
-        updateElement(`filter-all-${lang}`, collections[langKey('filter_all')]);
-        updateElement(`filter-rings-${lang}`, collections[langKey('filter_rings')]);
-        updateElement(`filter-necklaces-${lang}`, collections[langKey('filter_necklaces')]);
-        updateElement(`filter-bracelets-${lang}`, collections[langKey('filter_bracelets')]);
-        updateElement(`filter-watches-${lang}`, collections[langKey('filter_watches')]);
+        updateElement(`nav-home-${lang}`, navHome);
+        updateElement(`nav-about-${lang}`, navAbout);
+        updateElement(`nav-collections-${lang}`, navCollections);
+        updateElement(`nav-contact-${lang}`, navContact);
+        updateElement(`mobile-nav-home-${lang}`, navHome);
+        updateElement(`mobile-nav-about-${lang}`, navAbout);
+        updateElement(`mobile-nav-collections-${lang}`, navCollections);
+        updateElement(`mobile-nav-contact-${lang}`, navContact);
         
-        // 9. Contact Section (from home.yml & settings.yml)
-        const contact = content.contact_section || {};
-        updateElement(`contact-title-${lang}`, contact[langKey('contact_title')]);
-        updateElement(`form-title-${lang}`, contact[langKey('form_title')]);
-        updateElement('contactForm', contact.form_shortcode, 'action');
-        updateElement(`form-name-label-${lang}`, contact[langKey('form_name_label')]);
-        updateElement(`form-email-label-${lang}`, contact[langKey('form_email_label')]);
-        updateElement(`form-message-label-${lang}`, contact[langKey('form_message_label')]);
-        updateElement(`form-submit-button-${lang}`, contact[langKey('form_submit_button')]);
-        updateElement(`whatsapp-title-${lang}`, contact[langKey('whatsapp_title')]);
-        updateElement(`whatsapp-text-${lang}`, contact[langKey('whatsapp_text')]);
-        updateElement(`follow-us-title-${lang}`, contact[langKey('follow_us_title')]);
+        // 5. Hero Section
+        updateElement('hero-image', content.hero_background, 'src');
+        updateElement(`hero-title-${lang}`, content[langKey('hero_title')]);
+        updateElement(`hero-subtitle-${lang}`, content[langKey('hero_subtitle')]);
+        updateElement(`hero-button-${lang}`, content[langKey('hero_button_text')]);
+        updateElement('hero-button-link', content.hero_button_link, 'href');
 
-        // 10. Footer (from home.yml & settings.yml)
-        const footer = content.footer_section || {};
-        updateElement(`footer-logo-text-${lang}`, footer[langKey('footer_logo_text')]);
-        updateElement(`footer-text-${lang}`, footer[langKey('footer_text')]);
-        updateElement(`footer-copyright-${lang}`, `&copy; ${new Date().getFullYear()} ${footer[langKey('footer_copyright')] || ''}`, 'html');
+        // 6. Welcome Section
+        updateElement('welcome-image', content.about_image, 'src');
+        updateElement(`welcome-title-${lang}`, content[langKey('about_title')]);
+        updateElement(`welcome-text-${lang}`, content[langKey('about_text')]);
+        updateElement(`welcome-button-${lang}`, content[langKey('about_button_text')]);
+        updateElement('welcome-button-link', content.about_button_link, 'href');
+
+        // 7. Featured Products Title
+        updateElement(`featured-title-${lang}`, content[langKey('featured_products_title')]);
+
+        // 8. Story / About Section
+        updateElement(`about-title-${lang}`, content[langKey('story_section_title')]);
+        updateElement(`about-subtitle-${lang}`, content[langKey('story_intro')]);
+        updateElement(`about-story-title-${lang}`, content[langKey('story_title')]);
+        updateElement(`about-story-text-${lang}`, content[langKey('story_text')]);
+        updateElement(`about-quote-${lang}`, content[langKey('story_quote')]);
+        updateElement('about-image', content.story_image, 'src');
+
+        // 9. Collections Section
+        updateElement(`collections-title-${lang}`, content[langKey('collections_section_title')]);
+        updateElement(`collections-subtitle-${lang}`, content[langKey('collections_subtitle')]);
+        updateElement(`filter-all-${lang}`, content[langKey('filter_all_text')]);
+        updateElement(`filter-rings-${lang}`, content[langKey('filter_rings_text')]);
+        updateElement(`filter-necklaces-${lang}`, content[langKey('filter_necklaces_text')]);
+        updateElement(`filter-bracelets-${lang}`, content[langKey('filter_bracelets_text')]);
+        updateElement(`filter-watches-${lang}`, content[langKey('filter_watches_text')]);
+
+        // 10. Contact Section
+        updateElement(`contact-title-${lang}`, content[langKey('contact_section_title')]);
+        updateElement(`contact-subtitle-${lang}`, content[langKey('contact_section_subtitle')]);
+        updateElement(`form-title-${lang}`, content[langKey('form_title')]);
+        updateElement('contactForm', content.form_shortcode, 'action');
+        updateElement(`form-label-name-${lang}`, content[langKey('form_name_label')]);
+        updateElement(`form-label-email-${lang}`, content[langKey('form_email_label')]);
+        updateElement(`form-label-message-${lang}`, content[langKey('form_message_label')]);
+        updateElement(`form-button-${lang}`, content[langKey('form_submit_button')]);
         
-        // 11. Social Links (from settings.yml)
-        renderSocialLinks();
-    }
-
-    function renderSocialLinks() {
-        const links = siteSettings.social_links || {};
-        const platforms = [
-            { key: 'social_facebook', icon: 'fab fa-facebook-f' },
-            { key: 'social_instagram', icon: 'fab fa-instagram' },
-            { key: 'social_tiktok', icon: 'fab fa-tiktok' },
-            { key: 'social_whatsapp', icon: 'fab fa-whatsapp' },
-            { key: 'social_snapchat', icon: 'fab fa-snapchat' },
-            { key: 'social_pinterest', icon: 'fab fa-pinterest-p' },
-        ];
+        const address = content[langKey('contact_address')] || '';
+        const phone = content.contact_phone || '';
+        const email = content.contact_email || '';
+        const iconClass = lang === 'ar' ? 'ml-2' : 'mr-2';
         
-        const generateLinksHTML = (platformSubset) => {
-            return platformSubset
-                .filter(p => links[p.key]) // Only include if link exists
-                .map(p => `
-                    <a href="${links[p.key]}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[var(--gold-primary)] transition-colors duration-300" aria-label="${p.key.split('_')[1]}">
-                        <i class="${p.icon} text-2xl"></i>
-                    </a>
-                `).join('');
-        };
+        updateElement(`contact-address-${lang}`, `<i class="fas fa-map-marker-alt text-[var(--gold-primary)] w-6 ${iconClass}"></i> ${address}`, 'html');
+        updateElement(`contact-phone-${lang}`, `<i class="fas fa-phone text-[var(--gold-primary)] w-6 ${iconClass}"></i> ${phone}`, 'html');
+        updateElement(`contact-email-${lang}`, `<i class="fas fa-envelope text-[var(--gold-primary)] w-6 ${iconClass}"></i> ${email}`, 'html');
 
-        const contactPlatforms = platforms.filter(p => p.key !== 'social_pinterest');
-        const footerPlatforms = platforms.filter(p => ['social_facebook', 'social_instagram', 'social_pinterest'].includes(p.key));
+        const mapContainer = document.getElementById('google-map-container');
+        if (mapContainer && content.contact_map_embed) {
+            mapContainer.innerHTML = content.contact_map_embed;
+            const iframe = mapContainer.querySelector('iframe');
+            if (iframe) {
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = '0';
+            }
+        }
 
-        updateElement('social-links-contact', generateLinksHTML(contactPlatforms), 'html');
-        updateElement('social-links-footer', generateLinksHTML(footerPlatforms), 'html');
+        // 11. Footer
+        updateElement(`footer-brand-${lang}`, content[langKey('footer_logo_text')]);
+        updateElement(`footer-slogan-${lang}`, content[langKey('footer_text')]);
+        updateElement(`footer-copyright-${lang}`, `&copy; ${new Date().getFullYear()} ${content[langKey('footer_copyright')] || ''}`, 'html');
     }
 
     function renderProducts(lang) {
@@ -256,10 +229,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>`;
             container.insertAdjacentHTML('beforeend', galleryItemHTML);
         });
-        // After rendering, re-observe new elements for animations
         reobserveAnimations();
     }
-
+    
     // --- UI & EVENT HANDLERS --- //
     function setupEventListeners() {
         languageSwitchBtn.addEventListener('click', () => {
@@ -298,24 +270,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function setLanguage(lang, isInitialLoad = false) {
         currentLang = lang;
         localStorage.setItem('preferredLanguage', lang);
-        
-        // Update HTML attributes
         htmlEl.lang = lang;
         htmlEl.dir = lang === 'ar' ? 'rtl' : 'ltr';
         
-        // Toggle visibility of language-specific elements
         document.querySelectorAll('[data-lang]').forEach(el => {
-            el.classList.toggle('hidden', el.dataset.lang !== lang);
+            if (el.id !== 'brand-fr' && el.id !== 'brand-ar') {
+                 el.classList.toggle('hidden', el.dataset.lang !== lang);
+            }
         });
         
         languageSwitchBtn.textContent = lang === 'ar' ? 'FR' : 'AR';
         
-        // Re-render all dynamic content
-        populateAllContent(lang);
+        populateContent(lang);
         renderProducts(lang);
         renderGallery(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
         
-        // Only re-observe animations if it's not the first page load
         if (!isInitialLoad) {
             reobserveAnimations();
         }
@@ -345,9 +314,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- INITIALIZE THE APP --- //
     initializeApp().then(() => {
-        // First-time observation of all elements
         document.querySelectorAll('.scroll-animate').forEach(el => {
             scrollObserver.observe(el);
         });
+        if (typeof lightbox !== 'undefined') {
+            lightbox.option({ 'resizeDuration': 200, 'wrapAround': true, 'albumLabel': "Image %1 / %2" });
+        }
     });
 });
