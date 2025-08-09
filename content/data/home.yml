@@ -1,1 +1,111 @@
+# المحتوى المبدئي للصفحة الرئيسية
+# يمكنك تعديل كل هذه القيم من خلال لوحة التحكم
+# /admin/
+
+header_logo_text_fr: "Data Jewellery"
+header_logo_text_ar: "مجوهرات البيانات"
+
+hero_section:
+  hero_background: "/assets/image_fx-5-.jpg"
+  hero_title_fr: "L'Élégance Redéfinie"
+  hero_title_ar: "الأناقة تُعاد تعريفها"
+  hero_subtitle_fr: "Découvrez des créations uniques qui transcendent le temps."
+  hero_subtitle_ar: "اكتشف إبداعات فريدة تتجاوز الزمن."
+  hero_button_text_fr: "Explorer la Collection"
+  hero_button_text_ar: "اكتشف المجموعة"
+  hero_button_link: "#collections"
+
+welcome_section:
+  about_image: "/assets/image_fx-2-.jpg"
+  about_title_fr: "Bienvenue dans Notre Univers"
+  about_title_ar: "مرحباً بكم في عالمنا"
+  about_text_fr: "Chaque pièce raconte une histoire de passion, de précision et de beauté intemporelle."
+  about_text_ar: "كل قطعة تروي حكاية من الشغف والدقة والجمال الخالد."
+  about_button_text_fr: "Notre Histoire"
+  about_button_text_ar: "قصتنا"
+  about_button_link: "#about"
+
+featured_products_section:
+  featured_title_fr: "Nos Produits Phares"
+  featured_title_ar: "منتجاتنا المميزة"
+
+story_section:
+  story_section_title_fr: "L'Art de la Bijouterie"
+  story_section_title_ar: "فن صناعة المجوهرات"
+  story_intro_fr: "Notre histoire est tissée de tradition, d'innovation et d'un amour pour l'artisanat."
+  story_intro_ar: "قصتنا منسوجة من التقاليد والابتكار وحب الحرفية."
+  story_title_fr: "Notre Récit"
+  story_title_ar: "حكايتنا"
+  story_text_fr: "Depuis des générations, nous nous consacrons à la création de bijoux qui ne sont pas seulement des accessoires, mais des héritages."
+  story_text_ar: "لأجيال، كرسنا أنفسنا لصناعة مجوهرات ليست مجرد إكسسوارات، بل هي إرث يُورث."
+  craft_title_fr: "Savoir-faire Exceptionnel"
+  craft_title_ar: "حرفية استثنائية"
+  craft_text_fr: "Chaque gemme est sélectionnée avec soin et chaque pièce est finie à la main par nos artisans qualifiés."
+  craft_text_ar: "يتم اختيار كل حجر كريم بعناية فائقة وتُصقل كل قطعة يدويًا على أيدي حرفيينا المهرة."
+  story_quote_fr: '"L''élégance est la seule beauté qui ne se fane jamais."'
+  story_quote_ar: '"الأناقة هي الجمال الوحيد الذي لا يذبل أبداً."'
+  story_image: "/assets/image_fx-2-.jpg"
+
+services_section:
+  services_title_fr: "Nos Services Exclusifs"
+  services_title_ar: "خدماتنا الحصرية"
+  services_subtitle_fr: "Une expérience personnalisée pour des bijoux qui vous ressemblent."
+  services_subtitle_ar: "تجربة شخصية لمجوهرات تعبر عنك."
+  service1_title_fr: "Conception sur Mesure"
+  service1_title_ar: "تصميم حسب الطلب"
+  service1_text_fr: "Donnez vie à vos rêves avec un bijou unique, créé juste pour vous par nos designers."
+  service1_text_ar: "حوّل أحلامك إلى حقيقة مع قطعة مجوهرات فريدة، مصممة خصيصاً لك من قبل مصممينا."
+  service1_button_fr: "Commencer"
+  service1_button_ar: "ابدأ الآن"
+  service2_title_fr: "Réparation et Entretien"
+  service2_title_ar: "تصليح وصيانة"
+  service2_text_fr: "Confiez-nous vos trésors pour leur redonner leur éclat d'origine et assurer leur longévité."
+  service2_text_ar: "ائتمنّا على كنوزك لنعيد لها بريقها الأصلي ونضمن طول عمرها."
+  service2_button_fr: "Nous Contacter"
+  service2_button_ar: "تواصل معنا"
+
+collections_section:
+  collections_title_fr: "Nos Collections"
+  collections_title_ar: "مجموعاتنا"
+  collections_subtitle_fr: "Explorez nos créations uniques, classées pour votre plaisir."
+  collections_subtitle_ar: "استكشف إبداعاتنا الفريدة، المصنفة خصيصًا لمتعتك."
+  filter_all_fr: "Toutes"
+  filter_all_ar: "الكل"
+  filter_rings_fr: "Bagues"
+  filter_rings_ar: "خواتم"
+  filter_necklaces_fr: "Colliers"
+  filter_necklaces_ar: "قلائد"
+  filter_bracelets_fr: "Bracelets"
+  filter_bracelets_ar: "أساور"
+  filter_watches_fr: "Montres"
+  filter_watches_ar: "ساعات"
+
+contact_section:
+  contact_title_fr: "Contactez-Nous"
+  contact_title_ar: "تواصل معنا"
+  form_title_fr: "Envoyez-nous un Message"
+  form_title_ar: "أرسل لنا رسالة"
+  form_shortcode: "https://formspree.io/f/your_form_id"
+  form_name_label_fr: "Votre Nom"
+  form_name_label_ar: "اسمك"
+  form_email_label_fr: "Votre Email"
+  form_email_label_ar: "بريدك الإلكتروني"
+  form_message_label_fr: "Votre Message"
+  form_message_label_ar: "رسالتك"
+  form_submit_button_fr: "Envoyer"
+  form_submit_button_ar: "إرسال"
+  whatsapp_title_fr: "Scannez pour WhatsApp"
+  whatsapp_title_ar: "امسح رمز واتساب"
+  whatsapp_text_fr: "Ou contactez-nous directement pour une assistance immédiate."
+  whatsapp_text_ar: "أو تواصل معنا مباشرة للحصول على مساعدة فورية."
+  follow_us_title_fr: "Suivez-Nous"
+  follow_us_title_ar: "تابعنا"
+
+footer_section:
+  footer_logo_text_fr: "Data Jewellery"
+  footer_logo_text_ar: "مجوهرات البيانات"
+  footer_text_fr: "La perfection dans chaque détail, pour l'éternité."
+  footer_text_ar: "الكمال في كل تفصيل، إلى الأبد."
+  footer_copyright_fr: "Data Jewellery. Tous droits réservés."
+  footer_copyright_ar: "مجوهرات البيانات. كل الحقوق محفوظة."
 
