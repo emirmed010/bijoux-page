@@ -1,7 +1,7 @@
 header_logo_text_fr: Data Jewellery
 header_logo_text_ar: مجوهرات البيانات
 hero_section:
-  hero_background: /assets/image_fx-5-.jpg
+  hero_background: /assets/gtrsgsfdg.jpg
   hero_title_fr: L'Élégance Redéfinie
   hero_title_ar: الأناقة تُعاد تعريفها
   hero_subtitle_fr: Découvrez des créations d'exception, façonnées avec passion et
@@ -12,7 +12,7 @@ hero_section:
   hero_button_text_ar: اكتشف المجموعة
   hero_button_link: "#collections"
 welcome_section:
-  about_image: /assets/image_fx-2-.jpg
+  about_image: /assets/image_fx-11-.jpg
   about_title_fr: Bienvenue dans Notre Univers
   about_title_ar: مرحباً بكم في عالمنا
   about_text_fr: Chaque pièce que nous créons raconte une histoire profonde,
@@ -33,7 +33,7 @@ story_section:
   story_intro_fr: Notre histoire est tissée de tradition, d'innovation et d'un
     amour indéfectible pour l'artisanat d'exception.
   story_intro_ar: قصتنا منسوجة بخيوط التقاليد والابتكار، ومغمورة بحب عميق للحرفية الاستثنائية.
-  story_image: /assets/image_fx-2-.jpg
+  story_image: /assets/image_fx-12-.jpg
   craft_title_fr: Savoir-faire Exceptionnel
   story_text_fr: Depuis plusieurs générations, notre maison consacre son
     savoir-faire à la création de bijoux qui ne sont pas de simples ornements,
