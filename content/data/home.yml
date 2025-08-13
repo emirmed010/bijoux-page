@@ -1,5 +1,5 @@
 header_logo_text_fr: Data Jewellery
-header_logo_text_ar: مجوهرات البيانات
+header_logo_text_ar: مجوهرات داتا
 hero_section:
   hero_background: /assets/gtrsgsfdg.jpg
   hero_title_fr: L'Élégance Redéfinie
@@ -136,12 +136,12 @@ contact_section:
   contact_phone_fr: +33 1 23 45 67 89
 footer_section:
   footer_logo_text_fr: Data Jewellery
-  footer_logo_text_ar: مجوهرات البيانات
+  footer_logo_text_ar: مجوهرات داتا
   footer_text_fr: La perfection dans chaque détail, conçue pour traverser le temps
     et briller éternellement.
   footer_text_ar: الكمال في كل تفصيل، صُنع ليعبر الزمن ويبقى متألقاً للأبد.
   footer_copyright_fr: Data Jewellery. Tous droits réservés.
-  footer_copyright_ar: مجوهرات البيانات. كل الحقوق محفوظة.
+  footer_copyright_ar: مجوهرات داتا. كل الحقوق محفوظة.
 navigation:
   nav_home_fr: Accueil
   nav_home_ar: الرئيسية
