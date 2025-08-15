@@ -135,13 +135,6 @@ contact_section:
   contact_address_ar: ١٢٣ شارع الأناقة، باريس، فرنسا
   contact_phone_fr: +33 1 23 45 67 89
 
-  # أضف هذه الأسطر الجديدة هنا
-  modal_success_title_fr: "Envoyé avec succès !"
-  modal_success_title_ar: "تم الإرسال بنجاح!"
-  modal_success_p_fr: "Merci pour votre message. Nous vous contacterons bientôt."
-  modal_success_p_ar: "شكراً لك على رسالتك. سوف نتصل بك قريبا."
-  modal_success_btn_fr: "Fermer"
-  modal_success_btn_ar: "إغلاق"
   
 footer_section:
   footer_logo_text_fr: Data Jewellery
