@@ -352,18 +352,26 @@
         window.location.href = '/admin/' + window.location.hash;
       }
     </script>
-
- <!-- Success Modal -->
-    <div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[100] p-4 transition-opacity duration-300 opacity-0">
-        <div id="modalContent" class="bg-white dark:bg-secondary rounded-lg shadow-2xl p-8 max-w-sm w-full text-center transform transition-all duration-300 scale-95 opacity-0">
-            <div class="text-green-400 text-6xl mb-4">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4" data-translate="modal_success_title"></h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-6" data-translate="modal_success_p"></p>
-            <button id="closeModalBtn" class="bg-accent hover:bg-opacity-80 text-primary font-bold py-2 px-8 rounded-md w-full" data-translate="modal_success_btn"></button>
+    
+<!-- Success Modal -->
+<div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4 transition-opacity duration-300 opacity-0">
+    <div id="modalContent" class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full text-center transform transition-all duration-300 scale-95 opacity-0">
+        <!-- Icon -->
+        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-5">
+            <svg class="h-10 w-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
         </div>
+        <!-- Title -->
+        <h3 id="modal-title" class="text-2xl font-serif font-bold text-gray-800 mb-3"></h3>
+        <!-- Text -->
+        <p id="modal-text" class="text-gray-600 mb-8"></p>
+        <!-- Button -->
+        <button id="closeModalBtn" class="btn btn-gold w-full">
+             <span id="modal-button"></span>
+        </button>
     </div>
+</div>
 
     
 </body>
