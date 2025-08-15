@@ -2,7 +2,7 @@
  * @file script.js
  * @description Final, integrated script for the website.
  * Handles fully dynamic content loading with cache busting and flexible logo options.
- * @version 9.0.2 - Patched Version with Contact Info
+ * @version 9.0.2 - Patched Version with Contact Info & Success Modal
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const languageSwitchBtn = document.getElementById('languageSwitch');
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const contactForm = document.getElementById('contactForm');
+    const successModal = document.getElementById('successModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalContent = document.getElementById('modalContent');
     
     let siteSettings = {};
     let homeContent = {};
@@ -261,6 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
         updateElement(`follow-us-title-fr`, contact.follow_us_title_fr);
         updateElement(`follow-us-title-ar`, contact.follow_us_title_ar);
 
+        // --- MODAL CONTENT POPULATION --- //
+        updateElement(`modal-title-fr`, contact.modal_success_title_fr);
+        updateElement(`modal-title-ar`, contact.modal_success_title_ar);
+        updateElement(`modal-text-fr`, contact.modal_success_p_fr);
+        updateElement(`modal-text-ar`, contact.modal_success_p_ar);
+        updateElement(`modal-button-fr`, contact.modal_success_btn_fr);
+        updateElement(`modal-button-ar`, contact.modal_success_btn_ar);
+
         const footer = content.footer_section || {};
         updateElement(`footer-logo-text-fr`, footer.footer_logo_text_fr);
         updateElement(`footer-logo-text-ar`, footer.footer_logo_text_ar);
@@ -315,6 +327,27 @@ document.addEventListener('DOMContentLoaded', function() {
         reobserveAnimations();
     }
     
+    // --- MODAL FUNCTIONS --- //
+    function showModal() {
+        if (successModal && modalContent) {
+            successModal.classList.remove('hidden');
+            setTimeout(() => {
+                successModal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        }
+    }
+
+    function hideModal() {
+        if (successModal && modalContent) {
+            modalContent.classList.add('scale-95', 'opacity-0');
+            successModal.classList.add('opacity-0');
+            setTimeout(() => {
+                successModal.classList.add('hidden');
+            }, 300); // Match transition duration
+        }
+    }
+
     // --- UI & EVENT HANDLERS --- //
     function setupEventListeners() {
         if (languageSwitchBtn) {
@@ -354,6 +387,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 renderGallery(btn.dataset.filter);
             });
         });
+
+        // --- FORM & MODAL LISTENERS --- //
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // This is where you would typically send form data to a server.
+                // For this demo, we just show the success modal.
+                console.log('Form submitted!');
+                showModal();
+                contactForm.reset(); // Optional: reset the form after submission.
+            });
+        }
+
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', hideModal);
+        }
+
+        if (successModal) {
+            successModal.addEventListener('click', function(e) {
+                // Close the modal if the user clicks on the background overlay.
+                if (e.target === successModal) {
+                    hideModal();
+                }
+            });
+        }
     }
     
     function setLanguage(lang, isInitialLoad = false) {
