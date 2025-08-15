@@ -2,7 +2,7 @@
  * @file script.js
  * @description Final, integrated script for the website.
  * Handles fully dynamic content loading with cache busting and flexible logo options.
- * @version 9.0.2 - Patched Version with Contact Info & Success Modal
+ * @version 9.0.3 - Patched Version with Hardcoded Modal Content
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -265,14 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateElement(`follow-us-title-fr`, contact.follow_us_title_fr);
         updateElement(`follow-us-title-ar`, contact.follow_us_title_ar);
 
-        // --- MODAL CONTENT POPULATION --- //
-        updateElement(`modal-title-fr`, contact.modal_success_title_fr);
-        updateElement(`modal-title-ar`, contact.modal_success_title_ar);
-        updateElement(`modal-text-fr`, contact.modal_success_p_fr);
-        updateElement(`modal-text-ar`, contact.modal_success_p_ar);
-        updateElement(`modal-button-fr`, contact.modal_success_btn_fr);
-        updateElement(`modal-button-ar`, contact.modal_success_btn_ar);
-
         const footer = content.footer_section || {};
         updateElement(`footer-logo-text-fr`, footer.footer_logo_text_fr);
         updateElement(`footer-logo-text-ar`, footer.footer_logo_text_ar);
@@ -431,6 +423,23 @@ document.addEventListener('DOMContentLoaded', function() {
         if (languageSwitchBtn) {
             languageSwitchBtn.textContent = lang === 'ar' ? 'FR' : 'AR';
         }
+        
+        // --- MODAL TEXTS (HARDCODED) --- //
+        const modalTexts = {
+            fr: {
+                title: "Envoyé avec succès !",
+                text: "Merci pour votre message. Nous vous contacterons bientôt.",
+                button: "Fermer"
+            },
+            ar: {
+                title: "تم الإرسال بنجاح!",
+                text: "شكراً لك على رسالتك. سوف نتصل بك قريبا.",
+                button: "إغلاق"
+            }
+        };
+        updateElement('modal-title', modalTexts[lang].title);
+        updateElement('modal-text', modalTexts[lang].text);
+        updateElement('modal-button', modalTexts[lang].button);
         
         populateContent(lang);
         renderProducts(lang);
