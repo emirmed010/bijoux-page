@@ -30,6 +30,6 @@ collection_categories:
   - label_fr: Montres
     label_ar: ساعات
     value: montres
-  - label_fr: Favoris
+  - label_fr: Favorise
     label_ar: المفضلة
-    value: Favoris
+    value: Favorise
