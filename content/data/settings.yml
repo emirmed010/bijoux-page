@@ -14,20 +14,22 @@ contact_emails:
   contact: contact@votremarque.example
   support: support@votremarque.example
   help: help@votremarque.example
-
 collection_categories:
-  - label_fr: "Toutes"
-    label_ar: "الكل"
-    value: "all"
-  - label_fr: "Bagues"
-    label_ar: "خواتم"
-    value: "bagues"
-  - label_fr: "Colliers"
-    label_ar: "قلائد"
-    value: "colliers"
-  - label_fr: "Bracelets"
-    label_ar: "أساور"
-    value: "bracelets"
-  - label_fr: "Montres"
-    label_ar: "ساعات"
-    value: "montres"
+  - label_fr: Toutes
+    label_ar: الكل
+    value: all
+  - label_fr: Bagues
+    label_ar: خواتم
+    value: bagues
+  - label_fr: Colliers
+    label_ar: قلائد
+    value: colliers
+  - label_fr: Bracelets
+    label_ar: أساور
+    value: bracelets
+  - label_fr: Montres
+    label_ar: ساعات
+    value: montres
+  - label_fr: Favoris
+    label_ar: المفضلة
+    value: Favoris
