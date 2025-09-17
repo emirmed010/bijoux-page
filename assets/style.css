@@ -108,3 +108,30 @@ html[dir="rtl"] .mr-2 { margin-left: 0.5rem; margin-right: 0; }
 html[dir="rtl"] .border-l-4 { border-right-width: 4px; border-left-width: 0px; }
 html[dir="rtl"] .pl-4 { padding-right: 1rem; padding-left: 0; }
 html[dir="rtl"] .space-x-6 > :not([hidden]) ~ :not([hidden]) { margin-right: 1.5rem; margin-left: 0; }
+
+/* Contact Form Styles */
+.contact-input, .contact-select, .contact-textarea {
+    width: 100%;
+    border: 1px solid #e5e7eb; /* light gray */
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: white;
+    box-shadow: 0 1px 4px rgba(16,24,40,0.04);
+    transition: box-shadow 0.18s ease, transform 0.08s ease;
+    font-size: 1rem;
+}
+.contact-input:focus, .contact-select:focus, .contact-textarea:focus {
+    outline: none; box-shadow: 0 6px 18px rgba(197,164,126,0.12); transform: translateY(-2px);
+    border-color: var(--gold-primary);
+}
+.contact-row { display: flex; gap: 1rem; }
+.contact-row .contact-col { flex: 1; }
+
+@media (max-width: 1024px) {
+    .contact-row { flex-direction: column; }
+}
+
+/* Modal improvements for text alignment */
+#modalContent { text-align: center; }
+#modalContent p { margin-bottom: 1rem; }
+
