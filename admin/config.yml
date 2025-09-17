@@ -33,6 +33,15 @@ collections:
               - {label: "واتساب (WhatsApp)", name: "social_whatsapp", widget: "string", required: false, hint: "Utilisez le format : https://wa.me/numerosansplus"}
               - {label: "سناب شات (Snapchat)", name: "social_snapchat", widget: "string", required: false}
               - {label: "بنترست (Pinterest)", name: "social_pinterest", widget: "string", required: false}
+          
+          - label: "عناوين البريد الإلكتروني (Contact Emails)"
+            name: "contact_emails"
+            widget: "object"
+            hint: "عناوين البريد لاستخدامات التواصل: contact, support, help"
+            fields:
+              - {label: "البريد العام - contact", name: "contact", widget: "string", hint: "مثال: contact@votremarque.com"}
+              - {label: "دعم - support", name: "support", widget: "string", required: false, hint: "مثال: support@votremarque.com"}
+              - {label: "مساعدة - help", name: "help", widget: "string", required: false, hint: "مثال: help@votremarque.com"}
 
   # ===============================================================
   # === 2. محتوى الصفحات (Pages Content)
