@@ -238,11 +238,21 @@ collections:
       - {label: "صورة العنصر", name: "collection_image", widget: "image"}
       - {label: "عنوان العنصر (FR)", name: "collection_title_fr", widget: "string"}
       - {label: "عنوان العنصر (AR)", name: "collection_title_ar", widget: "string"}
-      - label: "التصنيف (Category)"
-        name: "collection_category"
-        widget: "select"
-        options:
-          - {label: "خواتم (Bagues)", value: "bagues"}
-          - {label: "قلائد (Colliers)", value: "colliers"}
-          - {label: "أساور (Bracelets)", value: "bracelets"}
-          - {label: "ساعات (Montres)", value: "montres"}
+          - label: "التصنيف (Category)"
+            name: "collection_category"
+            widget: "relation"
+            collection: "categories"
+            search_fields: ["value", "label_fr", "label_ar"]
+            value_field: "value"
+            display_fields: ["label_fr"]
+
+  # Categories collection for gallery items (editable via CMS)
+  - name: "categories"
+    label: "📂 التصنيفات (Categories)"
+    folder: "content/categories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "الاسم بالفرنسية (label_fr)", name: "label_fr", widget: "string"}
+      - {label: "الاسم بالعربية (label_ar)", name: "label_ar", widget: "string"}
+      - {label: "القيمة (value)", name: "value", widget: "string"}
