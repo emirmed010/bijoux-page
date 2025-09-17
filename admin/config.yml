@@ -43,6 +43,15 @@ collections:
               - {label: "دعم - support", name: "support", widget: "string", required: false, hint: "مثال: support@votremarque.com"}
               - {label: "مساعدة - help", name: "help", widget: "string", required: false, hint: "مثال: help@votremarque.com"}
 
+          - label: "التصنيفات (Collection Categories)"
+            name: "collection_categories"
+            widget: "list"
+            hint: "قائمة التصنيفات التي تظهر كأزرار فلترة. كل بند يحتوي الحقول: label_fr, label_ar, value"
+            fields:
+              - {label: "الاسم بالفرنسية (label_fr)", name: "label_fr", widget: "string"}
+              - {label: "الاسم بالعربية (label_ar)", name: "label_ar", widget: "string"}
+              - {label: "القيمة (value)", name: "value", widget: "string", hint: "مثال: bagues"}
+
   # ===============================================================
   # === 2. محتوى الصفحات (Pages Content)
   # ===============================================================
