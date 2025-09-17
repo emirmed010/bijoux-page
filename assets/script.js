@@ -337,19 +337,49 @@ document.addEventListener('DOMContentLoaded', function() {
         const container = document.getElementById('collectionsFilters');
         if (!container) return;
         container.innerHTML = '';
-        const categories = (siteSettings && siteSettings.collection_categories) || [];
-        // Ensure 'all' exists; fallback to defaults if empty
-        if (!categories || categories.length === 0) {
-            categories.push({ label_fr: 'Toutes', label_ar: 'الكل', value: 'all' });
+        const settingsCats = (siteSettings && siteSettings.collection_categories) || null;
+        const buildButtons = (categories) => {
+            if (!categories || categories.length === 0) categories = [{ label_fr: 'Toutes', label_ar: 'الكل', value: 'all' }];
+            categories.forEach((cat, idx) => {
+                const isActive = idx === 0 || cat.value === 'all';
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${isActive ? 'btn btn-gold active' : 'btn btn-outline-gold' } py-2 px-5`;
+                btn.dataset.filter = cat.value || 'all';
+                btn.innerHTML = `<span data-lang="fr">${cat.label_fr || cat.value}</span><span data-lang="ar" class="hidden">${cat.label_ar || cat.value}</span>`;
+                container.appendChild(btn);
+            });
+        };
+
+        if (settingsCats && settingsCats.length > 0) {
+            buildButtons(settingsCats);
+        } else {
+            // Try fetching content/categories directory (list known files)
+            fetch('/content/categories/')
+                .then(resp => {
+                    if (!resp.ok) throw new Error('Categories folder not accessible');
+                    return resp.text();
+                })
+                .then(html => {
+                    // crude parse: find .md links in directory listing
+                    const matches = Array.from(html.matchAll(/href="([^"]+\.md)"/g)).map(m => m[1]);
+                    if (matches.length === 0) {
+                        buildButtons([]);
+                        return;
+                    }
+                    const fetches = matches.map(name => fetch(`/content/categories/${name}`).then(r => r.text()));
+                    return Promise.all(fetches).then(contents => {
+                        const cats = contents.map(txt => {
+                            try {
+                                return jsyaml.load(txt) || null;
+                            } catch (e) { return null; }
+                        }).filter(Boolean);
+                        buildButtons(cats);
+                    });
+                })
+                .catch(() => {
+                    buildButtons([]);
+                });
         }
-        categories.forEach((cat, idx) => {
-            const isActive = idx === 0 || cat.value === 'all';
-            const btn = document.createElement('button');
-            btn.className = `filter-btn ${isActive ? 'btn btn-gold active' : 'btn btn-outline-gold' } py-2 px-5`;
-            btn.dataset.filter = cat.value || 'all';
-            btn.innerHTML = `<span data-lang="fr">${cat.label_fr || cat.value}</span><span data-lang="ar" class="hidden">${cat.label_ar || cat.value}</span>`;
-            container.appendChild(btn);
-        });
 
         // Use event delegation to handle clicks
         container.addEventListener('click', function(e) {
