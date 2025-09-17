@@ -11,6 +11,23 @@ social_links:
   social_snapchat: "#"
   social_pinterest: "#"
 contact_emails:
-  contact: contact@datajewellery.com
-  support: support@datajewellery.com
-  help: help@datajewellery.com
+  contact: contact@votremarque.example
+  support: support@votremarque.example
+  help: help@votremarque.example
+
+collection_categories:
+  - label_fr: "Toutes"
+    label_ar: "الكل"
+    value: "all"
+  - label_fr: "Bagues"
+    label_ar: "خواتم"
+    value: "bagues"
+  - label_fr: "Colliers"
+    label_ar: "قلائد"
+    value: "colliers"
+  - label_fr: "Bracelets"
+    label_ar: "أساور"
+    value: "bracelets"
+  - label_fr: "Montres"
+    label_ar: "ساعات"
+    value: "montres"
