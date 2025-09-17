@@ -238,13 +238,13 @@ collections:
       - {label: "صورة العنصر", name: "collection_image", widget: "image"}
       - {label: "عنوان العنصر (FR)", name: "collection_title_fr", widget: "string"}
       - {label: "عنوان العنصر (AR)", name: "collection_title_ar", widget: "string"}
-          - label: "التصنيف (Category)"
-            name: "collection_category"
-            widget: "relation"
-            collection: "categories"
-            search_fields: ["value", "label_fr", "label_ar"]
-            value_field: "value"
-            display_fields: ["label_fr"]
+      - label: "التصنيف (Category)"
+        name: "collection_category"
+        widget: "relation"
+        collection: "categories"
+        search_fields: ["value", "label_fr", "label_ar"]
+        value_field: "value"
+        display_fields: ["label_fr"]
 
   # Categories collection for gallery items (editable via CMS)
   - name: "categories"
