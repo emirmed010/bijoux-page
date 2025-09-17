@@ -331,6 +331,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         reobserveAnimations();
     }
+
+    // Render collection category filter buttons from site settings
+    function renderCollectionFilters() {
+        const container = document.getElementById('collectionsFilters');
+        if (!container) return;
+        container.innerHTML = '';
+        const categories = (siteSettings && siteSettings.collection_categories) || [];
+        // Ensure 'all' exists; fallback to defaults if empty
+        if (!categories || categories.length === 0) {
+            categories.push({ label_fr: 'Toutes', label_ar: 'الكل', value: 'all' });
+        }
+        categories.forEach((cat, idx) => {
+            const isActive = idx === 0 || cat.value === 'all';
+            const btn = document.createElement('button');
+            btn.className = `filter-btn ${isActive ? 'btn btn-gold active' : 'btn btn-outline-gold' } py-2 px-5`;
+            btn.dataset.filter = cat.value || 'all';
+            btn.innerHTML = `<span data-lang="fr">${cat.label_fr || cat.value}</span><span data-lang="ar" class="hidden">${cat.label_ar || cat.value}</span>`;
+            container.appendChild(btn);
+        });
+
+        // Use event delegation to handle clicks
+        container.addEventListener('click', function(e) {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            const allBtns = container.querySelectorAll('.filter-btn');
+            allBtns.forEach(b => {
+                b.classList.remove('btn-gold');
+                b.classList.add('btn-outline-gold');
+                b.classList.remove('active');
+            });
+            btn.classList.remove('btn-outline-gold');
+            btn.classList.add('btn-gold');
+            btn.classList.add('active');
+            const filter = btn.dataset.filter || 'all';
+            renderGallery(filter);
+        });
+    }
     
     // --- MODAL FUNCTIONS --- //
     function showModal() {
@@ -490,6 +527,8 @@ document.addEventListener('DOMContentLoaded', function() {
     populateContent(lang);
     // Update recipient select labels from settings (if available)
     populateRecipientOptions();
+    // Render collection filter buttons from settings
+    renderCollectionFilters();
         renderProducts(lang);
         renderGallery(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
         
