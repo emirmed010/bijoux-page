@@ -276,6 +276,19 @@ document.addEventListener('DOMContentLoaded', function() {
         updateElement(`footer-copyright-ar`, copyright_ar, 'html');
     }
 
+    // Populate recipient select options with actual emails from site settings
+    function populateRecipientOptions() {
+        const recipients = (siteSettings && siteSettings.contact_emails) || {};
+        const select = document.getElementById('recipient');
+        if (!select) return;
+        ['contact', 'support', 'help'].forEach(key => {
+            const opt = select.querySelector(`option[value="${key}"]`);
+            if (opt) {
+                opt.textContent = recipients[key] || key;
+            }
+        });
+    }
+
     function renderProducts(lang) {
         const container = document.getElementById('featured-products-grid');
         if (!container || !productsData) return;
@@ -474,7 +487,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updateElement('modal-text', modalTexts[lang].text);
         updateElement('modal-button', modalTexts[lang].button);
         
-        populateContent(lang);
+    populateContent(lang);
+    // Update recipient select labels from settings (if available)
+    populateRecipientOptions();
         renderProducts(lang);
         renderGallery(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
         
