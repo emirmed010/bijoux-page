@@ -10,3 +10,7 @@ social_links:
   social_whatsapp: "#"
   social_snapchat: "#"
   social_pinterest: "#"
+contact_emails:
+  contact: contact@votremarque.example
+  support: support@votremarque.example
+  help: help@votremarque.example
