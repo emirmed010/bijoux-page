@@ -384,11 +384,44 @@ document.addEventListener('DOMContentLoaded', function() {
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                // This is where you would typically send form data to a server.
-                // For this demo, we just show the success modal.
-                console.log('Form submitted!');
+                // Gather form values
+                const name = (document.getElementById('name') || {}).value || '';
+                const email = (document.getElementById('email') || {}).value || '';
+                const message = (document.getElementById('message') || {}).value || '';
+                const recipientKey = (document.getElementById('recipient') || {}).value || 'contact';
+
+                // Basic client-side validation
+                if (!name.trim() || !email.trim() || !message.trim()) {
+                    alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول.' : 'Veuillez remplir tous les champs.');
+                    return;
+                }
+
+                // Map recipient keys to actual emails. Prefer settings from siteSettings if provided.
+                const recipientsFromSettings = (siteSettings && siteSettings.contact_emails) || {};
+                const recipientMap = {
+                    contact: recipientsFromSettings.contact || 'contact@votremarque.example',
+                    support: recipientsFromSettings.support || 'support@votremarque.example',
+                    help: recipientsFromSettings.help || 'help@votremarque.example'
+                };
+
+                const toEmail = recipientMap[recipientKey] || recipientMap.contact;
+
+                // Build a mailto: link as a graceful fallback for static sites
+                const subject = encodeURIComponent(currentLang === 'ar' ? 'رسالة من الموقع' : 'Message from website');
+                const bodyLines = [];
+                if (name) bodyLines.push((currentLang === 'ar' ? 'الاسم: ' : 'Name: ') + name);
+                if (email) bodyLines.push((currentLang === 'ar' ? 'البريد الإلكتروني: ' : 'Email: ') + email);
+                if (message) bodyLines.push((currentLang === 'ar' ? 'الرسالة: ' : 'Message: ') + message);
+                const body = encodeURIComponent(bodyLines.join('\n\n'));
+
+                const mailto = `mailto:${toEmail}?subject=${subject}&body=${body}`;
+
+                // Attempt to open the user's mail client. This is a fallback for static hosting.
+                window.location.href = mailto;
+
+                // Show success modal immediately so user gets feedback.
                 showModal();
-                contactForm.reset(); // Optional: reset the form after submission.
+                contactForm.reset();
             });
         }
 
