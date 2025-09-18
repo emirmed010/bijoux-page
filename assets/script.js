@@ -345,7 +345,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const btn = document.createElement('button');
                 btn.className = `filter-btn ${isActive ? 'btn btn-gold active' : 'btn btn-outline-gold' } py-2 px-5`;
                 btn.dataset.filter = cat.value || 'all';
-                btn.innerHTML = `<span data-lang="fr">${cat.label_fr || cat.value}</span><span data-lang="ar" class="hidden">${cat.label_ar || cat.value}</span>`;
+                const label = currentLang === 'ar' ? (cat.label_ar || cat.label_fr || cat.value) : (cat.label_fr || cat.label_ar || cat.value);
+                btn.textContent = label;
                 container.appendChild(btn);
             });
         };
@@ -381,8 +382,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         }
 
-        // Use event delegation to handle clicks
-        container.addEventListener('click', function(e) {
+        // Use a single click handler to avoid attaching multiple listeners
+        container.onclick = function(e) {
             const btn = e.target.closest('.filter-btn');
             if (!btn) return;
             const allBtns = container.querySelectorAll('.filter-btn');
@@ -396,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.classList.add('active');
             const filter = btn.dataset.filter || 'all';
             renderGallery(filter);
-        });
+        };
     }
     
     // --- MODAL FUNCTIONS --- //
