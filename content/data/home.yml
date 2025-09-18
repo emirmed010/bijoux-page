@@ -106,8 +106,7 @@ contact_section:
   google_map_iframe: >-
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15394.70732387796!2d-16.01541662897949!3d18.09995513426189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x_!2zMTjCsDA1JzU5LjgiTiAxNsKwMDAnNTUuNSJX!5e0!3m2!1sen!2s!4v1620000000001!5m2!1sen!2s"
-      width="600" height="450" style="border:0;" allowfullscreen=""
-      loading="lazy"></iframe>
+      </iframe>
   form_submit_button_fr: Envoyer
   form_title_fr: Envoyez-nous un Message
   contact_email_fr: contact@datajewellery.com
@@ -134,8 +133,6 @@ contact_section:
   form_email_label_ar: بريدك الإلكتروني
   contact_address_ar: ١٢٣ شارع الأناقة، باريس، فرنسا
   contact_phone_fr: +33 1 23 45 67 89
-
-  
 footer_section:
   footer_logo_text_fr: Data Jewellery
   footer_logo_text_ar: مجوهرات داتا
