@@ -432,6 +432,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (menuBtn) {
             menuBtn.addEventListener('click', toggleMenu);
+            // If the hamburger has a checkbox, listen to its change to support native toggles (keyboard, assistive tech)
+            const internalCheckbox = menuBtn.querySelector('input[type="checkbox"]');
+            if (internalCheckbox) {
+                internalCheckbox.addEventListener('change', function () {
+                    // Ensure classes follow the checkbox state (checked => open)
+                    setMenuState(Boolean(internalCheckbox.checked));
+                });
+            }
         }
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -570,10 +578,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function toggleMenu() {
         if (menuBtn && mobileMenu && body) {
-            menuBtn.classList.toggle('open');
-            mobileMenu.classList.toggle('open');
-            body.classList.toggle('menu-open');
+            const isOpen = !menuBtn.classList.contains('open');
+            setMenuState(isOpen);
         }
+    }
+
+    function setMenuState(isOpen) {
+        if (!menuBtn || !mobileMenu || !body) return;
+        if (isOpen) {
+            menuBtn.classList.add('open');
+            mobileMenu.classList.add('open');
+            body.classList.add('menu-open');
+        } else {
+            menuBtn.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            body.classList.remove('menu-open');
+        }
+        const checkbox = menuBtn.querySelector('input[type="checkbox"]');
+        if (checkbox) checkbox.checked = isOpen;
     }
 
     // --- SCROLL ANIMATION OBSERVER --- //
